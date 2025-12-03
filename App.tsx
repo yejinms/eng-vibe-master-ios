@@ -1,0 +1,397 @@
+import React, { useState, useEffect } from 'react';
+import HomeView from './views/HomeView';
+import GameView from './views/GameView';
+import LevelUpView from './views/LevelUpView';
+import GameOverView from './views/GameOverView';
+import OnboardingView from './views/OnboardingView';
+import QuizView from './views/QuizView';
+import PracticeView from './views/PracticeView';
+import { CharacterId, GameState, ViewState, ReviewItem, CharacterProfile, UserProfile, Difficulty, DialogueRound } from './types';
+import { CHARACTERS } from './constants';
+import { RelationType, ThemeType, generateCharacterWithAI, generateNextLevelStory } from './utils/generator';
+
+const App: React.FC = () => {
+  const [view, setView] = useState<ViewState>('ONBOARDING');
+  const [activeCharId, setActiveCharId] = useState<CharacterId | null>(null);
+  const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [collectedRounds, setCollectedRounds] = useState<{ charName: string; round: DialogueRound }[]>([]);
+  
+  // Persisted Progress State
+  const [gameState, setGameState] = useState<GameState>(() => {
+    const saved = localStorage.getItem('vibeMasterV6');
+    if (saved) {
+        return JSON.parse(saved);
+    }
+    return { 
+        userProfile: null,
+        progress: { zoey: {beginner:0, intermediate:0, advanced:0}, daniel: {beginner:0, intermediate:0, advanced:0}, lucas: {beginner:0, intermediate:0, advanced:0} }, 
+        customCharacters: [] 
+    };
+  });
+
+  useEffect(() => {
+    localStorage.setItem('vibeMasterV6', JSON.stringify(gameState));
+  }, [gameState]);
+
+  // Check Onboarding
+  useEffect(() => {
+    if (!gameState.userProfile) {
+        setView('ONBOARDING');
+    } else if (view === 'ONBOARDING' && gameState.userProfile) {
+        setView('HOME');
+    }
+  }, [gameState.userProfile]);
+
+  const handleOnboardingComplete = (profile: UserProfile) => {
+      setGameState(prev => ({ ...prev, userProfile: profile }));
+  };
+
+  // Merge Default + Custom Characters
+  const allCharacters: Record<string, CharacterProfile> = { ...CHARACTERS };
+  gameState.customCharacters.forEach(char => {
+    allCharacters[char.id] = char;
+  });
+
+  const handleStartGame = (charId: CharacterId) => {
+    setActiveCharId(charId);
+    setReviewItems([]);
+    
+    if (!gameState.userProfile) return;
+    const userLevel = gameState.userProfile.level;
+
+    // Init progress if needed
+    if (!gameState.progress[charId]) {
+        setGameState(prev => ({
+            ...prev,
+            progress: { ...prev.progress, [charId]: { beginner:0, intermediate:0, advanced:0 } }
+        }));
+    }
+    
+    const currentProgress = gameState.progress[charId]?.[userLevel] || 0;
+    const char = allCharacters[charId];
+    const levels = char.levels[userLevel] || [];
+
+    // Check if max level reached for this difficulty
+    if (currentProgress >= levels.length) {
+       // If Advanced is completed, offer reset. Otherwise offer Level Up Quiz.
+       if (userLevel === 'advanced') {
+           if (confirm("이 스토리의 모든 과정을 완료했습니다! 다시 처음부터 하시겠습니까?")) {
+               setGameState(prev => ({
+                   ...prev,
+                   progress: { ...prev.progress, [charId]: { ...prev.progress[charId], [userLevel]: 0 } }
+               }));
+               setView('GAME');
+           }
+       } else {
+           if (confirm("이미 완료된 스토리입니다. 다음 레벨(난이도) 테스트를 진행하시겠습니까?")) {
+               setView('QUIZ');
+           }
+       }
+       return;
+    }
+    setView('GAME');
+  };
+
+  const handleLevelComplete = () => {
+    if (!activeCharId || !gameState.userProfile) return;
+    
+    const userLevel = gameState.userProfile.level;
+    const currentProgress = gameState.progress[activeCharId]?.[userLevel] || 0;
+    const char = allCharacters[activeCharId];
+    const levels = char.levels[userLevel] || [];
+
+    const nextLevel = currentProgress + 1;
+
+    setGameState(prev => ({
+      ...prev,
+      progress: { 
+          ...prev.progress, 
+          [activeCharId]: {
+              ...prev.progress[activeCharId],
+              [userLevel]: nextLevel
+          } 
+      }
+    }));
+
+    // If finished all levels in this difficulty
+    if (nextLevel >= levels.length) {
+       // Trigger Quiz for Beginner/Intermediate to level up
+       if (userLevel === 'beginner' || userLevel === 'intermediate') {
+         setView('QUIZ');
+       } else {
+         // Advanced completed
+         setView('COMPLETED');
+       }
+    } else {
+      setView('LEVEL_UP');
+    }
+  };
+
+  const handleQuizPass = async () => {
+      if (!gameState.userProfile) return;
+      
+      const currentLevel = gameState.userProfile.level;
+      let nextLevel: Difficulty = currentLevel;
+      
+      if (currentLevel === 'beginner') nextLevel = 'intermediate';
+      else if (currentLevel === 'intermediate') nextLevel = 'advanced';
+
+      // Check if it's the max level (Advanced)
+      if (currentLevel === 'advanced') {
+          alert("모든 마스터 과정을 완료했습니다! 다른 캐릭터의 스토리도 즐겨보세요.");
+          setView('HOME');
+          setActiveCharId(null);
+          return;
+      }
+
+      // If active character is custom, generate next level content
+      if (activeCharId && allCharacters[activeCharId]?.isCustom) {
+          setIsGenerating(true); 
+          try {
+              const char = allCharacters[activeCharId];
+              // Generate new levels for next difficulty
+              const newLevels = await generateNextLevelStory(char, nextLevel);
+              
+              setGameState(prev => {
+                  // Update the specific custom character with new levels
+                  const updatedCustomChars = prev.customCharacters.map(c => {
+                      if (c.id === char.id) {
+                          return {
+                              ...c,
+                              levels: {
+                                  ...c.levels,
+                                  [nextLevel]: newLevels
+                              }
+                          };
+                      }
+                      return c;
+                  });
+                  
+                  return {
+                      ...prev,
+                      userProfile: { ...prev.userProfile!, level: nextLevel },
+                      customCharacters: updatedCustomChars,
+                      // Initialize progress for the new difficulty
+                      progress: {
+                          ...prev.progress,
+                          [char.id]: {
+                              ...prev.progress[char.id],
+                              [nextLevel]: 0
+                          }
+                      }
+                  };
+              });
+              
+              alert(`축하합니다! ${nextLevel.toUpperCase()} 레벨로 승급했습니다!\n${char.name}와의 새로운 이야기가 이어집니다.`);
+          } catch (e) {
+              console.error(e);
+              alert("다음 스토리 생성에 실패했습니다. 레벨만 변경됩니다.");
+              setGameState(prev => ({
+                  ...prev,
+                  userProfile: { ...prev.userProfile!, level: nextLevel }
+              }));
+          } finally {
+              setIsGenerating(false);
+              setView('HOME');
+              setActiveCharId(null);
+          }
+      } else {
+          // Default behavior for standard characters
+          setGameState(prev => ({
+              ...prev,
+              userProfile: { ...prev.userProfile!, level: nextLevel }
+          }));
+          
+          alert(`축하합니다! ${nextLevel.toUpperCase()} 레벨로 승급했습니다!`);
+          setView('HOME');
+          setActiveCharId(null);
+      }
+  };
+
+  const handleQuizFail = () => {
+      // Just go home, user can try again later
+      setView('HOME');
+  };
+
+  const handleGameOver = (mistakes: ReviewItem[]) => {
+    setReviewItems(mistakes);
+    setView('GAME_OVER');
+  };
+
+  const handleNextLevel = () => {
+    setView('GAME');
+  };
+
+  const handleGoHome = () => {
+    setView('HOME');
+    setActiveCharId(null);
+    setReviewItems([]);
+  };
+
+  const handleRetryLevel = () => {
+    setReviewItems([]);
+    setView('GAME');
+  };
+
+  const resetAllData = () => {
+    if(confirm("모든 데이터가 삭제됩니다.")) {
+        localStorage.removeItem('vibeMasterV6');
+        location.reload();
+    }
+  };
+
+  const handleRetakeTest = () => {
+    if(confirm("기존 대화 내역이 모두 초기화됩니다. 레벨 테스트를 다시 진행하시겠습니까?")) {
+        setGameState(prev => ({
+            ...prev,
+            userProfile: null,
+            progress: { zoey: {beginner:0, intermediate:0, advanced:0}, daniel: {beginner:0, intermediate:0, advanced:0}, lucas: {beginner:0, intermediate:0, advanced:0} }
+        }));
+        setView('ONBOARDING');
+    }
+  };
+  
+  const handleUpdateLevel = (newLevel: Difficulty) => {
+     if(gameState.userProfile) {
+         setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, level: newLevel } }));
+     }
+  };
+
+  const handleCreateCharacter = async (relation: RelationType, theme: ThemeType) => {
+    if (!gameState.userProfile) return;
+    setIsGenerating(true);
+    try {
+        const newChar = await generateCharacterWithAI(relation, theme, gameState.userProfile.level);
+        setGameState(prev => ({
+            ...prev,
+            customCharacters: [...prev.customCharacters, newChar],
+            progress: { 
+                ...prev.progress, 
+                [newChar.id]: { beginner:0, intermediate:0, advanced:0 } // Init all
+            }
+        }));
+    } catch (e) {
+        console.error("Failed to generate character", e);
+        alert("스토리 생성 실패. 다시 시도해주세요.");
+    } finally {
+        setIsGenerating(false);
+    }
+  };
+
+  const handlePractice = () => {
+      const rounds: { charName: string; round: DialogueRound }[] = [];
+      const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
+
+      Object.values(allCharacters).forEach(char => {
+          difficulties.forEach(diff => {
+              const lvlIdx = gameState.progress[char.id]?.[diff] || 0;
+              const levels = char.levels[diff] || [];
+              
+              // Add rounds from completed levels (indices 0 to lvlIdx - 1)
+              // If lvlIdx is 0, nothing is added
+              for(let i = 0; i < lvlIdx; i++) {
+                  if (levels[i]) {
+                      levels[i].rounds.forEach(r => {
+                          rounds.push({ charName: char.name, round: r });
+                      });
+                  }
+              }
+          });
+      });
+
+      setCollectedRounds(rounds);
+      setView('PRACTICE');
+  };
+
+  return (
+    <div className="w-full h-full max-w-md mx-auto bg-white shadow-2xl relative overflow-hidden flex flex-col">
+      {/* Global Loading Overlay */}
+      {isGenerating && (
+        <div className="absolute inset-0 bg-black/50 z-[100] flex items-center justify-center backdrop-blur-sm animate-fade-in">
+          <div className="bg-white p-6 rounded-2xl shadow-2xl flex flex-col items-center gap-4">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <p className="font-bold text-slate-700">스토리 생성 중...</p>
+          </div>
+        </div>
+      )}
+
+      {view === 'ONBOARDING' && (
+        <OnboardingView onComplete={handleOnboardingComplete} />
+      )}
+
+      {view === 'HOME' && gameState.userProfile && (
+        <HomeView 
+          progress={gameState.progress} 
+          characters={Object.values(allCharacters)}
+          userProfile={gameState.userProfile}
+          onSelectCharacter={handleStartGame}
+          onReset={resetAllData}
+          onCreateCharacter={handleCreateCharacter}
+          isGenerating={isGenerating}
+          onRetakeTest={handleRetakeTest}
+          onUpdateLevel={handleUpdateLevel}
+          onPractice={handlePractice}
+        />
+      )}
+
+      {view === 'GAME' && activeCharId && allCharacters[activeCharId] && gameState.userProfile && (
+        <GameView 
+          character={allCharacters[activeCharId]} 
+          userProfile={gameState.userProfile}
+          levelIndex={gameState.progress[activeCharId]?.[gameState.userProfile.level] || 0}
+          onLevelComplete={handleLevelComplete}
+          onGameOver={handleGameOver}
+          onBack={handleGoHome}
+        />
+      )}
+
+      {view === 'QUIZ' && activeCharId && allCharacters[activeCharId] && gameState.userProfile && (
+        <QuizView
+          character={allCharacters[activeCharId]}
+          difficulty={gameState.userProfile.level}
+          onPass={handleQuizPass}
+          onFail={handleQuizFail}
+        />
+      )}
+
+      {view === 'LEVEL_UP' && activeCharId && allCharacters[activeCharId] && gameState.userProfile && (
+        <LevelUpView 
+          type="LEVEL_UP"
+          character={allCharacters[activeCharId]}
+          nextLevelIndex={gameState.progress[activeCharId]?.[gameState.userProfile.level] || 0}
+          difficulty={gameState.userProfile.level}
+          onAction={handleNextLevel}
+          onHome={handleGoHome}
+        />
+      )}
+
+      {view === 'COMPLETED' && activeCharId && allCharacters[activeCharId] && gameState.userProfile && (
+        <LevelUpView 
+          type="COMPLETED"
+          character={allCharacters[activeCharId]}
+          nextLevelIndex={0}
+          difficulty={gameState.userProfile.level}
+          onAction={handleGoHome}
+        />
+      )}
+
+      {view === 'GAME_OVER' && activeCharId && (
+        <GameOverView 
+          reviewItems={reviewItems}
+          onRetry={handleRetryLevel}
+          onHome={handleGoHome}
+        />
+      )}
+
+      {view === 'PRACTICE' && (
+          <PracticeView 
+              rounds={collectedRounds}
+              onBack={handleGoHome}
+          />
+      )}
+    </div>
+  );
+};
+
+export default App;
