@@ -114,8 +114,15 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
 
       return (
           <div className="h-full flex flex-col bg-white">
-              <div className="h-16 flex items-center justify-between px-4 border-b border-slate-100">
-                  <button onClick={() => setMode('LIST')} className="p-2 -ml-2 text-slate-400 hover:text-slate-600">
+              <div 
+                className="flex items-center justify-between px-4 border-b border-slate-100"
+                style={{
+                  minHeight: '4rem',
+                  paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
+                  paddingBottom: '0.5rem',
+                }}
+              >
+                  <button onClick={() => setMode('LIST')} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 active:scale-95 transition-transform">
                       <ChevronLeft size={24} />
                   </button>
                   <span className="font-bold text-slate-800">Review Quiz</span>
@@ -171,9 +178,16 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
   // LIST Mode
   return (
     <div className="flex flex-col h-full bg-slate-50">
-      <div className="h-16 bg-white flex items-center justify-between px-4 shadow-sm z-10 shrink-0">
+      <div 
+        className="bg-white flex items-center justify-between px-4 shadow-sm z-10 shrink-0"
+        style={{
+          minHeight: '4rem',
+          paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
+          paddingBottom: '0.5rem',
+        }}
+      >
           <div className="flex items-center gap-3">
-            <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600">
+            <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 active:scale-95 transition-transform">
               <ChevronLeft size={24} />
             </button>
             <h1 className="text-xl font-extrabold text-slate-800">Practice</h1>

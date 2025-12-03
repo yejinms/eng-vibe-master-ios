@@ -61,7 +61,12 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
   return (
     <div className="flex flex-col h-full bg-slate-50 relative">
       {/* Header */}
-      <div className="pt-12 pb-6 px-6 bg-white rounded-b-[2rem] shadow-sm z-10 shrink-0">
+      <div 
+        className="pb-6 px-6 bg-white rounded-b-[2rem] shadow-sm z-10 shrink-0"
+        style={{ 
+          paddingTop: 'calc(3rem + env(safe-area-inset-top))',
+        }}
+      >
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Vibe Master</h2>
         <div className="flex justify-between items-center">
             <h1 className="text-3xl font-extrabold text-slate-800">Hello, {userProfile.name}</h1>
@@ -107,7 +112,10 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
       </div>
       
       {/* Footer Practice Button */}
-      <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-slate-50 to-transparent z-20 pointer-events-none flex justify-center pb-8">
+      <div 
+        className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-slate-50 to-transparent z-20 pointer-events-none flex justify-center"
+        style={{ paddingBottom: 'calc(2rem + env(safe-area-inset-bottom))' }}
+      >
         <button 
           onClick={onPractice}
           className="pointer-events-auto shadow-xl shadow-primary/30 w-full max-w-xs bg-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all"

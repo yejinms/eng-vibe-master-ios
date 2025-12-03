@@ -200,7 +200,10 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         difficulty={userProfile.level}
       />
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide pb-4">
+      <div 
+        className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide"
+        style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}
+      >
         {messages.map((msg) => (
           <div key={msg.id} className={`flex w-full ${msg.sender === 'me' ? 'justify-end' : 'justify-start'} ${msg.sender === 'system' ? 'justify-center' : ''}`}>
             {msg.sender === 'system' ? (
@@ -237,7 +240,10 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         <div ref={chatEndRef} />
       </div>
 
-      <div className="w-full bg-white border-t border-slate-100 p-4 pb-8 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] z-10 transition-all duration-300 shrink-0">
+      <div 
+        className="w-full bg-white border-t border-slate-100 p-4 shadow-[0_-5px_20px_rgba(0,0,0,0.03)] z-10 transition-all duration-300 shrink-0"
+        style={{ paddingBottom: 'calc(2rem + env(safe-area-inset-bottom))' }}
+      >
         {turnState === 'USER_INPUT' && currentRound ? (
            <div className="flex flex-col gap-3 animate-slide-up">
               <div className="bg-yellow-50 border border-yellow-100 rounded-xl p-3 text-center mb-1">

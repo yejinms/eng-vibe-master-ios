@@ -50,9 +50,16 @@ const GameHeader: React.FC<Props> = ({ character, levelIndex, onBack, progressVa
   }, []);
 
   return (
-    <div className="h-16 bg-white flex items-center justify-between px-4 shadow-sm z-20 shrink-0 relative">
+    <div 
+      className="bg-white flex items-center justify-between px-4 shadow-sm z-20 shrink-0 relative"
+      style={{
+        minHeight: '4rem',
+        paddingTop: 'calc(env(safe-area-inset-top) + 0.5rem)',
+        paddingBottom: '0.5rem',
+      }}
+    >
       <div className="flex items-center gap-3">
-        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600">
+        <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 active:scale-95 transition-transform">
           <ChevronLeft size={24} />
         </button>
         

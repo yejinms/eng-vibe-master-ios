@@ -9,6 +9,7 @@ import PracticeView from './views/PracticeView';
 import { CharacterId, GameState, ViewState, ReviewItem, CharacterProfile, UserProfile, Difficulty, DialogueRound } from './types';
 import { CHARACTERS } from './constants';
 import { RelationType, ThemeType, generateCharacterWithAI, generateNextLevelStory } from './utils/generator';
+import { storage } from './utils/storage';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('ONBOARDING');
@@ -17,21 +18,83 @@ const App: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [collectedRounds, setCollectedRounds] = useState<{ charName: string; round: DialogueRound }[]>([]);
   
-  // Persisted Progress State
+  // Default game state
+  const defaultGameState: GameState = { 
+    userProfile: null,
+    progress: { zoey: {beginner:0, intermediate:0, advanced:0}, daniel: {beginner:0, intermediate:0, advanced:0}, lucas: {beginner:0, intermediate:0, advanced:0} }, 
+    customCharacters: [] 
+  };
+
+  // Persisted Progress State - initialize with localStorage for immediate render, then migrate to Capacitor
   const [gameState, setGameState] = useState<GameState>(() => {
-    const saved = localStorage.getItem('vibeMasterV6');
-    if (saved) {
-        return JSON.parse(saved);
+    // Try to load from localStorage first (for immediate render and backwards compatibility)
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('vibeMasterV6');
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch (e) {
+        console.error('Error loading from localStorage:', e);
+      }
     }
-    return { 
-        userProfile: null,
-        progress: { zoey: {beginner:0, intermediate:0, advanced:0}, daniel: {beginner:0, intermediate:0, advanced:0}, lucas: {beginner:0, intermediate:0, advanced:0} }, 
-        customCharacters: [] 
-    };
+    return defaultGameState;
   });
 
+  // Load from Capacitor Preferences on mount and migrate from localStorage
   useEffect(() => {
-    localStorage.setItem('vibeMasterV6', JSON.stringify(gameState));
+    const loadGameState = async () => {
+      try {
+        const saved = await storage.get('vibeMasterV6');
+        if (saved) {
+          setGameState(saved);
+          // Migrate from localStorage to Capacitor if localStorage has data
+          if (typeof window !== 'undefined') {
+            try {
+              const localSaved = localStorage.getItem('vibeMasterV6');
+              if (localSaved) {
+                // Already migrated or same data
+                localStorage.removeItem('vibeMasterV6'); // Clean up old storage
+              }
+            } catch (e) {
+              // Ignore
+            }
+          }
+        } else {
+          // Try to migrate from localStorage
+          if (typeof window !== 'undefined') {
+            try {
+              const localSaved = localStorage.getItem('vibeMasterV6');
+              if (localSaved) {
+                const migrated = JSON.parse(localSaved);
+                setGameState(migrated);
+                await storage.set('vibeMasterV6', migrated);
+                localStorage.removeItem('vibeMasterV6'); // Clean up after migration
+              }
+            } catch (e) {
+              console.error('Error migrating from localStorage:', e);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error loading game state:', error);
+      }
+    };
+
+    loadGameState();
+  }, []);
+
+  // Save to Capacitor Preferences whenever gameState changes
+  useEffect(() => {
+    const saveGameState = async () => {
+      try {
+        await storage.set('vibeMasterV6', gameState);
+      } catch (error) {
+        console.error('Error saving game state:', error);
+      }
+    };
+
+    saveGameState();
   }, [gameState]);
 
   // Check Onboarding
@@ -234,9 +297,17 @@ const App: React.FC = () => {
     setView('GAME');
   };
 
-  const resetAllData = () => {
+  const resetAllData = async () => {
     if(confirm("모든 데이터가 삭제됩니다.")) {
-        localStorage.removeItem('vibeMasterV6');
+        await storage.remove('vibeMasterV6');
+        // Also remove from localStorage if exists (for cleanup)
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.removeItem('vibeMasterV6');
+          } catch (e) {
+            // Ignore
+          }
+        }
         location.reload();
     }
   };
@@ -305,7 +376,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full max-w-md mx-auto bg-white shadow-2xl relative overflow-hidden flex flex-col">
+    <div className="w-full h-full max-w-md mx-auto bg-white relative overflow-hidden flex flex-col" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.1)' }}>
       {/* Global Loading Overlay */}
       {isGenerating && (
         <div className="absolute inset-0 bg-black/50 z-[100] flex items-center justify-center backdrop-blur-sm animate-fade-in">
