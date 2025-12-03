@@ -67,7 +67,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
           paddingTop: 'calc(3rem + env(safe-area-inset-top))',
         }}
       >
-        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Vibe Master</h2>
+        <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">VibeCheck</h2>
         <div className="flex justify-between items-center">
             <h1 className="text-3xl font-extrabold text-slate-800">Hello, {userProfile.name}</h1>
             <button 

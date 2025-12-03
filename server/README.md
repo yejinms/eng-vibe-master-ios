@@ -1,4 +1,4 @@
-# Eng Vibe Master API Server
+# VibeCheck API Server
 
 이 서버는 Gemini API를 안전하게 프록시하는 백엔드 서버입니다.
 

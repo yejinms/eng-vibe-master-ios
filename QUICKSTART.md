@@ -46,7 +46,7 @@ npm start
 
 정상적으로 실행되면 다음과 같은 메시지가 나타납니다:
 ```
-🚀 Eng Vibe Master API Server running on port 3001
+🚀 VibeCheck API Server running on port 3001
 📝 Health check: http://localhost:3001/health
 ```
 
@@ -65,7 +65,7 @@ npm run dev
 - 클라이언트: http://localhost:3000
 - 서버 헬스체크: http://localhost:3001/health
 
-서버 헬스체크에서 `{"status":"ok","message":"Eng Vibe Master API Server"}` 응답이 나오면 정상입니다.
+서버 헬스체크에서 `{"status":"ok","message":"VibeCheck API Server"}` 응답이 나오면 정상입니다.
 
 ---
 

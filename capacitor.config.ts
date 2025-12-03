@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.engvibemaster.app',
-  appName: 'Eng Vibe Master',
+  appName: 'VibeCheck',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

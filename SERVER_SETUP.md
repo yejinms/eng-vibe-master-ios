@@ -44,7 +44,7 @@ npm start
 
 성공하면 다음과 같은 메시지가 나타납니다:
 ```
-🚀 Eng Vibe Master API Server running on port 3001
+🚀 VibeCheck API Server running on port 3001
 📝 Health check: http://localhost:3001/health
 ```
 
@@ -55,7 +55,7 @@ npm start
 
 다음과 같은 응답이 보이면 정상입니다:
 ```json
-{"status":"ok","message":"Eng Vibe Master API Server"}
+{"status":"ok","message":"VibeCheck API Server"}
 ```
 
 ### Step 4: 클라이언트 실행

@@ -312,7 +312,7 @@ async function generateNextLevelStory(character, targetDifficulty) {
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Eng Vibe Master API Server' });
+  res.json({ status: 'ok', message: 'VibeCheck API Server' });
 });
 
 // Generate new character
@@ -385,7 +385,7 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Eng Vibe Master API Server running on port ${PORT}`);
+  console.log(`🚀 VibeCheck API Server running on port ${PORT}`);
   console.log(`📝 Health check: http://localhost:${PORT}/health`);
 });
 

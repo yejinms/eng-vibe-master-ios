@@ -164,7 +164,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
                 onClick={() => onComplete({ name, level: resultLevel })}
                 className="px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/30 active:scale-95 transition-all flex items-center gap-2 mx-auto"
             >
-                Vibe Master 시작하기 <ArrowRight size={20} />
+                VibeCheck 시작하기 <ArrowRight size={20} />
             </button>
         </div>
       )}
