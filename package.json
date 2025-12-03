@@ -6,9 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server:dev": "cd server && npm start",
+    "server:install": "cd server && npm install",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:ios": "npx cap open ios",
+    "cap:sync:ios": "npm run build && npx cap sync ios"
   },
   "dependencies": {
+    "@capacitor/app": "^7.1.0",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/core": "^7.4.4",
+    "@capacitor/ios": "^7.4.4",
+    "@capacitor/keyboard": "^7.0.3",
+    "@capacitor/preferences": "^7.0.2",
+    "@capacitor/splash-screen": "^7.0.3",
+    "@capacitor/status-bar": "^7.0.3",
     "@google/genai": "^1.30.0",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^0.555.0",
