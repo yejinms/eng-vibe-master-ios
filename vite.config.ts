@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
       define: {
         // API 키는 서버에서 관리하므로 클라이언트에서 제거
         'process.env.VITE_API_BASE_URL': JSON.stringify(env.VITE_API_BASE_URL || 'http://localhost:3001'),
+        'process.env.VITE_PRODUCTION_API_URL': JSON.stringify(env.VITE_PRODUCTION_API_URL || ''),
       },
       resolve: {
         alias: {
