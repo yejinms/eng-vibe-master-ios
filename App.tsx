@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import HomeView from './views/HomeView';
 import GameView from './views/GameView';
 import LevelUpView from './views/LevelUpView';
@@ -12,6 +13,7 @@ import { RelationType, ThemeType, generateCharacterWithAI, generateNextLevelStor
 import { storage } from './utils/storage';
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
   const [view, setView] = useState<ViewState>('ONBOARDING');
   const [activeCharId, setActiveCharId] = useState<CharacterId | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -139,7 +141,7 @@ const App: React.FC = () => {
     if (currentProgress >= levels.length) {
        // If Advanced is completed, offer reset. Otherwise offer Level Up Quiz.
        if (userLevel === 'advanced') {
-           if (confirm("이 스토리의 모든 과정을 완료했습니다! 다시 처음부터 하시겠습니까?")) {
+           if (confirm(t('app.storyCompleted'))) {
                setGameState(prev => ({
                    ...prev,
                    progress: { ...prev.progress, [charId]: { ...prev.progress[charId], [userLevel]: 0 } }
@@ -147,7 +149,7 @@ const App: React.FC = () => {
                setView('GAME');
            }
        } else {
-           if (confirm("이미 완료된 스토리입니다. 다음 레벨(난이도) 테스트를 진행하시겠습니까?")) {
+           if (confirm(t('app.storyAlreadyCompleted'))) {
                setView('QUIZ');
            }
        }
@@ -202,7 +204,7 @@ const App: React.FC = () => {
 
       // Check if it's the max level (Advanced)
       if (currentLevel === 'advanced') {
-          alert("모든 마스터 과정을 완료했습니다! 다른 캐릭터의 스토리도 즐겨보세요.");
+          alert(t('app.allMasteryCompleted'));
           setView('HOME');
           setActiveCharId(null);
           return;
@@ -246,10 +248,10 @@ const App: React.FC = () => {
                   };
               });
               
-              alert(`축하합니다! ${nextLevel.toUpperCase()} 레벨로 승급했습니다!\n${char.name}와의 새로운 이야기가 이어집니다.`);
+              alert(t('app.levelUpWithStory', { level: nextLevel.toUpperCase(), name: char.name }));
           } catch (e) {
               console.error(e);
-              alert("다음 스토리 생성에 실패했습니다. 레벨만 변경됩니다.");
+              alert(t('app.storyGenerationFailed'));
               setGameState(prev => ({
                   ...prev,
                   userProfile: { ...prev.userProfile!, level: nextLevel }
@@ -266,7 +268,7 @@ const App: React.FC = () => {
               userProfile: { ...prev.userProfile!, level: nextLevel }
           }));
           
-          alert(`축하합니다! ${nextLevel.toUpperCase()} 레벨로 승급했습니다!`);
+          alert(t('app.levelUpCongrats', { level: nextLevel.toUpperCase() }));
           setView('HOME');
           setActiveCharId(null);
       }
@@ -298,7 +300,7 @@ const App: React.FC = () => {
   };
 
   const resetAllData = async () => {
-    if(confirm("모든 데이터가 삭제됩니다.")) {
+    if(confirm(t('app.dataResetConfirm'))) {
         await storage.remove('vibeMasterV6');
         // Also remove from localStorage if exists (for cleanup)
         if (typeof window !== 'undefined') {
@@ -313,7 +315,7 @@ const App: React.FC = () => {
   };
 
   const handleRetakeTest = () => {
-    if(confirm("기존 대화 내역이 모두 초기화됩니다. 레벨 테스트를 다시 진행하시겠습니까?")) {
+    if(confirm(t('app.retakeTestConfirm'))) {
         setGameState(prev => ({
             ...prev,
             userProfile: null,
@@ -349,7 +351,7 @@ const App: React.FC = () => {
             message: errorMessage,
             stack: e instanceof Error ? e.stack : undefined
         });
-        alert(`스토리 생성 실패.\n\n${errorMessage}\n\n서버가 실행 중인지 확인해주세요.`);
+        alert(t('app.storyGenerationError', { error: errorMessage }));
     } finally {
         setIsGenerating(false);
     }
@@ -387,7 +389,7 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-black/50 z-[100] flex items-center justify-center backdrop-blur-sm animate-fade-in">
           <div className="bg-white p-6 rounded-2xl shadow-2xl flex flex-col items-center gap-4">
             <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-            <p className="font-bold text-slate-700">스토리 생성 중...</p>
+            <p className="font-bold text-slate-700">{t('app.storyGenerating')}</p>
           </div>
         </div>
       )}

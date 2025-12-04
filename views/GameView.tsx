@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Message, Option, ReviewItem, UserProfile } from '../types';
 import GameHeader from '../components/GameHeader';
 import { Lightbulb } from 'lucide-react';
@@ -23,6 +24,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevelComplete, onGameOver, onBack }) => {
+  const { t } = useTranslation();
   const difficulty = userProfile.level;
   const levelData = character.levels[difficulty]?.[levelIndex];
   
@@ -190,7 +192,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
 
   const isGameOverModal = turnState === 'GAME_OVER_MODAL';
 
-  if (!levelData) return <div className="p-10 text-center">Loading level data...</div>;
+  if (!levelData) return <div className="p-10 text-center">{t('app.loadingLevelData')}</div>;
 
   return (
     <div className="flex flex-col h-full bg-slate-50 relative">
@@ -255,7 +257,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
            <div className="flex flex-col gap-3 animate-slide-up">
               <div className="bg-yellow-50 border border-yellow-100 rounded-xl p-3 text-center mb-1">
                   <div className="flex items-center justify-center gap-2 text-xs font-bold text-yellow-600 uppercase tracking-wide mb-1">
-                     <Lightbulb size={12} /> My Intention
+                     <Lightbulb size={12} /> {t('onboarding.myIntention')}
                   </div>
                   <p className="text-sm font-medium text-slate-700">{formatText(currentRound.intent)}</p>
               </div>
@@ -275,11 +277,11 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         ) : (
             <div className="h-20 flex items-center justify-center text-slate-400 text-sm italic">
                 {turnState === 'COMPLETED' 
-                    ? '챕터 완료! 다음 단계로...' 
+                    ? t('game.chapterComplete')
                     : isGameOverModal 
-                        ? '게임 종료'
+                        ? t('game.gameOver')
                         : isTyping 
-                            ? '상대방이 입력 중입니다...' 
+                            ? t('game.typing')
                             : '...'}
             </div>
         )}
@@ -293,9 +295,9 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                           {isGameOverModal ? '💔' : (feedback.isCorrect ? '🥰' : '😅')}
                       </div>
                       <h3 className={`text-xl font-extrabold ${isGameOverModal ? 'text-slate-800' : (feedback.isCorrect ? 'text-green-600' : 'text-red-500')}`}>
-                          {isGameOverModal ? 'Game Over' : (feedback.isCorrect ? 'Perfect Vibe!' : 'Not quite...')}
+                          {isGameOverModal ? t('game.gameOverTitle') : (feedback.isCorrect ? t('game.perfectVibe') : t('game.notQuite'))}
                       </h3>
-                      {isGameOverModal && <p className="text-slate-500 text-sm mt-1">호감도가 모두 소진되었습니다.</p>}
+                      {isGameOverModal && <p className="text-slate-500 text-sm mt-1">{t('game.vibeDepleted')}</p>}
                   </div>
                   
                   <div className="bg-slate-50 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border border-slate-100">
@@ -307,7 +309,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                     onClick={isGameOverModal ? triggerGameOver : (feedback.isCorrect ? handleSendResponse : handleRetry)}
                     className={`w-full py-4 rounded-full font-bold text-white text-lg shadow-lg active:scale-95 transition-transform ${isGameOverModal ? 'bg-slate-800' : (feedback.isCorrect ? 'bg-primary' : 'bg-slate-400')}`}
                   >
-                      {isGameOverModal ? '오답 노트 확인하기' : (feedback.isCorrect ? '다음 대화 이어가기' : '다시 시도하기')}
+                      {isGameOverModal ? t('game.checkReview') : (feedback.isCorrect ? t('game.continueConversation') : t('game.tryAgain'))}
                   </button>
               </div>
           </div>

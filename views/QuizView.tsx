@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty, DialogueRound } from '../types';
 import { CheckCircle2, XCircle, GraduationCap, ArrowRight, RotateCcw, Home } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) => {
+  const { t } = useTranslation();
   const [questions, setQuestions] = useState<DialogueRound[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -82,7 +84,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
   const currentQ = questions[currentQIndex];
   const passed = score >= 3; // Pass if 3 or more out of 5 are correct
 
-  if (questions.length === 0) return <div className="p-10 text-center flex flex-col items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-2"></div>Loading Quiz...</div>;
+  if (questions.length === 0) return <div className="p-10 text-center flex flex-col items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-2"></div>{t('quiz.loading')}</div>;
 
   if (showResult) {
       return (
@@ -98,13 +100,13 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
                       </div>
                   )}
                   <h2 className="text-2xl font-extrabold text-slate-800 mb-2">
-                      {passed ? 'Level Up Test Passed!' : 'Test Failed'}
+                      {passed ? t('quiz.testPassed') : t('quiz.testFailed')}
                   </h2>
                   <p className="text-slate-500 mb-2">
-                      Score: <span className={`font-bold ${passed ? 'text-green-600' : 'text-red-500'}`}>{score}</span> / {questions.length}
+                      {t('quiz.score', { score, total: questions.length })}
                   </p>
                   <p className="text-slate-400 text-sm">
-                      {passed ? '승급 자격을 획득했습니다!' : '조금 더 복습이 필요해요.'}
+                      {passed ? t('quiz.qualificationEarned') : t('quiz.needMoreReview')}
                   </p>
               </div>
 
@@ -114,9 +116,9 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
                       className={`w-full py-4 rounded-full font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 ${passed ? 'bg-primary text-white shadow-primary/30' : 'bg-primary text-white shadow-primary/30'}`}
                   >
                       {passed ? (
-                          <>Level Up <ArrowRight size={20} /></>
+                          <>{t('quiz.levelUp')} <ArrowRight size={20} /></>
                       ) : (
-                          <>Try Again <RotateCcw size={20} /></>
+                          <>{t('quiz.tryAgain')} <RotateCcw size={20} /></>
                       )}
                   </button>
                   
@@ -125,7 +127,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
                           onClick={onFail}
                           className="w-full py-3 bg-white text-slate-400 font-bold rounded-full hover:bg-slate-50 flex items-center justify-center gap-2 transition-all"
                       >
-                          <Home size={18} /> Main Menu
+                          <Home size={18} /> {t('quiz.mainMenu')}
                       </button>
                   )}
               </div>
@@ -137,7 +139,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
     <div className="h-full flex flex-col bg-white">
       {/* Header */}
       <div className="h-16 flex items-center justify-between px-6 border-b border-slate-100">
-          <span className="font-bold text-slate-400">Level Test</span>
+          <span className="font-bold text-slate-400">{t('quiz.levelTest')}</span>
           <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-full">
                   Q{currentQIndex + 1}/{questions.length}
@@ -148,7 +150,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
       {/* Question */}
       <div className="flex-1 p-6 flex flex-col justify-center animate-slide-up">
           <div className="mb-8 text-center">
-              <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-4">Correct Expression</h3>
+              <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-4">{t('quiz.correctExpression')}</h3>
               <p className="text-xl font-medium text-slate-800 leading-relaxed">
                   "{currentQ.intent}"
               </p>

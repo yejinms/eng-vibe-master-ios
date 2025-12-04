@@ -1,0 +1,124 @@
+{
+  "app": {
+    "storyCompleted": "이 스토리의 모든 과정을 완료했습니다! 다시 처음부터 하시겠습니까?",
+    "storyAlreadyCompleted": "이미 완료된 스토리입니다. 다음 레벨(난이도) 테스트를 진행하시겠습니까?",
+    "allMasteryCompleted": "모든 마스터 과정을 완료했습니다! 다른 캐릭터의 스토리도 즐겨보세요.",
+    "levelUpCongrats": "축하합니다! {{level}} 레벨로 승급했습니다!",
+    "levelUpWithStory": "축하합니다! {{level}} 레벨로 승급했습니다!\n{{name}}와의 새로운 이야기가 이어집니다.",
+    "storyGenerationFailed": "다음 스토리 생성에 실패했습니다. 레벨만 변경됩니다.",
+    "storyGenerating": "스토리 생성 중...",
+    "storyGenerationError": "스토리 생성 실패.\n\n{{error}}\n\n서버가 실행 중인지 확인해주세요.",
+    "dataResetConfirm": "모든 데이터가 삭제됩니다.",
+    "retakeTestConfirm": "기존 대화 내역이 모두 초기화됩니다. 레벨 테스트를 다시 진행하시겠습니까?",
+    "loadingLevelData": "Loading level data..."
+  },
+  "home": {
+    "hello": "Hello, {{name}}",
+    "createNewCharacter": "새로운 캐릭터 만들기",
+    "newStory": "New Story",
+    "selectRelationship": "1. 관계 선택 (Relationship)",
+    "selectVibe": "2. 상황/분위기 (Vibe)",
+    "startConversation": "대화 시작하기",
+    "settings": "Settings",
+    "difficulty": "Difficulty",
+    "language": "언어",
+    "retakeTest": "레벨 테스트 다시 보기",
+    "resetData": "데이터 초기화",
+    "practice": "연습하기 (Review)",
+    "relations": {
+      "boss": "직장 상사",
+      "ex": "전 애인",
+      "neighbor": "이웃",
+      "stranger": "낯선 사람"
+    },
+    "themes": {
+      "romance": "로맨스",
+      "conflict": "싸움/갈등",
+      "business": "비즈니스",
+      "secret": "비밀"
+    },
+    "difficulties": {
+      "beginner": {
+        "label": "Beginner",
+        "desc": "기초 회화 및 관용구"
+      },
+      "intermediate": {
+        "label": "Intermediate",
+        "desc": "자연스러운 구어체 표현"
+      },
+      "advanced": {
+        "label": "Advanced",
+        "desc": "세련된 원어민 뉘앙스"
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Welcome!",
+    "enterName": "당신의 이름을 알려주세요.",
+    "namePlaceholder": "What is your name?",
+    "start": "시작하기",
+    "levelTest": "Level Test {{current}}/{{total}}",
+    "testComplete": "테스트 완료!",
+    "recommendedLevel": "당신의 추천 레벨은...",
+    "startVibeCheck": "VibeCheck 시작하기",
+    "myIntention": "My Intention"
+  },
+  "game": {
+    "chapterComplete": "챕터 완료! 다음 단계로...",
+    "gameOver": "게임 종료",
+    "typing": "상대방이 입력 중입니다...",
+    "perfectVibe": "Perfect Vibe!",
+    "notQuite": "Not quite...",
+    "gameOverTitle": "Game Over",
+    "vibeDepleted": "호감도가 모두 소진되었습니다.",
+    "checkReview": "오답 노트 확인하기",
+    "continueConversation": "다음 대화 이어가기",
+    "tryAgain": "다시 시도하기"
+  },
+  "gameOver": {
+    "title": "Game Over",
+    "subtitle": "대화의 흐름이 끊겼습니다.\n틀린 내용을 복습해보세요.",
+    "noMistakes": "기록된 오답이 없습니다.",
+    "yourChoice": "Your Choice",
+    "betterVibe": "Better Vibe",
+    "goHome": "메인으로",
+    "retry": "다시 도전하기"
+  },
+  "levelUp": {
+    "levelUp": "Level Up!",
+    "allChaptersCleared": "All Chapters Cleared!",
+    "storyCompleted": "{{name}}와의 {{difficulty}} 레벨 스토리를 모두 마쳤습니다.",
+    "relationshipDeepened": "{{name}}와의 관계가 더 깊어졌어요.",
+    "nextChapter": "Next Chapter",
+    "goToMain": "메인으로 돌아가기",
+    "continueStory": "다음 이야기 진행"
+  },
+  "quiz": {
+    "loading": "Loading Quiz...",
+    "levelTest": "Level Test",
+    "testPassed": "Level Up Test Passed!",
+    "testFailed": "Test Failed",
+    "score": "Score: {{score}} / {{total}}",
+    "qualificationEarned": "승급 자격을 획득했습니다!",
+    "needMoreReview": "조금 더 복습이 필요해요.",
+    "levelUp": "Level Up",
+    "tryAgain": "Try Again",
+    "mainMenu": "Main Menu",
+    "correctExpression": "Correct Expression"
+  },
+  "practice": {
+    "noContent": "복습할 내용이 없어요",
+    "noContentDesc": "아직 완료한 대화가 없습니다. 캐릭터들과 대화하여 표현을 수집해보세요!",
+    "goToConversation": "대화하러 가기",
+    "quizCompleted": "Quiz Completed!",
+    "backToList": "리스트로 돌아가기",
+    "retakeQuiz": "다시 퀴즈 풀기",
+    "reviewQuiz": "Review Quiz",
+    "with": "With {{name}}",
+    "intention": "Intention",
+    "startQuiz": "퀴즈 풀기 (Start Quiz)",
+    "title": "Practice",
+    "total": "Total {{count}}"
+  }
+}
+

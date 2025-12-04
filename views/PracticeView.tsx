@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DialogueRound, Option } from '../types';
 import { ChevronLeft, GraduationCap, CheckCircle2, XCircle, ArrowRight, BookOpen, Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
+  const { t } = useTranslation();
   const [mode, setMode] = useState<'LIST' | 'QUIZ'>('LIST');
 
   // Quiz State
@@ -65,15 +67,15 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
               <div className="w-24 h-24 bg-slate-200 text-slate-400 rounded-full flex items-center justify-center mb-6">
                   <BookOpen size={40} />
               </div>
-              <h2 className="text-2xl font-bold text-slate-800 mb-2">복습할 내용이 없어요</h2>
+              <h2 className="text-2xl font-bold text-slate-800 mb-2">{t('practice.noContent')}</h2>
               <p className="text-slate-500 mb-8 max-w-xs mx-auto">
-                  아직 완료한 대화가 없습니다. 캐릭터들과 대화하여 표현을 수집해보세요!
+                  {t('practice.noContentDesc')}
               </p>
               <button 
                   onClick={onBack}
                   className="px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/30 active:scale-95 transition-all flex items-center gap-2"
               >
-                  대화하러 가기 <ArrowRight size={20} />
+                  {t('practice.goToConversation')} <ArrowRight size={20} />
               </button>
           </div>
       );
@@ -86,21 +88,21 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
               <div className="w-24 h-24 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-4 animate-bounce">
                   <GraduationCap size={48} />
               </div>
-              <h2 className="text-2xl font-extrabold text-slate-800 mb-2">Quiz Completed!</h2>
+              <h2 className="text-2xl font-extrabold text-slate-800 mb-2">{t('practice.quizCompleted')}</h2>
               <p className="text-slate-500 mb-6">
-                  Score: <span className="font-bold text-primary">{score}</span> / {quizQuestions.length}
+                  {t('quiz.score', { score, total: quizQuestions.length })}
               </p>
               <button 
                   onClick={() => setMode('LIST')}
                   className="w-full max-w-xs py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-xl active:scale-95 transition-all"
               >
-                  리스트로 돌아가기
+                  {t('practice.backToList')}
               </button>
               <button 
                   onClick={startQuiz}
                   className="w-full max-w-xs py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 active:scale-95 transition-all mt-3"
               >
-                  다시 퀴즈 풀기
+                  {t('practice.retakeQuiz')}
               </button>
           </div>
       );
@@ -125,7 +127,7 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
                   <button onClick={() => setMode('LIST')} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 active:scale-95 transition-transform">
                       <ChevronLeft size={24} />
                   </button>
-                  <span className="font-bold text-slate-800">Review Quiz</span>
+                  <span className="font-bold text-slate-800">{t('practice.reviewQuiz')}</span>
                   <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-full">
                       {currentQIndex + 1}/{quizQuestions.length}
                   </span>
@@ -134,9 +136,9 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
               <div className="flex-1 p-6 flex flex-col justify-center animate-slide-up">
                   <div className="text-center mb-8">
                        <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-xs font-bold text-slate-500 mb-4 uppercase tracking-wide">
-                           With {currentQ.charName}
+                           {t('practice.with', { name: currentQ.charName })}
                        </span>
-                       <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">Intention</h3>
+                       <h3 className="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">{t('practice.intention')}</h3>
                        <p className="text-xl font-medium text-slate-800 leading-relaxed">"{currentQ.round.intent}"</p>
                   </div>
 
@@ -190,10 +192,10 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
             <button onClick={onBack} className="p-2 -ml-2 text-slate-400 hover:text-slate-600 active:scale-95 transition-transform">
               <ChevronLeft size={24} />
             </button>
-            <h1 className="text-xl font-extrabold text-slate-800">Practice</h1>
+            <h1 className="text-xl font-extrabold text-slate-800">{t('practice.title')}</h1>
           </div>
           <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
-              Total {rounds.length}
+              {t('practice.total', { count: rounds.length })}
           </span>
       </div>
 
@@ -237,7 +239,7 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
             className="pointer-events-auto shadow-xl shadow-primary/30 w-full max-w-xs bg-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all"
           >
             <GraduationCap size={20} />
-            퀴즈 풀기 (Start Quiz)
+            {t('practice.startQuiz')}
           </button>
       </div>
     </div>

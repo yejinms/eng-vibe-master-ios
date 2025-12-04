@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty, UserProfile } from '../types';
 import CharacterCard from '../components/CharacterCard';
-import { RotateCcw, Plus, X, Sparkles, Heart, Sword, Briefcase, Lock, User, UserMinus, Users, Ghost, Loader2, Settings, Check, BookOpen } from 'lucide-react';
+import { RotateCcw, Plus, X, Sparkles, Heart, Sword, Briefcase, Lock, User, UserMinus, Users, Ghost, Loader2, Settings, Check, BookOpen, Languages } from 'lucide-react';
 import { RelationType, ThemeType } from '../utils/generator';
 
 interface Props {
@@ -18,10 +19,17 @@ interface Props {
 }
 
 const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelectCharacter, onReset, onCreateCharacter, isGenerating, onRetakeTest, onUpdateLevel, onPractice }) => {
+  const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLevelModalOpen, setIsLevelModalOpen] = useState(false);
   const [selectedRelation, setSelectedRelation] = useState<RelationType | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<ThemeType | null>(null);
+  
+  const languages = [
+    { code: 'ko', name: '한국어' },
+    { code: 'en', name: 'English' },
+    { code: 'es', name: 'Español' },
+  ];
 
   const handleCreate = () => {
     if (selectedRelation && selectedTheme) {
@@ -38,24 +46,24 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
   }, [isGenerating]);
 
   const RELATIONS: {id: RelationType, label: string, icon: React.ReactNode}[] = [
-      { id: 'boss', label: '직장 상사', icon: <Briefcase size={20} /> },
-      { id: 'ex', label: '전 애인', icon: <UserMinus size={20} /> },
-      { id: 'neighbor', label: '이웃', icon: <Users size={20} /> },
-      { id: 'stranger', label: '낯선 사람', icon: <Ghost size={20} /> },
+      { id: 'boss', label: t('home.relations.boss'), icon: <Briefcase size={20} /> },
+      { id: 'ex', label: t('home.relations.ex'), icon: <UserMinus size={20} /> },
+      { id: 'neighbor', label: t('home.relations.neighbor'), icon: <Users size={20} /> },
+      { id: 'stranger', label: t('home.relations.stranger'), icon: <Ghost size={20} /> },
   ];
 
   const THEMES: {id: ThemeType, label: string, icon: React.ReactNode, color: string}[] = [
-      { id: 'romance', label: '로맨스', icon: <Heart size={18} />, color: 'bg-pink-100 text-pink-600 border-pink-200' },
-      { id: 'conflict', label: '싸움/갈등', icon: <Sword size={18} />, color: 'bg-red-100 text-red-600 border-red-200' },
-      { id: 'business', label: '비즈니스', icon: <Briefcase size={18} />, color: 'bg-blue-100 text-blue-600 border-blue-200' },
-      { id: 'secret', label: '비밀', icon: <Lock size={18} />, color: 'bg-purple-100 text-purple-600 border-purple-200' },
+      { id: 'romance', label: t('home.themes.romance'), icon: <Heart size={18} />, color: 'bg-pink-100 text-pink-600 border-pink-200' },
+      { id: 'conflict', label: t('home.themes.conflict'), icon: <Sword size={18} />, color: 'bg-red-100 text-red-600 border-red-200' },
+      { id: 'business', label: t('home.themes.business'), icon: <Briefcase size={18} />, color: 'bg-blue-100 text-blue-600 border-blue-200' },
+      { id: 'secret', label: t('home.themes.secret'), icon: <Lock size={18} />, color: 'bg-purple-100 text-purple-600 border-purple-200' },
   ];
 
   const difficultyLabel = userProfile.level.charAt(0).toUpperCase() + userProfile.level.slice(1);
   const DIFFICULTIES: {id: Difficulty, label: string, desc: string, color: string}[] = [
-      { id: 'beginner', label: 'Beginner', desc: '기초 회화 및 관용구', color: 'bg-green-100 text-green-800 border-green-200' },
-      { id: 'intermediate', label: 'Intermediate', desc: '자연스러운 구어체 표현', color: 'bg-blue-100 text-blue-800 border-blue-200' },
-      { id: 'advanced', label: 'Advanced', desc: '세련된 원어민 뉘앙스', color: 'bg-purple-100 text-purple-800 border-purple-200' },
+      { id: 'beginner', label: t('home.difficulties.beginner.label'), desc: t('home.difficulties.beginner.desc'), color: 'bg-green-100 text-green-800 border-green-200' },
+      { id: 'intermediate', label: t('home.difficulties.intermediate.label'), desc: t('home.difficulties.intermediate.desc'), color: 'bg-blue-100 text-blue-800 border-blue-200' },
+      { id: 'advanced', label: t('home.difficulties.advanced.label'), desc: t('home.difficulties.advanced.desc'), color: 'bg-purple-100 text-purple-800 border-purple-200' },
   ];
 
   return (
@@ -69,7 +77,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
       >
         <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">VibeCheck</h2>
         <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-extrabold text-slate-800">Hello, {userProfile.name}</h1>
+            <h1 className="text-3xl font-extrabold text-slate-800">{t('home.hello', { name: userProfile.name })}</h1>
             <button 
                 onClick={() => setIsLevelModalOpen(true)}
                 className="bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all px-3 py-1.5 rounded-full flex items-center gap-2"
@@ -107,7 +115,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
             <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Plus size={24} />
             </div>
-            <span className="font-bold text-sm">새로운 캐릭터 만들기</span>
+            <span className="font-bold text-sm">{t('home.createNewCharacter')}</span>
         </div>
       </div>
       
@@ -121,7 +129,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
           className="pointer-events-auto shadow-xl shadow-primary/30 w-full max-w-xs bg-primary text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 active:scale-95 transition-all"
         >
           <BookOpen size={20} />
-          연습하기 (Review)
+          {t('home.practice')}
         </button>
       </div>
 
@@ -132,7 +140,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                   <div className="flex justify-between items-center mb-6">
                       <div className="flex items-center gap-2">
                         <Sparkles className="text-yellow-500" size={20} />
-                        <h2 className="text-xl font-bold text-slate-800">New Story</h2>
+                        <h2 className="text-xl font-bold text-slate-800">{t('home.newStory')}</h2>
                       </div>
                       <button 
                         onClick={() => setIsModalOpen(false)} 
@@ -145,7 +153,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
 
                   <div className="overflow-y-auto scrollbar-hide flex-1">
                     <div className="mb-6">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">1. 관계 선택 (Relationship)</h3>
+                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">{t('home.selectRelationship')}</h3>
                         <div className="grid grid-cols-2 gap-3">
                             {RELATIONS.map(rel => (
                                 <button
@@ -162,7 +170,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                     </div>
 
                     <div className="mb-6">
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">2. 상황/분위기 (Vibe)</h3>
+                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wide mb-3">{t('home.selectVibe')}</h3>
                         <div className="grid grid-cols-2 gap-3">
                             {THEMES.map(theme => (
                                 <button
@@ -189,10 +197,10 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                       {isGenerating ? (
                         <>
                           <Loader2 size={20} className="animate-spin" />
-                          스토리 생성 중...
+                          {t('app.storyGenerating')}
                         </>
                       ) : (
-                        '대화 시작하기'
+                        t('home.startConversation')
                       )}
                   </button>
               </div>
@@ -204,14 +212,14 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
           <div className="absolute inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center animate-fade-in backdrop-blur-sm">
                <div className="bg-white w-full max-w-sm mx-4 mb-4 sm:mb-0 rounded-3xl p-6 shadow-2xl animate-slide-up flex flex-col">
                   <div className="flex justify-between items-center mb-6">
-                      <h2 className="text-xl font-bold text-slate-800">Settings</h2>
+                      <h2 className="text-xl font-bold text-slate-800">{t('home.settings')}</h2>
                       <button onClick={() => setIsLevelModalOpen(false)} className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 text-slate-500">
                           <X size={18} />
                       </button>
                   </div>
                   
                   <div className="space-y-3 mb-6">
-                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Difficulty</h3>
+                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.difficulty')}</h3>
                       {DIFFICULTIES.map(diff => (
                           <div 
                             key={diff.id}
@@ -231,12 +239,33 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                       ))}
                   </div>
                   
+                  <div className="space-y-3 mb-6">
+                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.language')}</h3>
+                      {languages.map(lang => (
+                          <div 
+                            key={lang.code}
+                            onClick={() => i18n.changeLanguage(lang.code)}
+                            className={`p-4 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${i18n.language === lang.code ? `border-primary bg-primary/5` : 'border-slate-100 hover:border-slate-300'}`}
+                          >
+                              <div className="flex items-center gap-2">
+                                  <Languages size={16} className="text-slate-400" />
+                                  <h3 className={`font-bold ${i18n.language === lang.code ? 'text-primary' : 'text-slate-700'}`}>{lang.name}</h3>
+                              </div>
+                              {i18n.language === lang.code && (
+                                  <div className="bg-primary text-white p-1 rounded-full">
+                                      <Check size={14} />
+                                  </div>
+                              )}
+                          </div>
+                      ))}
+                  </div>
+                  
                   <div className="space-y-3">
                     <button 
                         onClick={onRetakeTest}
                         className="w-full py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors"
                     >
-                        레벨 테스트 다시 보기
+                        {t('home.retakeTest')}
                     </button>
 
                     <button 
@@ -244,7 +273,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                         className="w-full py-3 border-2 border-red-100 text-red-400 font-bold rounded-xl hover:bg-red-50 hover:text-red-500 transition-colors flex items-center justify-center gap-2"
                     >
                         <RotateCcw size={16} />
-                        데이터 초기화
+                        {t('home.resetData')}
                     </button>
                   </div>
                </div>

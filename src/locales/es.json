@@ -1,0 +1,124 @@
+{
+  "app": {
+    "storyCompleted": "¡Has completado todos los capítulos de esta historia! ¿Te gustaría empezar desde el principio de nuevo?",
+    "storyAlreadyCompleted": "Esta historia ya está completada. ¿Te gustaría hacer la prueba del siguiente nivel (dificultad)?",
+    "allMasteryCompleted": "¡Has completado todos los niveles de dominio! Prueba también las historias de otros personajes.",
+    "levelUpCongrats": "¡Felicidades! Has subido al nivel {{level}}!",
+    "levelUpWithStory": "¡Felicidades! Has subido al nivel {{level}}!\nTu nueva historia con {{name}} continúa.",
+    "storyGenerationFailed": "Error al generar la siguiente historia. Solo se ha cambiado el nivel.",
+    "storyGenerating": "Generando historia...",
+    "storyGenerationError": "Error al generar la historia.\n\n{{error}}\n\nPor favor, verifica si el servidor está en ejecución.",
+    "dataResetConfirm": "Se eliminarán todos los datos.",
+    "retakeTestConfirm": "Se restablecerá todo el historial de conversaciones existente. ¿Te gustaría volver a hacer la prueba de nivel?",
+    "loadingLevelData": "Cargando datos del nivel..."
+  },
+  "home": {
+    "hello": "Hola, {{name}}",
+    "createNewCharacter": "Crear Nuevo Personaje",
+    "newStory": "Nueva Historia",
+    "selectRelationship": "1. Seleccionar Relación",
+    "selectVibe": "2. Seleccionar Ambiente",
+    "startConversation": "Iniciar Conversación",
+    "settings": "Configuración",
+    "difficulty": "Dificultad",
+    "language": "Idioma",
+    "retakeTest": "Volver a Hacer Prueba de Nivel",
+    "resetData": "Restablecer Datos",
+    "practice": "Practicar (Revisar)",
+    "relations": {
+      "boss": "Jefe",
+      "ex": "Ex",
+      "neighbor": "Vecino",
+      "stranger": "Desconocido"
+    },
+    "themes": {
+      "romance": "Romance",
+      "conflict": "Conflicto",
+      "business": "Negocios",
+      "secret": "Secreto"
+    },
+    "difficulties": {
+      "beginner": {
+        "label": "Principiante",
+        "desc": "Conversación básica e idioms"
+      },
+      "intermediate": {
+        "label": "Intermedio",
+        "desc": "Expresiones coloquiales naturales"
+      },
+      "advanced": {
+        "label": "Avanzado",
+        "desc": "Matices sofisticados de nativos"
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "¡Bienvenido!",
+    "enterName": "Por favor, dinos tu nombre.",
+    "namePlaceholder": "¿Cuál es tu nombre?",
+    "start": "Comenzar",
+    "levelTest": "Prueba de Nivel {{current}}/{{total}}",
+    "testComplete": "¡Prueba Completada!",
+    "recommendedLevel": "Tu nivel recomendado es...",
+    "startVibeCheck": "Comenzar VibeCheck",
+    "myIntention": "Mi Intención"
+  },
+  "game": {
+    "chapterComplete": "¡Capítulo completado! Pasando al siguiente paso...",
+    "gameOver": "Juego Terminado",
+    "typing": "La otra persona está escribiendo...",
+    "perfectVibe": "¡Vibra Perfecta!",
+    "notQuite": "No exactamente...",
+    "gameOverTitle": "Juego Terminado",
+    "vibeDepleted": "Todos los puntos de vibra se han agotado.",
+    "checkReview": "Revisar Notas",
+    "continueConversation": "Continuar Conversación",
+    "tryAgain": "Intentar de Nuevo"
+  },
+  "gameOver": {
+    "title": "Juego Terminado",
+    "subtitle": "El flujo de la conversación se ha roto.\nPor favor, revisa las respuestas incorrectas.",
+    "noMistakes": "No hay errores registrados.",
+    "yourChoice": "Tu Elección",
+    "betterVibe": "Mejor Vibra",
+    "goHome": "Ir a Inicio",
+    "retry": "Intentar de Nuevo"
+  },
+  "levelUp": {
+    "levelUp": "¡Subir de Nivel!",
+    "allChaptersCleared": "¡Todos los Capítulos Completados!",
+    "storyCompleted": "Has completado todas las historias de nivel {{difficulty}} con {{name}}.",
+    "relationshipDeepened": "Tu relación con {{name}} se ha profundizado.",
+    "nextChapter": "Siguiente Capítulo",
+    "goToMain": "Volver al Inicio",
+    "continueStory": "Continuar Historia"
+  },
+  "quiz": {
+    "loading": "Cargando Prueba...",
+    "levelTest": "Prueba de Nivel",
+    "testPassed": "¡Prueba de Subir de Nivel Aprobada!",
+    "testFailed": "Prueba Fallida",
+    "score": "Puntuación: {{score}} / {{total}}",
+    "qualificationEarned": "¡Has obtenido la calificación para subir de nivel!",
+    "needMoreReview": "Necesitas un poco más de revisión.",
+    "levelUp": "Subir de Nivel",
+    "tryAgain": "Intentar de Nuevo",
+    "mainMenu": "Menú Principal",
+    "correctExpression": "Expresión Correcta"
+  },
+  "practice": {
+    "noContent": "No hay contenido para revisar",
+    "noContentDesc": "Aún no has completado ninguna conversación. ¡Chatea con personajes para recopilar expresiones!",
+    "goToConversation": "Ir a Conversación",
+    "quizCompleted": "¡Prueba Completada!",
+    "backToList": "Volver a la Lista",
+    "retakeQuiz": "Volver a Hacer Prueba",
+    "reviewQuiz": "Revisar Prueba",
+    "with": "Con {{name}}",
+    "intention": "Intención",
+    "startQuiz": "Comenzar Prueba",
+    "title": "Practicar",
+    "total": "Total {{count}}"
+  }
+}
+

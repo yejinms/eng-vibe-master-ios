@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Difficulty, UserProfile } from '../types';
 import { ArrowRight, Sparkles, Lightbulb } from 'lucide-react';
 
@@ -44,6 +45,7 @@ const TEST_SCENARIOS = [
 ];
 
 const OnboardingView: React.FC<Props> = ({ onComplete }) => {
+  const { t } = useTranslation();
   const [step, setStep] = useState<'NAME' | 'TEST' | 'RESULT'>('NAME');
   const [name, setName] = useState('');
   const [testIndex, setTestIndex] = useState(0);
@@ -89,15 +91,15 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
       {step === 'NAME' && (
         <form onSubmit={handleNameSubmit} className="w-full max-w-xs flex flex-col gap-6 animate-pop-in">
           <div className="text-center">
-             <h1 className="text-3xl font-extrabold text-primary mb-2">Welcome!</h1>
-             <p className="text-slate-500">당신의 이름을 알려주세요.</p>
+             <h1 className="text-3xl font-extrabold text-primary mb-2">{t('onboarding.welcome')}</h1>
+             <p className="text-slate-500">{t('onboarding.enterName')}</p>
           </div>
           <input 
             type="text" 
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={10}
-            placeholder="What is your name?"
+            placeholder={t('onboarding.namePlaceholder')}
             className="w-full p-4 text-center text-xl font-bold border-2 border-slate-100 rounded-2xl focus:border-primary outline-none transition-colors"
             autoFocus
           />
@@ -106,7 +108,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
             disabled={!name.trim()}
             className="w-full py-4 bg-primary text-white font-bold rounded-2xl disabled:bg-slate-200 disabled:text-slate-400 transition-all active:scale-95"
           >
-            시작하기
+            {t('onboarding.start')}
           </button>
         </form>
       )}
@@ -114,7 +116,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
       {step === 'TEST' && (
         <div className="w-full h-full flex flex-col pt-10 pb-6 animate-slide-up">
            <div className="text-center mb-6">
-             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full">Level Test {testIndex + 1}/{TEST_SCENARIOS.length}</span>
+             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full">{t('onboarding.levelTest', { current: testIndex + 1, total: TEST_SCENARIOS.length })}</span>
            </div>
 
            {/* Chat Bubble Context */}
@@ -129,7 +131,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
              {/* Intention Box */}
              <div className="w-full bg-yellow-50 border border-yellow-100 p-4 rounded-xl text-center">
                  <div className="flex items-center justify-center gap-2 text-xs font-bold text-yellow-600 uppercase tracking-wide mb-2">
-                     <Lightbulb size={12} /> My Intention
+                     <Lightbulb size={12} /> {t('onboarding.myIntention')}
                   </div>
                  <p className="text-slate-800 font-bold text-lg">"{currentScenario.intent}"</p>
              </div>
@@ -153,8 +155,8 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
       {step === 'RESULT' && (
         <div className="text-center animate-pop-in">
             <Sparkles size={64} className="text-yellow-400 mx-auto mb-6 animate-bounce" />
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">테스트 완료!</h2>
-            <p className="text-slate-500 mb-6">당신의 추천 레벨은...</p>
+            <h2 className="text-2xl font-bold text-slate-800 mb-2">{t('onboarding.testComplete')}</h2>
+            <p className="text-slate-500 mb-6">{t('onboarding.recommendedLevel')}</p>
             
             <div className="text-4xl font-extrabold text-primary mb-8 uppercase tracking-wider">
                 {resultLevel}
@@ -164,7 +166,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
                 onClick={() => onComplete({ name, level: resultLevel })}
                 className="px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/30 active:scale-95 transition-all flex items-center gap-2 mx-auto"
             >
-                VibeCheck 시작하기 <ArrowRight size={20} />
+                {t('onboarding.startVibeCheck')} <ArrowRight size={20} />
             </button>
         </div>
       )}

@@ -1,0 +1,124 @@
+{
+  "app": {
+    "storyCompleted": "You've completed all chapters of this story! Would you like to start from the beginning again?",
+    "storyAlreadyCompleted": "This story is already completed. Would you like to take the next level (difficulty) test?",
+    "allMasteryCompleted": "You've completed all mastery levels! Try other characters' stories too.",
+    "levelUpCongrats": "Congratulations! You've leveled up to {{level}}!",
+    "levelUpWithStory": "Congratulations! You've leveled up to {{level}}!\nYour new story with {{name}} continues.",
+    "storyGenerationFailed": "Failed to generate the next story. Only the level has been changed.",
+    "storyGenerating": "Generating story...",
+    "storyGenerationError": "Story generation failed.\n\n{{error}}\n\nPlease check if the server is running.",
+    "dataResetConfirm": "All data will be deleted.",
+    "retakeTestConfirm": "All existing conversation history will be reset. Would you like to retake the level test?",
+    "loadingLevelData": "Loading level data..."
+  },
+  "home": {
+    "hello": "Hello, {{name}}",
+    "createNewCharacter": "Create New Character",
+    "newStory": "New Story",
+    "selectRelationship": "1. Select Relationship",
+    "selectVibe": "2. Select Vibe",
+    "startConversation": "Start Conversation",
+    "settings": "Settings",
+    "difficulty": "Difficulty",
+    "language": "Language",
+    "retakeTest": "Retake Level Test",
+    "resetData": "Reset Data",
+    "practice": "Practice (Review)",
+    "relations": {
+      "boss": "Boss",
+      "ex": "Ex",
+      "neighbor": "Neighbor",
+      "stranger": "Stranger"
+    },
+    "themes": {
+      "romance": "Romance",
+      "conflict": "Conflict",
+      "business": "Business",
+      "secret": "Secret"
+    },
+    "difficulties": {
+      "beginner": {
+        "label": "Beginner",
+        "desc": "Basic conversation and idioms"
+      },
+      "intermediate": {
+        "label": "Intermediate",
+        "desc": "Natural colloquial expressions"
+      },
+      "advanced": {
+        "label": "Advanced",
+        "desc": "Sophisticated native nuances"
+      }
+    }
+  },
+  "onboarding": {
+    "welcome": "Welcome!",
+    "enterName": "Please tell us your name.",
+    "namePlaceholder": "What is your name?",
+    "start": "Start",
+    "levelTest": "Level Test {{current}}/{{total}}",
+    "testComplete": "Test Complete!",
+    "recommendedLevel": "Your recommended level is...",
+    "startVibeCheck": "Start VibeCheck",
+    "myIntention": "My Intention"
+  },
+  "game": {
+    "chapterComplete": "Chapter complete! Moving to next step...",
+    "gameOver": "Game Over",
+    "typing": "The other person is typing...",
+    "perfectVibe": "Perfect Vibe!",
+    "notQuite": "Not quite...",
+    "gameOverTitle": "Game Over",
+    "vibeDepleted": "All vibe points have been depleted.",
+    "checkReview": "Check Review Notes",
+    "continueConversation": "Continue Conversation",
+    "tryAgain": "Try Again"
+  },
+  "gameOver": {
+    "title": "Game Over",
+    "subtitle": "The conversation flow has been broken.\nPlease review the incorrect answers.",
+    "noMistakes": "No mistakes recorded.",
+    "yourChoice": "Your Choice",
+    "betterVibe": "Better Vibe",
+    "goHome": "Go Home",
+    "retry": "Try Again"
+  },
+  "levelUp": {
+    "levelUp": "Level Up!",
+    "allChaptersCleared": "All Chapters Cleared!",
+    "storyCompleted": "You've completed all {{difficulty}} level stories with {{name}}.",
+    "relationshipDeepened": "Your relationship with {{name}} has deepened.",
+    "nextChapter": "Next Chapter",
+    "goToMain": "Return to Main",
+    "continueStory": "Continue Story"
+  },
+  "quiz": {
+    "loading": "Loading Quiz...",
+    "levelTest": "Level Test",
+    "testPassed": "Level Up Test Passed!",
+    "testFailed": "Test Failed",
+    "score": "Score: {{score}} / {{total}}",
+    "qualificationEarned": "You've earned the qualification to level up!",
+    "needMoreReview": "You need a bit more review.",
+    "levelUp": "Level Up",
+    "tryAgain": "Try Again",
+    "mainMenu": "Main Menu",
+    "correctExpression": "Correct Expression"
+  },
+  "practice": {
+    "noContent": "No content to review",
+    "noContentDesc": "You haven't completed any conversations yet. Chat with characters to collect expressions!",
+    "goToConversation": "Go to Conversation",
+    "quizCompleted": "Quiz Completed!",
+    "backToList": "Back to List",
+    "retakeQuiz": "Retake Quiz",
+    "reviewQuiz": "Review Quiz",
+    "with": "With {{name}}",
+    "intention": "Intention",
+    "startQuiz": "Start Quiz",
+    "title": "Practice",
+    "total": "Total {{count}}"
+  }
+}
+

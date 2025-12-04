@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty } from '../types';
 import confetti from 'canvas-confetti';
 
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficulty, onAction, onHome }) => {
+  const { t } = useTranslation();
   
   useEffect(() => {
     if (type === 'COMPLETED') {
@@ -54,18 +56,18 @@ const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficu
       
       <div>
         <h2 className="text-3xl font-extrabold text-slate-800 mb-2">
-            {isCompleted ? 'All Chapters Cleared!' : 'Level Up!'}
+            {isCompleted ? t('levelUp.allChaptersCleared') : t('levelUp.levelUp')}
         </h2>
         <p className="text-slate-500">
             {isCompleted 
-                ? `${character.name}와의 ${difficulty} 레벨 스토리를 모두 마쳤습니다.` 
-                : `${character.name}와의 관계가 더 깊어졌어요.`}
+                ? t('levelUp.storyCompleted', { name: character.name, difficulty })
+                : t('levelUp.relationshipDeepened', { name: character.name })}
         </p>
       </div>
 
       {!isCompleted && nextChapterTitle && (
           <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100 w-full max-w-xs">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Next Chapter</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{t('levelUp.nextChapter')}</span>
               <div className="font-bold text-lg text-primary mt-1">
                   {nextChapterTitle}
               </div>
@@ -77,7 +79,7 @@ const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficu
           onClick={onAction}
           className="w-full py-4 bg-primary text-white rounded-full font-bold text-lg shadow-lg shadow-primary/30 hover:bg-primary/90 active:scale-95 transition-all"
         >
-          {isCompleted ? '메인으로 돌아가기' : '다음 이야기 진행'}
+          {isCompleted ? t('levelUp.goToMain') : t('levelUp.continueStory')}
         </button>
 
         {!isCompleted && onHome && (
@@ -85,7 +87,7 @@ const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficu
               onClick={onHome}
               className="w-full py-3 text-slate-400 font-bold text-sm hover:text-slate-600 active:scale-95 transition-all"
           >
-              메인으로 돌아가기
+              {t('levelUp.goToMain')}
           </button>
         )}
       </div>
