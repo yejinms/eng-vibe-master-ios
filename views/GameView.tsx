@@ -40,11 +40,17 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
   
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const currentRound = levelData?.rounds[roundIndex];
 
   const scrollToBottom = () => {
     setTimeout(() => {
-        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (chatContainerRef.current) {
+          chatContainerRef.current.scrollTo({
+            top: chatContainerRef.current.scrollHeight,
+            behavior: 'smooth'
+          });
+        }
     }, 100);
   };
 
@@ -201,6 +207,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
       />
 
       <div 
+        ref={chatContainerRef}
         className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide"
         style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}
       >
