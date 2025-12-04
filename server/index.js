@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const { GoogleGenAI, Type } = require('@google/genai');
+const os = require('os');
 require('dotenv').config();
 
 const app = express();
@@ -383,9 +384,27 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+// Helper function to get local IP address
+function getLocalIP() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      // Skip internal (loopback) and non-IPv4 addresses
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return 'localhost';
+}
+
 // Start server
-app.listen(PORT, () => {
+// Listen on all network interfaces (0.0.0.0) to allow access from other devices
+app.listen(PORT, '0.0.0.0', () => {
+  const localIP = getLocalIP();
   console.log(`🚀 VibeCheck API Server running on port ${PORT}`);
   console.log(`📝 Health check: http://localhost:${PORT}/health`);
+  console.log(`🌐 Network access: http://${localIP}:${PORT}/health`);
+  console.log(`\n💡 iOS 앱에서 사용할 서버 URL: http://${localIP}:${PORT}`);
 });
 
