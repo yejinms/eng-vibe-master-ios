@@ -7,21 +7,30 @@ export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export interface Option {
   text: string;
   correct: boolean;
-  explain: string; // The "vibe" explanation
+  explain: string; // The "vibe" explanation (Korean)
+  explainEn?: string; // English explanation
+  explainEs?: string; // Spanish explanation
 }
 
 export interface DialogueRound {
   id: string;
   context: string; // The character's message (Korean) - can contain {user}
   contextEn: string; // The character's message (English) - can contain {user}
-  intent: string; // The "inner thought" prompt for the user
+  contextEs?: string; // The character's message (Spanish) - can contain {user}
+  intent: string; // The "inner thought" prompt for the user (Korean)
+  intentEn?: string; // English intent
+  intentEs?: string; // Spanish intent
   options: Option[];
 }
 
 export interface LevelData {
   id: number;
-  title: string;
-  description: string; // Short summary of the situation
+  title: string; // Korean title
+  titleEn?: string; // English title
+  titleEs?: string; // Spanish title
+  description: string; // Short summary of the situation (Korean)
+  descriptionEn?: string; // English description
+  descriptionEs?: string; // Spanish description
   rounds: DialogueRound[]; // Array of 5 rounds
 }
 

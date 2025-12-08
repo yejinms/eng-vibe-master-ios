@@ -4,6 +4,7 @@ import { CharacterProfile, Message, Option, ReviewItem, UserProfile } from '../t
 import GameHeader from '../components/GameHeader';
 import { Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { getLocalizedLevelData, getLocalizedRound } from '../utils/localization';
 
 interface Props {
   character: CharacterProfile;
@@ -26,7 +27,8 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevelComplete, onGameOver, onBack }) => {
   const { t } = useTranslation();
   const difficulty = userProfile.level;
-  const levelData = character.levels[difficulty]?.[levelIndex];
+  const rawLevelData = character.levels[difficulty]?.[levelIndex];
+  const levelData = rawLevelData ? getLocalizedLevelData(rawLevelData) : null;
   
   // States
   const [roundIndex, setRoundIndex] = useState(0);
@@ -43,7 +45,8 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const currentRound = levelData?.rounds[roundIndex];
+  const rawCurrentRound = levelData?.rounds[roundIndex];
+  const currentRound = rawCurrentRound ? getLocalizedRound(rawCurrentRound) : null;
 
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -80,8 +83,10 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   }, [levelIndex, character, difficulty]);
 
   const startRound = (rIdx: number) => {
-    const roundData = levelData?.rounds[rIdx];
-    if (!roundData) return;
+    const rawRoundData = levelData?.rounds[rIdx];
+    if (!rawRoundData) return;
+    
+    const roundData = getLocalizedRound(rawRoundData);
 
     setTurnState('WAITING');
     setSelectedOption(null);
@@ -98,8 +103,8 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
             { 
                 id: `msg-${rIdx}`, 
                 sender: 'other', 
-                text: formatText(roundData.context), 
-                textEn: formatText(roundData.contextEn) 
+                text: formatText(roundData.context),
+                textEn: roundData.contextEn ? formatText(roundData.contextEn) : undefined
             }
         ]);
         setTurnState('USER_INPUT');

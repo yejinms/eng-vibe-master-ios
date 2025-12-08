@@ -11,6 +11,7 @@ import { CharacterId, GameState, ViewState, ReviewItem, CharacterProfile, UserPr
 import { CHARACTERS } from './constants';
 import { RelationType, ThemeType, generateCharacterWithAI, generateNextLevelStory } from './utils/generator';
 import { storage } from './utils/storage';
+import { getLocalizedLevelData, getLocalizedRound } from './utils/localization';
 
 const App: React.FC = () => {
   const { t } = useTranslation();
@@ -364,13 +365,14 @@ const App: React.FC = () => {
       Object.values(allCharacters).forEach(char => {
           difficulties.forEach(diff => {
               const lvlIdx = gameState.progress[char.id]?.[diff] || 0;
-              const levels = char.levels[diff] || [];
+              const rawLevels = char.levels[diff] || [];
               
               // Add rounds from completed levels (indices 0 to lvlIdx - 1)
               // If lvlIdx is 0, nothing is added
               for(let i = 0; i < lvlIdx; i++) {
-                  if (levels[i]) {
-                      levels[i].rounds.forEach(r => {
+                  if (rawLevels[i]) {
+                      const level = getLocalizedLevelData(rawLevels[i]);
+                      level.rounds.forEach(r => {
                           rounds.push({ charName: char.name, round: r });
                       });
                   }

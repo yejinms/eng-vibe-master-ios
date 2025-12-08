@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty, DialogueRound } from '../types';
 import { CheckCircle2, XCircle, GraduationCap, ArrowRight, RotateCcw, Home } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { getLocalizedLevelData, getLocalizedRound } from '../utils/localization';
 
 interface Props {
   character: CharacterProfile;
@@ -24,10 +25,11 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
 
   useEffect(() => {
     // Generate quiz questions: Pick 1 random round from each of the 5 chapters
-    const levels = character.levels[difficulty] || [];
+    const rawLevels = character.levels[difficulty] || [];
     const quizQs: DialogueRound[] = [];
 
-    levels.forEach(level => {
+    rawLevels.forEach(rawLevel => {
+        const level = getLocalizedLevelData(rawLevel);
         if (level.rounds.length > 0) {
             const randomRound = level.rounds[Math.floor(Math.random() * level.rounds.length)];
             quizQs.push(randomRound);

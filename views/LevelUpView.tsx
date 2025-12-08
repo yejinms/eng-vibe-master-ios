@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty } from '../types';
 import confetti from 'canvas-confetti';
+import { getLocalizedLevelData, getLocalizedText } from '../utils/localization';
 
 interface Props {
   type: 'LEVEL_UP' | 'COMPLETED';
@@ -46,7 +47,9 @@ const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficu
   }, [type]);
 
   const isCompleted = type === 'COMPLETED';
-  const nextChapterTitle = character.levels[difficulty]?.[nextLevelIndex]?.title;
+  const rawNextLevelData = character.levels[difficulty]?.[nextLevelIndex];
+  const nextLevelData = rawNextLevelData ? getLocalizedLevelData(rawNextLevelData) : null;
+  const nextChapterTitle = nextLevelData?.title;
 
   return (
     <div className="flex flex-col items-center justify-center h-full bg-slate-50 p-6 text-center animate-fade-in space-y-6">
