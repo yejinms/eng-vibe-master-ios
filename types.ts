@@ -5,7 +5,8 @@ export type CharacterId = 'zoey' | 'daniel' | 'lucas' | string;
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
 export interface Option {
-  text: string;
+  text: string; // English text (for English learning)
+  textKo?: string; // Korean text (for Korean learning)
   correct: boolean;
   explain: string; // The "vibe" explanation (Korean)
   explainEn?: string; // English explanation
@@ -38,9 +39,6 @@ export interface CharacterProfile {
   id: CharacterId;
   name: string;
   role: string;
-  desc: string;
-  descEn?: string; // English description
-  descEs?: string; // Spanish description
   avatarSeed: string; // for DiceBear
   colorTheme: string;
   tagColor: string;
@@ -64,9 +62,12 @@ export interface ReviewItem {
 
 export type ViewState = 'ONBOARDING' | 'HOME' | 'GAME' | 'LEVEL_UP' | 'COMPLETED' | 'GAME_OVER' | 'QUIZ' | 'PRACTICE';
 
+export type LearningLanguage = 'en' | 'ko';
+
 export interface UserProfile {
   name: string;
   level: Difficulty;
+  learningLanguage?: LearningLanguage; // Default: 'en'
 }
 
 export interface GameState {

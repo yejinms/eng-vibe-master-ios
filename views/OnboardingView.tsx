@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Difficulty, UserProfile } from '../types';
-import { ArrowRight, Sparkles, Lightbulb } from 'lucide-react';
+import { ArrowRight, Sparkles, Lightbulb, Languages } from 'lucide-react';
 
 interface Props {
   onComplete: (profile: UserProfile) => void;
 }
 
-const TEST_SCENARIOS = [
+const TEST_SCENARIOS_EN = [
   {
     level: 'beginner',
     partnerName: 'Emma',
@@ -44,10 +44,47 @@ const TEST_SCENARIOS = [
   }
 ];
 
+const TEST_SCENARIOS_KO = [
+  {
+    level: 'beginner',
+    partnerName: '지은',
+    context: "안녕! 만나서 반가워. 오늘 기분 어때?",
+    intent: "기분이 '날아갈 듯이 좋다'고 대답하려면?",
+    options: [
+      { text: "완전 좋아요!", score: 1 }, // 자연스러운 표현
+      { text: "제 기분은 매우 높습니다.", score: 0 }, // 어색한 표현
+      { text: "새처럼 느껴져요.", score: 0 } // 직역 느낌
+    ]
+  },
+  {
+    level: 'intermediate',
+    partnerName: '상사',
+    context: "이 프로젝트 정말 중요해. 실수하면 안 돼.",
+    intent: "걱정 마세요. 제가 '신경 써서(계속 지켜보며)' 처리하겠다고 하려면?",
+    options: [
+      { text: "제가 계속 챙겨볼게요.", score: 1 }, // 자연스러운 표현
+      { text: "제가 조심스럽게 볼게요.", score: 0 }, // 어색한 표현
+      { text: "제가 눈을 붙여볼게요.", score: 0 } // 부자연스러운 표현
+    ]
+  },
+  {
+    level: 'advanced',
+    partnerName: '동료',
+    context: "협상이 막혔다고 들었어. 어떻게 해야 할까?",
+    intent: "우리가 '주도권을 잡아야' 한다고 말하려면?",
+    options: [
+      { text: "우리가 주도권을 쥐어야 해요.", score: 1 }, // 자연스러운 표현
+      { text: "우리가 리드를 다뤄야 해요.", score: 0 }, // 어색한 표현
+      { text: "우리가 메인 드라이버가 되어야 해요.", score: 0 } // 직역 느낌
+    ]
+  }
+];
+
 const OnboardingView: React.FC<Props> = ({ onComplete }) => {
   const { t } = useTranslation();
-  const [step, setStep] = useState<'NAME' | 'TEST' | 'RESULT'>('NAME');
+  const [step, setStep] = useState<'NAME' | 'LANGUAGE' | 'TEST' | 'RESULT'>('NAME');
   const [name, setName] = useState('');
+  const [learningLanguage, setLearningLanguage] = useState<'en' | 'ko'>('en');
   const [testIndex, setTestIndex] = useState(0);
   const [score, setScore] = useState(0);
 
@@ -55,6 +92,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
   useEffect(() => {
     setStep('NAME');
     setName('');
+    setLearningLanguage('en');
     setTestIndex(0);
     setScore(0);
   }, []);
@@ -62,15 +100,27 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
   const handleNameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name.trim().length > 0 && name.trim().length <= 10) {
-      setStep('TEST');
+      console.log('Setting step to LANGUAGE');
+      setStep('LANGUAGE');
     }
   };
+
+  const handleLanguageSelect = (lang: 'en' | 'ko') => {
+    console.log('Language selected:', lang);
+    setLearningLanguage(lang);
+    setTimeout(() => {
+      setStep('TEST');
+    }, 100);
+  };
+
+  const testScenarios = learningLanguage === 'ko' ? TEST_SCENARIOS_KO : TEST_SCENARIOS_EN;
+  const currentScenario = step === 'TEST' ? testScenarios[testIndex] : null;
 
   const handleTestAnswer = (points: number) => {
     const newScore = score + points;
     setScore(newScore);
 
-    if (testIndex < TEST_SCENARIOS.length - 1) {
+    if (testIndex < testScenarios.length - 1) {
       setTestIndex(testIndex + 1);
     } else {
       setStep('RESULT');
@@ -84,7 +134,9 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
   };
 
   const resultLevel = getResult();
-  const currentScenario = TEST_SCENARIOS[testIndex];
+
+  // Debug: Log current step
+  console.log('Current step:', step);
 
   return (
     <div className="h-full flex flex-col items-center justify-center p-6 bg-white">
@@ -113,10 +165,34 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
         </form>
       )}
 
-      {step === 'TEST' && (
+      {step === 'LANGUAGE' && (
+        <div className="w-full max-w-xs flex flex-col gap-6 animate-pop-in">
+          <div className="text-center">
+             <h1 className="text-3xl font-extrabold text-primary mb-2">{t('onboarding.selectLanguage')}</h1>
+             <p className="text-slate-500">{t('onboarding.selectLanguageDesc')}</p>
+          </div>
+          <div className="flex flex-col gap-3">
+            {[
+              { code: 'en' as const, name: t('onboarding.english') },
+              { code: 'ko' as const, name: t('onboarding.korean') }
+            ].map(lang => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageSelect(lang.code)}
+                className="w-full p-4 border-2 border-slate-200 rounded-xl hover:border-primary hover:bg-primary/5 text-slate-700 font-bold transition-all active:scale-95 flex items-center justify-center gap-2"
+              >
+                <Languages size={20} className="text-slate-400" />
+                {lang.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {step === 'TEST' && currentScenario && (
         <div className="w-full h-full flex flex-col pt-10 pb-6 animate-slide-up">
            <div className="text-center mb-6">
-             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full">{t('onboarding.levelTest', { current: testIndex + 1, total: TEST_SCENARIOS.length })}</span>
+             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full">{t('onboarding.levelTest', { current: testIndex + 1, total: testScenarios.length })}</span>
            </div>
 
            {/* Chat Bubble Context */}
@@ -163,7 +239,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
             </div>
 
             <button 
-                onClick={() => onComplete({ name, level: resultLevel })}
+                onClick={() => onComplete({ name, level: resultLevel, learningLanguage })}
                 className="px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg shadow-primary/30 active:scale-95 transition-all flex items-center gap-2 mx-auto"
             >
                 {t('onboarding.startVibeCheck')} <ArrowRight size={20} />

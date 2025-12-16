@@ -6,9 +6,6 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
     id: 'zoey',
     name: 'Zoey',
     role: 'Bestie',
-    desc: '수다 떨고 고민 나누는 영혼의 단짝',
-    descEn: 'Your soulmate bestie for chatting and sharing worries',
-    descEs: 'Tu mejor amiga del alma para charlar y compartir preocupaciones',
     avatarSeed: 'Zoey',
     colorTheme: 'bg-orange-100',
     tagColor: 'bg-yellow-200 text-orange-700',
@@ -34,6 +31,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'm free as a bird.", 
+                  textKo: "완전 한가해요.",
                   correct: true, 
                   explain: "새처럼 자유롭다, 즉 매우 한가하다는 뜻이야.",
                   explainEn: "Free as a bird means you're very free and available.",
@@ -41,6 +39,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I have no time now.", 
+                  textKo: "지금 시간 없어요.",
                   correct: false, 
                   explain: "시간이 없다는 정반대의 뜻이야.",
                   explainEn: "This means the opposite - you have no time.",
@@ -48,6 +47,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am very lonely.", 
+                  textKo: "저는 외로워요.",
                   correct: false, 
                   explain: "외롭다는 뜻이라 조금 어색해.",
                   explainEn: "This means you're lonely, which is a bit awkward.",
@@ -66,6 +66,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "Lunch is on me.", 
+                  textKo: "제가 쏠게요.",
                   correct: true, 
                   explain: "'It's on me'는 내가 계산하겠다는 뜻이야.",
                   explainEn: "'It's on me' means I'll pay for it.",
@@ -73,6 +74,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I will buy you.", 
+                  textKo: "제가 당신을 살게요.",
                   correct: false, 
                   explain: "너를 사겠다는 무서운 말이야!",
                   explainEn: "This sounds like I'm buying you, which is scary!",
@@ -80,6 +82,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Give me lunch.", 
+                  textKo: "점심 주세요.",
                   correct: false, 
                   explain: "점심을 달라는 뜻이야.",
                   explainEn: "This means 'give me lunch'.",
@@ -98,6 +101,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'm crazy about it.", 
+                  textKo: "완전 좋아해요.",
                   correct: true, 
                   explain: "'Crazy about'은 무엇을 매우 좋아한다는 뜻.",
                   explainEn: "'Crazy about' means you really like something.",
@@ -105,6 +109,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I like pizza ok.", 
+                  textKo: "피자 그냥 그래요.",
                   correct: false, 
                   explain: "그저 그렇다는 뉘앙스야.",
                   explainEn: "This has a 'just okay' nuance.",
@@ -112,6 +117,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "It is my enemy.", 
+                  textKo: "피자는 제 적이에요.",
                   correct: false, 
                   explain: "피자가 적이라고?",
                   explainEn: "Pizza is my enemy?",
@@ -130,6 +136,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'll be there on time.", 
+                  textKo: "제시간에 갈게요.",
                   correct: true, 
                   explain: "'On time'은 정각에, 제시간에라는 뜻.",
                   explainEn: "'On time' means exactly on time, punctually.",
@@ -137,6 +144,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I will go later.", 
+                  textKo: "나중에 갈게요.",
                   correct: false, 
                   explain: "나중에 가겠다는 뜻.",
                   explainEn: "This means you'll go later.",
@@ -144,6 +152,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am very late.", 
+                  textKo: "이미 많이 늦었어요.",
                   correct: false, 
                   explain: "이미 늦었다고?",
                   explainEn: "I'm already late?",
@@ -162,6 +171,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "Catch you later!", 
+                  textKo: "나중에 봐요!",
                   correct: true, 
                   explain: "'Catch you later'는 나중에 보자는 가벼운 인사.",
                   explainEn: "'Catch you later' is a casual way to say see you later.",
@@ -169,6 +179,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Look at you now.", 
+                  textKo: "지금 당신을 봐요.",
                   correct: false, 
                   explain: "지금 널 본다는 뜻.",
                   explainEn: "This means 'look at you now'.",
@@ -176,6 +187,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "You catch me.", 
+                  textKo: "당신이 저를 잡아요.",
                   correct: false, 
                   explain: "네가 날 잡아?",
                   explainEn: "You catch me?",
@@ -205,6 +217,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It fits you perfectly.", 
+                   textKo: "완벽하게 어울려요.",
                    correct: true, 
                    explain: "옷 사이즈나 어울림이 완벽하다는 뜻이야.",
                    explainEn: "It means the fit or style is perfect for you.",
@@ -212,6 +225,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is your body.", 
+                   textKo: "그건 당신 몸이에요.",
                    correct: false, 
                    explain: "그건 네 몸이야?",
                    explainEn: "That's your body?",
@@ -219,6 +233,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You look strange.", 
+                   textKo: "이상해 보여요.",
                    correct: false, 
                    explain: "이상해 보인다니, 절대 안 돼!",
                    explainEn: "You look strange - absolutely not!",
@@ -237,6 +252,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It doesn't hurt to ask.", 
+                   textKo: "물어봐도 손해 없어요.",
                    correct: true, 
                    explain: "물어본다고 다칠 건 없다, 즉 손해 볼 것 없다는 뜻.",
                    explainEn: "It means there's nothing to lose by asking.",
@@ -244,6 +260,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Asking is hurting.", 
+                   textKo: "물어보면 아파요.",
                    correct: false, 
                    explain: "물어보면 아프다고?",
                    explainEn: "Asking hurts?",
@@ -251,6 +268,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No money no honey.", 
+                   textKo: "돈 없으면 사랑도 없어요.",
                    correct: false, 
                    explain: "돈 없으면 사랑도 없다?",
                    explainEn: "No money, no love?",
@@ -269,6 +287,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It's a steal.", 
+                   textKo: "완전 거저예요.",
                    correct: true, 
                    explain: "훔치는 것과 다름없을 정도로 싸다는 뜻.",
                    explainEn: "It means it's so cheap it's like stealing.",
@@ -276,6 +295,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is stealing.", 
+                   textKo: "그건 도둑질이에요.",
                    correct: false, 
                    explain: "범죄를 저지르고 있다는 뜻이야.",
                    explainEn: "This means committing a crime.",
@@ -283,6 +303,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is very cheapy.", 
+                   textKo: "완전 싸구려예요.",
                    correct: false, 
                    explain: "Cheapy는 싸구려 같다는 부정적 뉘앙스.",
                    explainEn: "'Cheapy' has a negative nuance of being low quality.",
@@ -301,6 +322,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'm running low on sugar.", 
+                   textKo: "당 떨어졌어요.",
                    correct: true, 
                    explain: "당이 부족하다는 재미있는 표현.",
                    explainEn: "A fun way to say you need sugar/energy.",
@@ -308,6 +330,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Sugar is falling.", 
+                   textKo: "설탕이 떨어지고 있어요.",
                    correct: false, 
                    explain: "설탕이 바닥에 떨어지고 있다?",
                    explainEn: "Sugar is falling on the floor?",
@@ -315,6 +338,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I hate snacks.", 
+                   textKo: "간식 싫어해요.",
                    correct: false, 
                    explain: "간식 싫다는 말은 안 했잖아.",
                    explainEn: "You didn't say you hate snacks.",
@@ -333,6 +357,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "You're the best!", 
+                   textKo: "최고예요!",
                    correct: true, 
                    explain: "가장 일반적이고 기분 좋은 칭찬.",
                    explainEn: "The most common and pleasant compliment.",
@@ -340,6 +365,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are number one.", 
+                   textKo: "당신은 1등이에요.",
                    correct: false, 
                    explain: "틀리진 않지만 조금 유치해.",
                    explainEn: "Not wrong but a bit childish.",
@@ -2590,9 +2616,6 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
     id: 'daniel',
     name: 'Daniel',
     role: 'Partner',
-    desc: '스타트업 창업부터 성공까지 함께하는 동료',
-    descEn: 'A colleague who accompanies you from startup to success',
-    descEs: 'Un colega que te acompaña desde el inicio hasta el éxito',
     avatarSeed: 'Daniel',
     colorTheme: 'bg-blue-100',
     tagColor: 'bg-blue-200 text-blue-700',
@@ -5174,9 +5197,6 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
     id: 'lucas',
     name: 'Lucas',
     role: 'Lover',
-    desc: '설레는 썸부터 프러포즈까지 이어지는 로맨스',
-    descEn: 'A romance that unfolds from exciting flirting to proposal',
-    descEs: 'Un romance que se desarrolla desde el coqueteo emocionante hasta la propuesta',
     avatarSeed: 'Lucas',
     colorTheme: 'bg-pink-100',
     tagColor: 'bg-pink-200 text-pink-700',

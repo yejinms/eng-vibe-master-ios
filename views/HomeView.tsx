@@ -16,9 +16,10 @@ interface Props {
   onRetakeTest: () => void;
   onUpdateLevel: (level: Difficulty) => void;
   onPractice: () => void;
+  onUpdateLearningLanguage?: (learningLanguage: 'en' | 'ko') => void;
 }
 
-const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelectCharacter, onReset, onCreateCharacter, isGenerating, onRetakeTest, onUpdateLevel, onPractice }) => {
+const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelectCharacter, onReset, onCreateCharacter, isGenerating, onRetakeTest, onUpdateLevel, onPractice, onUpdateLearningLanguage }) => {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLevelModalOpen, setIsLevelModalOpen] = useState(false);
@@ -278,15 +279,34 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                       <div className="space-y-2">
                           <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.learningLanguage')}</h3>
                           <p className="text-xs text-slate-500 mb-2">{t('home.learningLanguageDesc')}</p>
-                          <div className="p-3 rounded-xl border-2 border-slate-200 bg-slate-50 flex items-center justify-between">
-                              <div className="flex items-center gap-2">
-                                  <Languages size={16} className="text-slate-400 shrink-0" />
-                                  <h3 className="font-bold text-sm text-slate-700">{t('home.learningLanguageEnglish')}</h3>
-                              </div>
-                              <div className="bg-slate-300 text-white p-1 rounded-full shrink-0">
-                                  <Check size={14} />
-                              </div>
-                          </div>
+                          {[
+                              { code: 'en', name: 'English' },
+                              { code: 'ko', name: '한국어' }
+                          ].map(lang => {
+                              const currentLearningLang = userProfile.learningLanguage || 'en';
+                              const isSelected = currentLearningLang === lang.code;
+                              return (
+                                  <div 
+                                      key={lang.code}
+                                      onClick={() => onUpdateLearningLanguage?.(lang.code as 'en' | 'ko')}
+                                      className={`p-3 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all
+                                          ${isSelected 
+                                              ? 'border-primary bg-primary/5' 
+                                              : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                                          }`}
+                                  >
+                                      <div className="flex items-center gap-2">
+                                          <Languages size={16} className={`shrink-0 ${isSelected ? 'text-primary' : 'text-slate-400'}`} />
+                                          <h3 className={`font-bold text-sm ${isSelected ? 'text-primary' : 'text-slate-700'}`}>{lang.name}</h3>
+                                      </div>
+                                      {isSelected && (
+                                          <div className="bg-primary text-white p-1 rounded-full shrink-0">
+                                              <Check size={14} />
+                                          </div>
+                                      )}
+                                  </div>
+                              );
+                          })}
                       </div>
                   </div>
                   

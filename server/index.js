@@ -69,9 +69,16 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
     9. For 'Intermediate': Use situational phrases and phrasal verbs.
     10. For 'Advanced': Use complex idioms, slang, or professional nuance.
 
+    IMPORTANT: You must provide storyDescription in three languages:
+    - storyDescription: Korean version
+    - storyDescriptionEn: English version  
+    - storyDescriptionEs: Spanish version
+    
     Output JSON structure:
     {
       "storyDescription": "string (Short description of the character and story in Korean)",
+      "storyDescriptionEn": "string (Short description of the character and story in English)",
+      "storyDescriptionEs": "string (Short description of the character and story in Spanish)",
       "chapters": [
         {
           "title": "string (Korean title)",
@@ -95,6 +102,8 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
     type: Type.OBJECT,
     properties: {
       storyDescription: { type: Type.STRING },
+      storyDescriptionEn: { type: Type.STRING },
+      storyDescriptionEs: { type: Type.STRING },
       chapters: {
         type: Type.ARRAY,
         items: {
@@ -131,7 +140,7 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
         }
       }
     },
-    required: ["storyDescription", "chapters"]
+    required: ["storyDescription", "storyDescriptionEn", "storyDescriptionEs", "chapters"]
   };
 
   try {
@@ -200,7 +209,6 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
       id: `custom-${Date.now()}`,
       name: charName,
       role: relation.charAt(0).toUpperCase() + relation.slice(1),
-      desc: data.storyDescription || "Custom Story",
       avatarSeed: `${avatar}-${seed}`,
       colorTheme: randomTheme.bg,
       tagColor: randomTheme.tag,
@@ -227,7 +235,6 @@ async function generateNextLevelStory(character, targetDifficulty) {
     Context:
     - Character Name: ${character.name}
     - Role: ${character.role}
-    - Story Description: ${character.desc}
     - Target Difficulty Level: ${targetDifficulty.toUpperCase()}
     
     Task:

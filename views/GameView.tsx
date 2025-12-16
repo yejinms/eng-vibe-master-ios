@@ -29,10 +29,11 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   const difficulty = userProfile.level;
   const rawLevelData = character.levels[difficulty]?.[levelIndex];
   
-  // Recalculate localized data when language changes
+  // Recalculate localized data when language or learning language changes
+  const learningLanguage = userProfile.learningLanguage || 'en';
   const levelData = useMemo(() => {
-    return rawLevelData ? getLocalizedLevelData(rawLevelData, i18n.language) : null;
-  }, [rawLevelData, i18n.language]);
+    return rawLevelData ? getLocalizedLevelData(rawLevelData, i18n.language, learningLanguage) : null;
+  }, [rawLevelData, i18n.language, learningLanguage]);
   
   // States
   const [roundIndex, setRoundIndex] = useState(0);
@@ -183,7 +184,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
     }
     
     setPendingScore(nextScore); // Store for later
-    const localizedOption = getLocalizedOption(option, i18n.language);
+    const localizedOption = getLocalizedOption(option, i18n.language, learningLanguage);
     setFeedback({ isCorrect, explain: formatText(localizedOption.explain) });
   };
 

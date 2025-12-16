@@ -326,6 +326,13 @@ const App: React.FC = () => {
     }
   };
   
+  const handleUpdateLearningLanguage = (learningLanguage: 'en' | 'ko') => {
+    setGameState(prev => ({
+      ...prev,
+      userProfile: prev.userProfile ? { ...prev.userProfile, learningLanguage } : null
+    }));
+  };
+
   const handleUpdateLevel = (newLevel: Difficulty) => {
      if(gameState.userProfile) {
          setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, level: newLevel } }));
@@ -412,6 +419,7 @@ const App: React.FC = () => {
           onRetakeTest={handleRetakeTest}
           onUpdateLevel={handleUpdateLevel}
           onPractice={handlePractice}
+          onUpdateLearningLanguage={handleUpdateLearningLanguage}
         />
       )}
 

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { ChevronLeft, Languages, Heart, HeartCrack } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty } from '../types';
+import { getLocalizedLevelData } from '../utils/localization';
 
 interface Props {
   character: CharacterProfile;
@@ -15,7 +17,15 @@ interface Props {
 }
 
 const GameHeader: React.FC<Props> = ({ character, levelIndex, onBack, progressValue, currentStep, totalSteps, isEnglish, onToggleLanguage, difficulty }) => {
-  const currentLevelTitle = character.levels[difficulty]?.[levelIndex]?.title || "Ending";
+  const { i18n } = useTranslation();
+  const rawLevelData = character.levels[difficulty]?.[levelIndex];
+  
+  // Get localized title based on UI language
+  const currentLevelTitle = useMemo(() => {
+    if (!rawLevelData) return "Ending";
+    const localizedData = getLocalizedLevelData(rawLevelData, i18n.language);
+    return localizedData.title;
+  }, [rawLevelData, i18n.language]);
   
   const diffColor = {
       beginner: 'bg-green-100 text-green-700',
