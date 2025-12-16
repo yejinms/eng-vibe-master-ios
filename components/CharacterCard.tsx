@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty } from '../types';
 import { Trophy } from 'lucide-react';
 
@@ -12,18 +13,35 @@ interface Props {
 }
 
 const CharacterCard: React.FC<Props> = ({ character, level, difficulty, onClick, userName }) => {
+  const { i18n } = useTranslation();
   const levels = character.levels[difficulty] || [];
   const maxLevel = levels.length || 1; 
   const progressPercent = Math.min((level / maxLevel) * 100, 100);
   const isCompleted = level >= maxLevel && maxLevel > 0;
 
+  // Get localized description
+  const getLocalizedDesc = () => {
+    const currentLang = i18n.resolvedLanguage || i18n.language || 'ko';
+    const langCode = currentLang.split('-')[0];
+    
+    let desc = character.desc;
+    if (langCode === 'en' && character.descEn) {
+      desc = character.descEn;
+    } else if (langCode === 'es' && character.descEs) {
+      desc = character.descEs;
+    }
+    
+    return desc;
+  };
+
   const formattedDesc = React.useMemo(() => {
-    if (!userName) return character.desc;
-    return character.desc
+    const desc = getLocalizedDesc();
+    if (!userName) return desc;
+    return desc
       .replace(/{user}/gi, userName)
       .replace(/{username}/gi, userName)
       .replace(/\[user\]/gi, userName);
-  }, [character.desc, userName]);
+  }, [character, userName, i18n.language]);
 
   return (
     <div 

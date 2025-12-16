@@ -144,7 +144,39 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
       }
     });
 
-    const data = JSON.parse(result.text);
+    // Check if result has text property
+    if (!result || !result.text) {
+      console.error("AI Generation Error: Invalid response structure", result);
+      throw new Error("AI 응답 형식이 올바르지 않습니다. 응답을 확인할 수 없습니다.");
+    }
+
+    let data;
+    try {
+      data = JSON.parse(result.text);
+    } catch (parseError) {
+      console.error("JSON Parse Error:", parseError);
+      console.error("Response text:", result.text);
+      throw new Error(`AI 응답 파싱 실패: ${parseError.message}`);
+    }
+
+    // Validate response structure
+    if (!data.chapters || !Array.isArray(data.chapters)) {
+      console.error("Invalid response structure:", data);
+      throw new Error("AI 응답에 chapters가 없거나 배열이 아닙니다.");
+    }
+
+    // Validate each chapter has rounds
+    for (let i = 0; i < data.chapters.length; i++) {
+      const chapter = data.chapters[i];
+      if (!chapter.rounds || !Array.isArray(chapter.rounds)) {
+        console.error(`Chapter ${i} missing rounds:`, chapter);
+        throw new Error(`Chapter ${i + 1}에 rounds가 없거나 배열이 아닙니다.`);
+      }
+      if (chapter.rounds.length !== 5) {
+        console.error(`Chapter ${i} has ${chapter.rounds.length} rounds, expected 5`);
+        throw new Error(`Chapter ${i + 1}에 rounds가 5개가 아닙니다 (현재: ${chapter.rounds.length}개).`);
+      }
+    }
     
     const levels = data.chapters.map((chapter, chIdx) => ({
       id: chIdx + 1,
@@ -177,7 +209,11 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
     };
   } catch (error) {
     console.error("AI Generation Error:", error);
-    throw new Error("Failed to generate character");
+    // Include more detailed error information
+    const errorMessage = error.message || "Failed to generate character";
+    const errorDetails = error.stack || error.toString();
+    console.error("Error details:", errorDetails);
+    throw new Error(`캐릭터 생성 실패: ${errorMessage}`);
   }
 }
 
@@ -290,7 +326,39 @@ async function generateNextLevelStory(character, targetDifficulty) {
       }
     });
 
-    const data = JSON.parse(result.text);
+    // Check if result has text property
+    if (!result || !result.text) {
+      console.error("AI Generation Error: Invalid response structure", result);
+      throw new Error("AI 응답 형식이 올바르지 않습니다. 응답을 확인할 수 없습니다.");
+    }
+
+    let data;
+    try {
+      data = JSON.parse(result.text);
+    } catch (parseError) {
+      console.error("JSON Parse Error:", parseError);
+      console.error("Response text:", result.text);
+      throw new Error(`AI 응답 파싱 실패: ${parseError.message}`);
+    }
+
+    // Validate response structure
+    if (!data.chapters || !Array.isArray(data.chapters)) {
+      console.error("Invalid response structure:", data);
+      throw new Error("AI 응답에 chapters가 없거나 배열이 아닙니다.");
+    }
+
+    // Validate each chapter has rounds
+    for (let i = 0; i < data.chapters.length; i++) {
+      const chapter = data.chapters[i];
+      if (!chapter.rounds || !Array.isArray(chapter.rounds)) {
+        console.error(`Chapter ${i} missing rounds:`, chapter);
+        throw new Error(`Chapter ${i + 1}에 rounds가 없거나 배열이 아닙니다.`);
+      }
+      if (chapter.rounds.length !== 5) {
+        console.error(`Chapter ${i} has ${chapter.rounds.length} rounds, expected 5`);
+        throw new Error(`Chapter ${i + 1}에 rounds가 5개가 아닙니다 (현재: ${chapter.rounds.length}개).`);
+      }
+    }
     
     const levels = data.chapters.map((chapter, chIdx) => ({
       id: chIdx + 1,
@@ -305,7 +373,11 @@ async function generateNextLevelStory(character, targetDifficulty) {
     return levels;
   } catch (error) {
     console.error("AI Generation Error:", error);
-    throw new Error("Failed to generate next level story");
+    // Include more detailed error information
+    const errorMessage = error.message || "Failed to generate next level story";
+    const errorDetails = error.stack || error.toString();
+    console.error("Error details:", errorDetails);
+    throw new Error(`다음 레벨 생성 실패: ${errorMessage}`);
   }
 }
 
@@ -341,8 +413,11 @@ app.post('/api/generate-character', async (req, res) => {
     res.json({ character });
   } catch (error) {
     console.error('[API] Error generating character:', error);
+    console.error('[API] Error stack:', error.stack);
+    const errorMessage = error.message || 'Failed to generate character';
     res.status(500).json({ 
-      error: error.message || 'Failed to generate character' 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 });
@@ -372,8 +447,11 @@ app.post('/api/generate-next-level', async (req, res) => {
     res.json({ levels });
   } catch (error) {
     console.error('[API] Error generating next level:', error);
+    console.error('[API] Error stack:', error.stack);
+    const errorMessage = error.message || 'Failed to generate next level story';
     res.status(500).json({ 
-      error: error.message || 'Failed to generate next level story' 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 });

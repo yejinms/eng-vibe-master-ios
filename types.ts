@@ -39,6 +39,8 @@ export interface CharacterProfile {
   name: string;
   role: string;
   desc: string;
+  descEn?: string; // English description
+  descEs?: string; // Spanish description
   avatarSeed: string; // for DiceBear
   colorTheme: string;
   tagColor: string;
