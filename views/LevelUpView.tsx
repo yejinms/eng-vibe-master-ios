@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficulty, onAction, onHome }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   useEffect(() => {
     if (type === 'COMPLETED') {
@@ -48,7 +48,7 @@ const LevelUpView: React.FC<Props> = ({ type, character, nextLevelIndex, difficu
 
   const isCompleted = type === 'COMPLETED';
   const rawNextLevelData = character.levels[difficulty]?.[nextLevelIndex];
-  const nextLevelData = rawNextLevelData ? getLocalizedLevelData(rawNextLevelData) : null;
+  const nextLevelData = rawNextLevelData ? getLocalizedLevelData(rawNextLevelData, i18n.language) : null;
   const nextChapterTitle = nextLevelData?.title;
 
   return (

@@ -22,6 +22,11 @@
     "settings": "Settings",
     "difficulty": "Difficulty",
     "language": "Language",
+    "uiLanguage": "UI Language",
+    "uiLanguageDesc": "Language for app menus and instructions",
+    "learningLanguage": "Learning Language",
+    "learningLanguageDesc": "Language you're learning (currently English only)",
+    "learningLanguageEnglish": "English",
     "retakeTest": "Retake Level Test",
     "resetData": "Reset Data",
     "practice": "Practice (Review)",
@@ -64,6 +69,7 @@
     "myIntention": "My Intention"
   },
   "game": {
+    "chapter": "Chapter {{chapter}}: {{title}}",
     "chapterComplete": "Chapter complete! Moving to next step...",
     "gameOver": "Game Over",
     "typing": "The other person is typing...",

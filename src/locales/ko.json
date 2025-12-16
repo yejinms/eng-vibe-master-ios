@@ -22,6 +22,11 @@
     "settings": "Settings",
     "difficulty": "Difficulty",
     "language": "언어",
+    "uiLanguage": "UI 언어",
+    "uiLanguageDesc": "앱 메뉴와 안내문을 표시할 언어",
+    "learningLanguage": "학습 언어",
+    "learningLanguageDesc": "배우는 언어 (현재 영어만 지원)",
+    "learningLanguageEnglish": "English",
     "retakeTest": "레벨 테스트 다시 보기",
     "resetData": "데이터 초기화",
     "practice": "연습하기 (Review)",
@@ -64,6 +69,7 @@
     "myIntention": "My Intention"
   },
   "game": {
+    "chapter": "Chapter {{chapter}}: {{title}}",
     "chapterComplete": "챕터 완료! 다음 단계로...",
     "gameOver": "게임 종료",
     "typing": "상대방이 입력 중입니다...",

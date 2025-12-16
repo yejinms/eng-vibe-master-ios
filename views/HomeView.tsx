@@ -30,6 +30,13 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
   ];
+  
+  // Get current language, ensuring it's always set
+  const getCurrentLanguage = () => {
+    const lang = i18n.resolvedLanguage || i18n.language;
+    if (!lang) return 'ko';
+    return lang.split('-')[0]; // Normalize 'ko-KR' -> 'ko'
+  };
 
   const handleCreate = () => {
     if (selectedRelation && selectedTheme) {
@@ -210,67 +217,91 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
       {/* Level Settings Modal */}
       {isLevelModalOpen && (
           <div className="absolute inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center animate-fade-in backdrop-blur-sm">
-               <div className="bg-white w-full max-w-sm mx-4 mb-4 sm:mb-0 rounded-3xl p-6 shadow-2xl animate-slide-up flex flex-col">
-                  <div className="flex justify-between items-center mb-6">
+               <div className="bg-white w-full max-w-sm mx-4 mb-4 sm:mb-0 rounded-3xl shadow-2xl animate-slide-up flex flex-col max-h-[90vh]">
+                  {/* Fixed Header */}
+                  <div className="flex justify-between items-center p-6 pb-4 border-b border-slate-100 shrink-0">
                       <h2 className="text-xl font-bold text-slate-800">{t('home.settings')}</h2>
                       <button onClick={() => setIsLevelModalOpen(false)} className="p-2 bg-slate-100 rounded-full hover:bg-slate-200 text-slate-500">
                           <X size={18} />
                       </button>
                   </div>
                   
-                  <div className="space-y-3 mb-6">
-                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.difficulty')}</h3>
-                      {DIFFICULTIES.map(diff => (
-                          <div 
-                            key={diff.id}
-                            onClick={() => onUpdateLevel(diff.id)}
-                            className={`p-4 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${userProfile.level === diff.id ? `border-primary bg-primary/5` : 'border-slate-100 hover:border-slate-300'}`}
-                          >
-                              <div>
-                                  <h3 className={`font-bold ${userProfile.level === diff.id ? 'text-primary' : 'text-slate-700'}`}>{diff.label}</h3>
-                                  <p className="text-xs text-slate-500">{diff.desc}</p>
-                              </div>
-                              {userProfile.level === diff.id && (
-                                  <div className="bg-primary text-white p-1 rounded-full">
-                                      <Check size={14} />
+                  {/* Scrollable Content */}
+                  <div className="flex-1 overflow-y-auto p-6 scrollbar-hide space-y-4">
+                      <div className="space-y-2">
+                          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.difficulty')}</h3>
+                          {DIFFICULTIES.map(diff => (
+                              <div 
+                                key={diff.id}
+                                onClick={() => onUpdateLevel(diff.id)}
+                                className={`p-3 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${userProfile.level === diff.id ? `border-primary bg-primary/5` : 'border-slate-100 hover:border-slate-300'}`}
+                              >
+                                  <div className="flex-1 min-w-0">
+                                      <h3 className={`font-bold text-sm ${userProfile.level === diff.id ? 'text-primary' : 'text-slate-700'}`}>{diff.label}</h3>
+                                      <p className="text-xs text-slate-500 truncate">{diff.desc}</p>
                                   </div>
-                              )}
-                          </div>
-                      ))}
-                  </div>
-                  
-                  <div className="space-y-3 mb-6">
-                      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.language')}</h3>
-                      {languages.map(lang => (
-                          <div 
-                            key={lang.code}
-                            onClick={() => i18n.changeLanguage(lang.code)}
-                            className={`p-4 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${i18n.language === lang.code ? `border-primary bg-primary/5` : 'border-slate-100 hover:border-slate-300'}`}
-                          >
+                                  {userProfile.level === diff.id && (
+                                      <div className="bg-primary text-white p-1 rounded-full ml-2 shrink-0">
+                                          <Check size={14} />
+                                      </div>
+                                  )}
+                              </div>
+                          ))}
+                      </div>
+                      
+                      <div className="space-y-2">
+                          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.uiLanguage')}</h3>
+                          <p className="text-xs text-slate-500 mb-2">{t('home.uiLanguageDesc')}</p>
+                          {languages.map(lang => {
+                              const currentLang = getCurrentLanguage();
+                              const isSelected = currentLang === lang.code;
+                              return (
+                                  <div 
+                                    key={lang.code}
+                                    onClick={() => i18n.changeLanguage(lang.code)}
+                                    className={`p-3 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${isSelected ? `border-primary bg-primary/5` : 'border-slate-100 hover:border-slate-300'}`}
+                                  >
+                                      <div className="flex items-center gap-2">
+                                          <Languages size={16} className="text-slate-400 shrink-0" />
+                                          <h3 className={`font-bold text-sm ${isSelected ? 'text-primary' : 'text-slate-700'}`}>{lang.name}</h3>
+                                      </div>
+                                      {isSelected && (
+                                          <div className="bg-primary text-white p-1 rounded-full shrink-0">
+                                              <Check size={14} />
+                                          </div>
+                                      )}
+                                  </div>
+                              );
+                          })}
+                      </div>
+                      
+                      <div className="space-y-2">
+                          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.learningLanguage')}</h3>
+                          <p className="text-xs text-slate-500 mb-2">{t('home.learningLanguageDesc')}</p>
+                          <div className="p-3 rounded-xl border-2 border-slate-200 bg-slate-50 flex items-center justify-between">
                               <div className="flex items-center gap-2">
-                                  <Languages size={16} className="text-slate-400" />
-                                  <h3 className={`font-bold ${i18n.language === lang.code ? 'text-primary' : 'text-slate-700'}`}>{lang.name}</h3>
+                                  <Languages size={16} className="text-slate-400 shrink-0" />
+                                  <h3 className="font-bold text-sm text-slate-700">{t('home.learningLanguageEnglish')}</h3>
                               </div>
-                              {i18n.language === lang.code && (
-                                  <div className="bg-primary text-white p-1 rounded-full">
-                                      <Check size={14} />
-                                  </div>
-                              )}
+                              <div className="bg-slate-300 text-white p-1 rounded-full shrink-0">
+                                  <Check size={14} />
+                              </div>
                           </div>
-                      ))}
+                      </div>
                   </div>
                   
-                  <div className="space-y-3">
+                  {/* Fixed Footer */}
+                  <div className="p-6 pt-4 border-t border-slate-100 space-y-2 shrink-0">
                     <button 
                         onClick={onRetakeTest}
-                        className="w-full py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors"
+                        className="w-full py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-colors text-sm"
                     >
                         {t('home.retakeTest')}
                     </button>
 
                     <button 
                         onClick={onReset}
-                        className="w-full py-3 border-2 border-red-100 text-red-400 font-bold rounded-xl hover:bg-red-50 hover:text-red-500 transition-colors flex items-center justify-center gap-2"
+                        className="w-full py-3 border-2 border-red-100 text-red-400 font-bold rounded-xl hover:bg-red-50 hover:text-red-500 transition-colors flex items-center justify-center gap-2 text-sm"
                     >
                         <RotateCcw size={16} />
                         {t('home.resetData')}

@@ -144,3 +144,4 @@ VITE_API_BASE_URL=https://api.yourdomain.com
 - 서버 IP 주소는 네트워크 변경 시 업데이트 필요
 - `.env.local` 파일은 `.gitignore`에 포함되어 있어 Git에 커밋되지 않음
 
+

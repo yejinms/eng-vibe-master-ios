@@ -14,7 +14,7 @@ import { storage } from './utils/storage';
 import { getLocalizedLevelData, getLocalizedRound } from './utils/localization';
 
 const App: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [view, setView] = useState<ViewState>('ONBOARDING');
   const [activeCharId, setActiveCharId] = useState<CharacterId | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -371,7 +371,7 @@ const App: React.FC = () => {
               // If lvlIdx is 0, nothing is added
               for(let i = 0; i < lvlIdx; i++) {
                   if (rawLevels[i]) {
-                      const level = getLocalizedLevelData(rawLevels[i]);
+                      const level = getLocalizedLevelData(rawLevels[i], i18n.language);
                       level.rounds.forEach(r => {
                           rounds.push({ charName: char.name, round: r });
                       });

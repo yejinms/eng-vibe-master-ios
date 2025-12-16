@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Message, Option, ReviewItem, UserProfile } from '../types';
 import GameHeader from '../components/GameHeader';
 import { Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { getLocalizedLevelData, getLocalizedRound } from '../utils/localization';
+import { getLocalizedLevelData, getLocalizedRound, getLocalizedOption } from '../utils/localization';
 
 interface Props {
   character: CharacterProfile;
@@ -25,10 +25,14 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevelComplete, onGameOver, onBack }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const difficulty = userProfile.level;
   const rawLevelData = character.levels[difficulty]?.[levelIndex];
-  const levelData = rawLevelData ? getLocalizedLevelData(rawLevelData) : null;
+  
+  // Recalculate localized data when language changes
+  const levelData = useMemo(() => {
+    return rawLevelData ? getLocalizedLevelData(rawLevelData, i18n.language) : null;
+  }, [rawLevelData, i18n.language]);
   
   // States
   const [roundIndex, setRoundIndex] = useState(0);
@@ -40,13 +44,18 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [feedback, setFeedback] = useState<{isCorrect: boolean, explain: string} | null>(null);
   const [mistakes, setMistakes] = useState<ReviewItem[]>([]);
-  const [isEnglish, setIsEnglish] = useState(true);
   const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
   
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const rawCurrentRound = levelData?.rounds[roundIndex];
-  const currentRound = rawCurrentRound ? getLocalizedRound(rawCurrentRound) : null;
+  
+  // Get current round (already localized in levelData)
+  const currentRound = useMemo(() => {
+    return levelData?.rounds[roundIndex] || null;
+  }, [levelData, roundIndex]);
+  
+  // Get current UI language
+  const isEnglish = i18n.language === 'en';
 
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -68,11 +77,12 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         .replace(/\[user\]/gi, userProfile.name);
   };
 
+  // Initialize level when levelIndex, character, or difficulty changes
   useEffect(() => {
     if (!levelData) return;
 
     setMessages([
-      { id: 'sys-start', sender: 'system', text: `Chapter ${levelIndex + 1}: ${formatText(levelData.title)}` }
+      { id: 'sys-start', sender: 'system', text: `${t('game.chapter', { chapter: levelIndex + 1, title: formatText(levelData.title) })}` }
     ]);
     setRoundIndex(0);
     setVibeScore(50);
@@ -82,11 +92,38 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
 
   }, [levelIndex, character, difficulty]);
 
+  // Update messages when language changes
+  useEffect(() => {
+    if (!levelData || messages.length === 0) return;
+
+    // Update system message
+    const updatedMessages = messages.map(msg => {
+      if (msg.sender === 'system' && msg.id === 'sys-start') {
+        return {
+          ...msg,
+          text: `${t('game.chapter', { chapter: levelIndex + 1, title: formatText(levelData.title) })}`
+        };
+      }
+      // Update other messages with localized context
+      if (msg.sender === 'other' && msg.id.startsWith('msg-')) {
+        const roundIdx = parseInt(msg.id.replace('msg-', ''));
+        const roundData = levelData.rounds[roundIdx];
+        if (roundData) {
+          return {
+            ...msg,
+            text: formatText(roundData.context)
+          };
+        }
+      }
+      return msg;
+    });
+
+    setMessages(updatedMessages);
+  }, [i18n.language]);
+
   const startRound = (rIdx: number) => {
-    const rawRoundData = levelData?.rounds[rIdx];
-    if (!rawRoundData) return;
-    
-    const roundData = getLocalizedRound(rawRoundData);
+    const roundData = levelData?.rounds[rIdx];
+    if (!roundData) return;
 
     setTurnState('WAITING');
     setSelectedOption(null);
@@ -103,8 +140,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
             { 
                 id: `msg-${rIdx}`, 
                 sender: 'other', 
-                text: formatText(roundData.context),
-                textEn: roundData.contextEn ? formatText(roundData.contextEn) : undefined
+                text: formatText(roundData.context)
             }
         ]);
         setTurnState('USER_INPUT');
@@ -147,7 +183,8 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
     }
     
     setPendingScore(nextScore); // Store for later
-    setFeedback({ isCorrect, explain: formatText(option.explain) });
+    const localizedOption = getLocalizedOption(option, i18n.language);
+    setFeedback({ isCorrect, explain: formatText(localizedOption.explain) });
   };
 
   const handleSendResponse = () => {
@@ -209,7 +246,17 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         currentStep={roundIndex + 1}
         totalSteps={levelData.rounds.length}
         isEnglish={isEnglish}
-        onToggleLanguage={() => setIsEnglish(!isEnglish)}
+        onToggleLanguage={() => {
+          // Toggle between ko and en for now (since we only have ko/en in constants)
+          const currentLang = i18n.language;
+          if (currentLang === 'en') {
+            i18n.changeLanguage('ko');
+          } else if (currentLang === 'es') {
+            i18n.changeLanguage('en');
+          } else {
+            i18n.changeLanguage('en');
+          }
+        }}
         difficulty={userProfile.level}
       />
 
@@ -236,7 +283,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                             : 'bg-white text-slate-700 rounded-tl-sm border border-slate-100'}
                     `}
                 >
-                    {msg.sender === 'other' && isEnglish && msg.textEn ? msg.textEn : msg.text}
+                    {msg.text}
                 </div>
             )}
           </div>

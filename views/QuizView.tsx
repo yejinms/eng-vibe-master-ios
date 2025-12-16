@@ -14,7 +14,7 @@ interface Props {
 }
 
 const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [questions, setQuestions] = useState<DialogueRound[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -29,7 +29,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
     const quizQs: DialogueRound[] = [];
 
     rawLevels.forEach(rawLevel => {
-        const level = getLocalizedLevelData(rawLevel);
+        const level = getLocalizedLevelData(rawLevel, i18n.language);
         if (level.rounds.length > 0) {
             const randomRound = level.rounds[Math.floor(Math.random() * level.rounds.length)];
             quizQs.push(randomRound);
