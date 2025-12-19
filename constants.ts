@@ -47,7 +47,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am very lonely.", 
-                  textKo: "나 매우 외로워",
+                  textKo: "너무 외로워",
                   correct: false, 
                   explain: "외롭다는 뜻이라 조금 어색해.",
                   explainEn: "This means you're lonely, which is a bit awkward.",
@@ -117,7 +117,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "It is my enemy.", 
-                  textKo: "그것은 나의 적이다",
+                  textKo: "그건 나의 적이다",
                   correct: false, 
                   explain: "피자가 적이라고?",
                   explainEn: "Pizza is my enemy?",
@@ -152,7 +152,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am very late.", 
-                  textKo: "나 매우 늦었습니다",
+                  textKo: "너무 늦었어",
                   correct: false, 
                   explain: "이미 늦었다고?",
                   explainEn: "I'm already late?",
@@ -179,7 +179,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Look at you now.", 
-                  textKo: "지금 당신을보세요",
+                  textKo: "지금 널 보세요",
                   correct: false, 
                   explain: "지금 널 본다는 뜻.",
                   explainEn: "This means 'look at you now'.",
@@ -187,7 +187,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "You catch me.", 
-                  textKo: "당신은 나를 잡아",
+                  textKo: "나를 잡아",
                   correct: false, 
                   explain: "네가 날 잡아?",
                   explainEn: "You catch me?",
@@ -225,7 +225,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is your body.", 
-                   textKo: "그것은 당신의 몸야",
+                   textKo: "그건 네 몸이야",
                    correct: false, 
                    explain: "그건 네 몸이야?",
                    explainEn: "That's your body?",
@@ -233,7 +233,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You look strange.", 
-                   textKo: "당신은 이상해 보인다",
+                   textKo: "이상해 보인다",
                    correct: false, 
                    explain: "이상해 보인다니, 절대 안 돼!",
                    explainEn: "You look strange - absolutely not!",
@@ -295,7 +295,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is stealing.", 
-                   textKo: "도둑질야",
+                   textKo: "도둑질이야",
                    correct: false, 
                    explain: "범죄를 저지르고 있다는 뜻이야.",
                    explainEn: "This means committing a crime.",
@@ -303,7 +303,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is very cheapy.", 
-                   textKo: "매우 저렴합니다",
+                   textKo: "매우 저렴해",
                    correct: false, 
                    explain: "Cheapy는 싸구려 같다는 부정적 뉘앙스.",
                    explainEn: "'Cheapy' has a negative nuance of being low quality.",
@@ -330,7 +330,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Sugar is falling.", 
-                   textKo: "설탕이 떨어지고 있습니다",
+                   textKo: "설탕이 떨어지고 있어",
                    correct: false, 
                    explain: "설탕이 바닥에 떨어지고 있다?",
                    explainEn: "Sugar is falling on the floor?",
@@ -338,7 +338,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I hate snacks.", 
-                   textKo: "나 간식을 싫어한다",
+                   textKo: "간식 싫어해",
                    correct: false, 
                    explain: "간식 싫다는 말은 안 했잖아.",
                    explainEn: "You didn't say you hate snacks.",
@@ -365,7 +365,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are number one.", 
-                   textKo: "당신은 최고의 사람야",
+                   textKo: "넌 최고야",
                    correct: false, 
                    explain: "틀리진 않지만 조금 유치해.",
                    explainEn: "Not wrong but a bit childish.",
@@ -373,7 +373,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You act good.", 
-                   textKo: "당신은 좋은 행동을합니다",
+                   textKo: "좋은 행동을 해",
                    correct: false, 
                    explain: "연기를 잘한다는 뜻?",
                    explainEn: "You act well?",
@@ -411,7 +411,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I hate water.", 
-                   textKo: "나 물을 싫어한다",
+                   textKo: "물 싫어해",
                    correct: false, 
                    explain: "바다 가자는데 물이 싫다고?",
                    explainEn: "We're going to the beach and you hate water?",
@@ -419,7 +419,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Beach is sand.", 
-                   textKo: "해변은 모래야",
+                   textKo: "해변은 모래지",
                    correct: false, 
                    explain: "바다는 모래다. 너무 사실적이야.",
                    explainEn: "The beach is sand. Too literal.",
@@ -446,7 +446,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I see hotels.", 
-                   textKo: "호텔이 보야",
+                   textKo: "호텔이 보여",
                    correct: false, 
                    explain: "호텔을 그냥 쳐다본다는 뜻.",
                    explainEn: "This just means looking at hotels.",
@@ -454,7 +454,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Hotel is sleeping.", 
-                   textKo: "호텔은 자고 있습니다",
+                   textKo: "호텔이 자고 있어?",
                    correct: false, 
                    explain: "호텔은 자는 중?",
                    explainEn: "The hotel is sleeping?",
@@ -481,7 +481,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Cut the money.", 
-                   textKo: "돈을 삭감하세요",
+                   textKo: "돈을 자르면 안 돼!",
                    correct: false, 
                    explain: "돈을 가위로 자르면 안 돼!",
                    explainEn: "Don't cut money with scissors!",
@@ -489,7 +489,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Dutch pay is good.", 
-                   textKo: "네덜란드 급여는 좋습니다",
+                   textKo: "더치페이는 좋아",
                    correct: false, 
                    explain: "콩글리시야! 'Go Dutch'나 'Split'을 써.",
                    explainEn: "Konglish! Use 'Go Dutch' or 'Split'.",
@@ -516,7 +516,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I wait very well.", 
-                   textKo: "나 아주 잘 기다립니다",
+                   textKo: "기다리는 건 잘해",
                    correct: false, 
                    explain: "나는 기다리기 장인이다?",
                    explainEn: "I'm a master at waiting?",
@@ -524,7 +524,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is exciting day.", 
-                   textKo: "신나는 하루야",
+                   textKo: "신나는 하루지",
                    correct: false, 
                    explain: "문법이 조금 어색해.",
                    explainEn: "The grammar is a bit awkward.",
@@ -551,7 +551,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Touch me.", 
-                   textKo: "나를 만져줘",
+                   textKo: "만지지 마",
                    correct: false, 
                    explain: "나를 만지라고? 큰일 날 소리!",
                    explainEn: "Touch me? That's inappropriate!",
@@ -559,7 +559,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Call my phone.", 
-                   textKo: "내 전화에 전화해",
+                   textKo: "내 전화번호로 전화해",
                    correct: false, 
                    explain: "너무 명령조야.",
                    explainEn: "Too commanding.",
@@ -632,7 +632,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I am sick body.", 
-                   textKo: "나 몸이 아프다",
+                   textKo: "몸이 아파",
                    correct: false, 
                    explain: "몸이 아프다는 건 질병 같아.",
                    explainEn: "This sounds like you're sick with a disease.",
@@ -640,7 +640,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "My muscle cries.", 
-                   textKo: "내 근육이 울어요",
+                   textKo: "근육이 울어",
                    correct: false, 
                    explain: "근육이 운다니 시적이지만 어색해.",
                    explainEn: "Poetic but awkward - my muscles are crying?",
@@ -667,7 +667,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I will do end.", 
-                   textKo: "끝낼게요",
+                   textKo: "끝낼게",
                    correct: false, 
                    explain: "끝을 보겠다는 건가?",
                    explainEn: "I'll see the end?",
@@ -675,7 +675,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Stop is no.", 
-                   textKo: "중지는 아니오야",
+                   textKo: "중지는 아니야",
                    correct: false, 
                    explain: "멈춤은 없다? 콩글리시 느낌.",
                    explainEn: "No stopping? Konglish feeling.",
@@ -702,7 +702,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You do it too.", 
-                   textKo: "당신도 그렇게 합니다",
+                   textKo: "너도 그렇게 해",
                    correct: false, 
                    explain: "너무 명령조야.",
                    explainEn: "Too commanding.",
@@ -737,7 +737,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Go home yourself.", 
-                   textKo: "집에 직접 가세요",
+                   textKo: "집에 직접 가",
                    correct: false, 
                    explain: "너 혼자 가라는 뜻.",
                    explainEn: "This means go home by yourself.",
@@ -745,7 +745,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I send you house.", 
-                   textKo: "집으로 보내드립니다",
+                   textKo: "집으로 보내줄게",
                    correct: false, 
                    explain: "너를 집으로 택배 부치듯 보낸다?",
                    explainEn: "I'll send you to your house like a package?",
@@ -783,7 +783,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "She will surprise.", 
-                   textKo: "그녀는 놀랄 것야",
+                   textKo: "놀랄 거야",
                    correct: false, 
                    explain: "그녀가 남을 놀래킨다는 뜻.",
                    explainEn: "This means she will surprise others.",
@@ -791,7 +791,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "She scares.", 
-                   textKo: "그녀는 겁이 난다",
+                   textKo: "겁이 나",
                    correct: false, 
                    explain: "무서워할 거라고?",
                    explainEn: "She'll be scared?",
@@ -818,7 +818,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Safe is good.", 
-                   textKo: "안전이 좋습니다",
+                   textKo: "안전이 좋아",
                    correct: false, 
                    explain: "금고가 좋다는 뜻?",
                    explainEn: "A safe (vault) is good?",
@@ -826,7 +826,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Money paper is nice.", 
-                   textKo: "돈 종이는 좋은데요",
+                   textKo: "돈 종이는 좋은데",
                    correct: false, 
                    explain: "돈 종이? 너무 직설적이야.",
                    explainEn: "Money paper? Too direct.",
@@ -861,7 +861,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Do chocolate.", 
-                   textKo: "초콜릿을 하세요",
+                   textKo: "초콜릿을 해",
                    correct: false, 
                    explain: "초콜릿을 해라?",
                    explainEn: "Do chocolate?",
@@ -888,7 +888,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Go outside.", 
-                   textKo: "밖으로 나가세요",
+                   textKo: "밖으로 나가",
                    correct: false, 
                    explain: "밖으로 나가자?",
                    explainEn: "Go outside?",
@@ -896,7 +896,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Make it shine.", 
-                   textKo: "빛나게 하세요",
+                   textKo: "빛나게 해",
                    correct: false, 
                    explain: "반짝이게 만들자?",
                    explainEn: "Make it shine?",
@@ -923,7 +923,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Friends are good.", 
-                   textKo: "친구들은 좋다",
+                   textKo: "친구들은 좋아",
                    correct: false, 
                    explain: "친구는 좋다.",
                    explainEn: "Friends are good.",
@@ -931,7 +931,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I like friend.", 
-                   textKo: "나 친구를 좋아한다",
+                   textKo: "친구 좋아해",
                    correct: false, 
                    explain: "난 친구를 좋아해.",
                    explainEn: "I like friend.",
@@ -963,7 +963,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'm totally burnt out.", 
-                  textKo: "완전 녹초가 되었다",
+                  textKo: "완전 녹초가 됐어",
                   correct: true, 
                   explain: "'Burn out'은 연료가 다 타버린 것처럼 기력이 쇠한 상태를 말해.",
                   explainEn: "'Burn out' means you're exhausted like fuel that's all burned up.",
@@ -971,7 +971,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am melting down.", 
-                  textKo: "나 녹아 내리고있다",
+                  textKo: "나 녹아 내리고 있다",
                   correct: false, 
                   explain: "Melting down은 감정적 붕괴에 가까워.",
                   explainEn: "Melting down is closer to an emotional breakdown.",
@@ -979,7 +979,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "My body is broken.", 
-                  textKo: "내 몸이 망가졌다",
+                  textKo: "몸이 망가졌어",
                   correct: false, 
                   explain: "몸이 부서졌다는 직역 표현이야.",
                   explainEn: "A literal translation saying your body is broken.",
@@ -1006,7 +1006,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I eat everything.", 
-                  textKo: "나 모든 것을 먹는다",
+                  textKo: "다 먹어",
                   correct: false, 
                   explain: "의미는 통하지만 원어민은 picky를 더 많이 써.",
                   explainEn: "The meaning works but natives use 'picky' more often.",
@@ -1014,7 +1014,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I have a big mouth.", 
-                  textKo: "나 입이 크다",
+                  textKo: "입이 커",
                   correct: false, 
                   explain: "입이 가볍다는 뜻이 될 수 있어 조심해!",
                   explainEn: "This could mean you can't keep secrets - be careful!",
@@ -1041,7 +1041,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "It was expensive.", 
-                  textKo: "그것은 비쌌다",
+                  textKo: "그건 비쌌다",
                   correct: false, 
                   explain: "너무 평범해. 감정이 안 실려 있어.",
                   explainEn: "Too plain. No emotion conveyed.",
@@ -1049,7 +1049,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Price was too high.", 
-                  textKo: "가격이 너무 높았습니다",
+                  textKo: "가격이 너무 높았어",
                   correct: false, 
                   explain: "문법적으로 살짝 어색하고 밋밋해.",
                   explainEn: "Grammatically a bit awkward and flat.",
@@ -1076,7 +1076,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "He likes control.", 
-                  textKo: "그는 통제를 좋아합니다",
+                  textKo: "그는 통제를 좋아해",
                   correct: false, 
                   explain: "뉘앙스가 약해. 그냥 통제를 좋아한다는 뜻.",
                   explainEn: "The nuance is weak. Just means he likes control.",
@@ -1084,7 +1084,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "He is a bossy man.", 
-                  textKo: "그는 상사야",
+                  textKo: "상사야",
                   correct: false, 
                   explain: "Bossy도 좋지만 Control freak이 더 구체적이야.",
                   explainEn: "Bossy is also good but Control freak is more specific.",
@@ -1119,7 +1119,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Let's drink red wine.", 
-                  textKo: "레드와인을 마시자",
+                  textKo: "레드 와인 마시자",
                   correct: false, 
                   explain: "너무 구체적이야. 와인만 마실 거야?",
                   explainEn: "Too specific. Are we only drinking wine?",
@@ -1157,7 +1157,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Don't judge fast.", 
-                   textKo: "성급하게 판단하지 마세요",
+                   textKo: "성급하게 판단하지 마",
                    correct: false, 
                    explain: "빠르게 재판하지 마라?",
                    explainEn: "Don't judge quickly?",
@@ -1165,7 +1165,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Wait and see.", 
-                   textKo: "기다려 보세요",
+                   textKo: "기다려봐",
                    correct: false, 
                    explain: "지켜보라는 뜻이지 속단하지 말라는 뜻은 아냐.",
                    explainEn: "This means wait and see, not don't jump to conclusions.",
@@ -1192,7 +1192,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I have experience.", 
-                   textKo: "나 경험이 있습니다",
+                   textKo: "경험 있어",
                    correct: false, 
                    explain: "경력직 면접 보는 거 아니잖아.",
                    explainEn: "This isn't a job interview.",
@@ -1200,7 +1200,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I know that feeling.", 
-                   textKo: "나 그 느낌을 알고 있습니다",
+                   textKo: "그 느낌 알아",
                    correct: false, 
                    explain: "나쁘지 않지만 I've been there가 더 원어민스러워.",
                    explainEn: "Not bad but 'I've been there' is more native-like.",
@@ -1227,7 +1227,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You will regret.", 
-                   textKo: "당신은 후회할 것야",
+                   textKo: "후회할 거야",
                    correct: false, 
                    explain: "너무 평범해.",
                    explainEn: "Too plain.",
@@ -1235,7 +1235,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Don't do angry things.", 
-                   textKo: "화나는 일을 하지 마세요",
+                   textKo: "화나는 일 하지 마",
                    correct: false, 
                    explain: "화난 짓 하지 마라?",
                    explainEn: "Don't do angry things?",
@@ -1262,7 +1262,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Act normal.", 
-                   textKo: "정상적으로 행동하십시오",
+                   textKo: "정상적으로 행동해",
                    correct: false, 
                    explain: "정상인처럼 굴라는 뜻?",
                    explainEn: "Act like a normal person?",
@@ -1270,7 +1270,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Do as usual.", 
-                   textKo: "평소대로 하세요",
+                   textKo: "평소대로 해",
                    correct: false, 
                    explain: "문법적으로 어색해.",
                    explainEn: "Grammatically awkward.",
@@ -1297,7 +1297,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are charming.", 
-                   textKo: "당신은 매력적야",
+                   textKo: "매력적야",
                    correct: false, 
                    explain: "좋은 말이지만 A catch가 더 회화적이야.",
                    explainEn: "Good but 'a catch' is more conversational.",
@@ -1305,7 +1305,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are pretty.", 
-                   textKo: "당신은 예쁘다",
+                   textKo: "예쁘다",
                    correct: false, 
                    explain: "단순히 예쁘다는 뜻.",
                    explainEn: "Simply means you're pretty.",
@@ -1343,7 +1343,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Sound didn't block.", 
-                   textKo: "소리가 차단되지 않았습니다",
+                   textKo: "소리가 차단 안 됐어",
                    correct: false, 
                    explain: "소리가 막히지 않았다?",
                    explainEn: "Sound didn't block?",
@@ -1351,7 +1351,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It was noisy.", 
-                   textKo: "시끄러웠어요",
+                   textKo: "시끄러웠어",
                    correct: false, 
                    explain: "시끄러웠다는 결과만 말함.",
                    explainEn: "Only states the result of being noisy.",
@@ -1378,7 +1378,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No free money.", 
-                   textKo: "공짜 돈은 없습니다",
+                   textKo: "공짜 돈은 없어",
                    correct: false, 
                    explain: "공짜 돈은 없다.",
                    explainEn: "No free money.",
@@ -1386,7 +1386,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Everything has price.", 
-                   textKo: "모든 것에는 가격이 있습니다",
+                   textKo: "모든 것에는 가격이 있어",
                    correct: false, 
                    explain: "모든 건 가격이 있다.",
                    explainEn: "Everything has a price.",
@@ -1413,7 +1413,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Don't run.", 
-                   textKo: "뛰지 마세요",
+                   textKo: "뛰지 마",
                    correct: false, 
                    explain: "뛰지 말라는 뜻.",
                    explainEn: "This means don't run.",
@@ -1421,7 +1421,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Time is ours.", 
-                   textKo: "시간은 우리의 것야",
+                   textKo: "시간은 우리의 거야",
                    correct: false, 
                    explain: "시간은 우리 것이다?",
                    explainEn: "Time is ours?",
@@ -1448,7 +1448,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I look at your back.", 
-                   textKo: "나 당신의 뒷모습을 봅니다",
+                   textKo: "뒷모습 볼게",
                    correct: false, 
                    explain: "네 등만 쳐다보겠다는 뜻.",
                    explainEn: "This means I'll just stare at your back.",
@@ -1456,7 +1456,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I help you.", 
-                   textKo: "나 당신을 도와줍니다",
+                   textKo: "도와줄게",
                    correct: false, 
                    explain: "너무 단순해.",
                    explainEn: "Too simple.",
@@ -1483,7 +1483,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I empty my schedule.", 
-                   textKo: "나 일정을 비웠다",
+                   textKo: "일정 비웠어",
                    correct: false, 
                    explain: "Empty는 물리적으로 비우는 것.",
                    explainEn: "Empty means to physically empty something.",
@@ -1491,7 +1491,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I wait for party.", 
-                   textKo: "나 파티를 기다린다",
+                   textKo: "파티 기다려",
                    correct: false, 
                    explain: "파티를 기다린다.",
                    explainEn: "I wait for the party.",
@@ -1564,7 +1564,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You hit the wall.", 
-                   textKo: "당신은 벽에 부딪혔습니다",
+                   textKo: "벽에 부딪혔습니다",
                    correct: false, 
                    explain: "한계에 부딪혔다는 뜻.",
                    explainEn: "This means you've hit a limit.",
@@ -1572,7 +1572,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are bored.", 
-                   textKo: "당신은 지루합니다",
+                   textKo: "지루해",
                    correct: false, 
                    explain: "지루해한다는 단순 표현.",
                    explainEn: "A simple expression meaning you're bored.",
@@ -1599,7 +1599,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are superman.", 
-                   textKo: "당신은 슈퍼맨야",
+                   textKo: "슈퍼맨야",
                    correct: false, 
                    explain: "슈퍼맨?",
                    explainEn: "Superman?",
@@ -1607,7 +1607,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You can do well.", 
-                   textKo: "당신은 잘 할 수 있습니다",
+                   textKo: "잘 할 수 있어",
                    correct: false, 
                    explain: "평범한 응원.",
                    explainEn: "Plain encouragement.",
@@ -1669,7 +1669,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I shoot beer.", 
-                   textKo: "나 맥주를 쏜다",
+                   textKo: "맥주 쏠게",
                    correct: false, 
                    explain: "맥주를 총으로 쏜다?",
                    explainEn: "I shoot beer with a gun?",
@@ -1750,7 +1750,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It looks dark.", 
-                   textKo: "어둡게 보야",
+                   textKo: "어둡게 보여",
                    correct: false, 
                    explain: "어두워 보인다는 뜻.",
                    explainEn: "This means it looks dark.",
@@ -1820,7 +1820,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are fashion model.", 
-                   textKo: "당신은 패션 모델야",
+                   textKo: "패션 모델야",
                    correct: false, 
                    explain: "모델은 아니잖아.",
                    explainEn: "You're not a model.",
@@ -1828,7 +1828,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Your cloth is good.", 
-                   textKo: "당신의 천은 좋습니다",
+                   textKo: "천은 좋아",
                    correct: false, 
                    explain: "옷이 좋다는 뜻.",
                    explainEn: "This means your clothes are good.",
@@ -1855,7 +1855,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I want to eat buffet.", 
-                   textKo: "뷔페를 먹고 싶어요",
+                   textKo: "뷔페 먹고 싶어",
                    correct: false, 
                    explain: "나 뷔페 먹고 싶어.",
                    explainEn: "I want to eat buffet.",
@@ -1903,7 +1903,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I feel boring life.", 
-                  textKo: "삶이 지루하다고 느껴집니다",
+                  textKo: "삶이 지루해",
                   correct: false, 
                   explain: "문법적으로 어색해. Life is boring이 맞지.",
                   explainEn: "Grammatically awkward. 'Life is boring' is correct.",
@@ -1911,7 +1911,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am in a square box.", 
-                  textKo: "나 정사각형 상자 안에 있다",
+                  textKo: "정사각형 상자 안에 있어",
                   correct: false, 
                   explain: "상자 안에 갇혔다는 건 너무 물리적이야.",
                   explainEn: "Being trapped in a box is too physical.",
@@ -1938,7 +1938,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Think deeply about it.", 
-                  textKo: "그것에 대해 깊이 생각해보세요",
+                  textKo: "그건 깊이 생각해봐",
                   correct: false, 
                   explain: "틀린 건 아니지만 관용구의 맛이 없어.",
                   explainEn: "Not wrong but lacks the flavor of an idiom.",
@@ -1946,7 +1946,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Be careful thinking.", 
-                  textKo: "생각을 조심하세요",
+                  textKo: "생각 조심해",
                   correct: false, 
                   explain: "생각을 조심하라는 건 좀 이상해.",
                   explainEn: "Being careful about thinking is a bit strange.",
@@ -1973,7 +1973,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "You must take danger.", 
-                  textKo: "위험을 감수해야 합니다",
+                  textKo: "위험을 감수해야 해",
                   correct: false, 
                   explain: "Danger를 가져간다는 표현은 어색해.",
                   explainEn: "The expression 'take danger' is awkward.",
@@ -1981,7 +1981,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Risk represents reward.", 
-                  textKo: "위험은 보상을 나타냅니다",
+                  textKo: "위험은 보상을 나타내",
                   correct: false, 
                   explain: "너무 격언 같은 표현이야.",
                   explainEn: "Too much like a proverb.",
@@ -2008,7 +2008,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We see eye to eye.", 
-                  textKo: "우리는 눈을 마주하고 있습니다",
+                  textKo: "우리는 눈을 마주하고 있어",
                   correct: false, 
                   explain: "이건 '의견이 일치한다'는 뜻에 더 가까워.",
                   explainEn: "This is closer to meaning 'we agree'.",
@@ -2016,7 +2016,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We connect mind to mind.", 
-                  textKo: "우리는 마음과 마음을 연결합니다",
+                  textKo: "우리는 마음과 마음을 연결해",
                   correct: false, 
                   explain: "텔레파시 보내는 거야?",
                   explainEn: "Are we sending telepathy?",
@@ -2043,7 +2043,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We are one body soul.", 
-                  textKo: "우리는 하나의 육체 영혼야",
+                  textKo: "우리는 하나의 육체 영혼이야",
                   correct: false, 
                   explain: "영혼까지 하나라니 좀 무서워.",
                   explainEn: "Being one body and soul is a bit scary.",
@@ -2051,7 +2051,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We mix together well.", 
-                  textKo: "우리는 잘 섞인다",
+                  textKo: "잘 섞여",
                   correct: false, 
                   explain: "우린 섞이는 물감이 아니야.",
                   explainEn: "We're not paint that mixes together.",
@@ -2089,7 +2089,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It has no real.", 
-                   textKo: "진짜가 없습니다",
+                   textKo: "진짜가 없어",
                    correct: false, 
                    explain: "문법 오류.",
                    explainEn: "Grammar error.",
@@ -2097,7 +2097,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is impossible dream.", 
-                   textKo: "불가능한 꿈야",
+                   textKo: "불가능한 꿈이야",
                    correct: false, 
                    explain: "불가능한 꿈이다.",
                    explainEn: "It's an impossible dream.",
@@ -2124,7 +2124,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "They just talk on table.", 
-                   textKo: "그들은 단지 테이블 위에서 이야기를 나눈다",
+                   textKo: "테이블 위에서만 이야기해",
                    correct: false, 
                    explain: "테이블 위에서 말한다?",
                    explainEn: "They talk on a table?",
@@ -2132,7 +2132,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "They live in castle.", 
-                   textKo: "그들은 성에 산다",
+                   textKo: "성에 살아",
                    correct: false, 
                    explain: "성 안에 산다.",
                    explainEn: "They live in a castle.",
@@ -2159,7 +2159,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Lobby was there.", 
-                   textKo: "로비가 있었어요",
+                   textKo: "로비가 있었어",
                    correct: false, 
                    explain: "호텔 로비가 있었다?",
                    explainEn: "A hotel lobby was there?",
@@ -2167,7 +2167,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Money moved.", 
-                   textKo: "돈이 움직였습니다",
+                   textKo: "돈이 움직였어",
                    correct: false, 
                    explain: "돈이 움직였다.",
                    explainEn: "Money moved.",
@@ -2194,7 +2194,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "We create change.", 
-                   textKo: "우리는 변화를 만듭니다",
+                   textKo: "변화를 만들어",
                    correct: false, 
                    explain: "나쁘지 않지만 평범해.",
                    explainEn: "Not bad but plain.",
@@ -2229,7 +2229,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Action is important.", 
-                   textKo: "행동이 중요합니다",
+                   textKo: "행동이 중요해",
                    correct: false, 
                    explain: "너무 단순해.",
                    explainEn: "Too simple.",
@@ -2237,7 +2237,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Do not talk, just do.", 
-                   textKo: "말하지 말고 그냥 하세요",
+                   textKo: "말하지 말고 그냥 해",
                    correct: false, 
                    explain: "말하지 말고 해라.",
                    explainEn: "Don't talk, just do.",
@@ -2275,7 +2275,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I hear you well.", 
-                   textKo: "잘 들었습니다",
+                   textKo: "잘 들었어",
                    correct: false, 
                    explain: "잘 들린다는 뜻.",
                    explainEn: "This means I can hear you well.",
@@ -2283,7 +2283,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "My ear is open.", 
-                   textKo: "내 귀는 열려있습니다",
+                   textKo: "내 귀는 열려있어",
                    correct: false, 
                    explain: "귀가 열려있다.",
                    explainEn: "My ear is open.",
@@ -2310,7 +2310,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Small market attack.", 
-                   textKo: "소규모 시장 공격",
+                   textKo: "소규모 시장 공략",
                    correct: false, 
                    explain: "작은 시장 공격?",
                    explainEn: "Small market attack?",
@@ -2345,7 +2345,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "We gather money.", 
-                   textKo: "우리는 돈을 모은다",
+                   textKo: "돈을 모아",
                    correct: false, 
                    explain: "돈을 줍는 느낌.",
                    explainEn: "Feels like picking up money.",
@@ -2353,7 +2353,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Crowd gives money.", 
-                   textKo: "군중은 돈을 준다",
+                   textKo: "군중이 돈을 줘",
                    correct: false, 
                    explain: "군중이 돈을 준다?",
                    explainEn: "The crowd gives money?",
@@ -2380,7 +2380,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I am bad at business.", 
-                   textKo: "나 사업을 잘 못한다",
+                   textKo: "사업은 못해",
                    correct: false, 
                    explain: "직설적이지만 어휘력이 낮아 보임.",
                    explainEn: "Direct but shows low vocabulary.",
@@ -2415,7 +2415,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I think deep.", 
-                   textKo: "나 깊이 생각한다",
+                   textKo: "깊이 생각해",
                    correct: false, 
                    explain: "깊게 생각한다.",
                    explainEn: "I think deeply.",
@@ -2423,7 +2423,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I will see.", 
-                   textKo: "나 볼 것이다",
+                   textKo: "볼게",
                    correct: false, 
                    explain: "두고 보겠다.",
                    explainEn: "I'll see.",
@@ -2461,7 +2461,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is hard.", 
-                   textKo: "어렵다",
+                   textKo: "어려워",
                    correct: false, 
                    explain: "단단하다는 건지 어렵다는 건지 모호해.",
                    explainEn: "Ambiguous - hard as in solid or difficult?",
@@ -2469,7 +2469,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I don't know.", 
-                   textKo: "모르겠습니다",
+                   textKo: "모르겠어",
                    correct: false, 
                    explain: "모른다는 말은 대화를 끊어버려.",
                    explainEn: "Saying 'I don't know' cuts off the conversation.",
@@ -2496,7 +2496,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Colors are strong.", 
-                   textKo: "색상이 강합니다",
+                   textKo: "색상이 강해",
                    correct: false, 
                    explain: "색이 힘이 세다?",
                    explainEn: "Colors are strong?",
@@ -2531,7 +2531,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Depends on you.", 
-                   textKo: "당신에게 달려있습니다",
+                   textKo: "네게 달려있어",
                    correct: false, 
                    explain: "너에게 달렸다?",
                    explainEn: "Depends on you?",
@@ -2539,7 +2539,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You can think anything.", 
-                   textKo: "당신은 무엇이든 생각할 수 있습니다",
+                   textKo: "무엇이든 생각할 수 있어",
                    correct: false, 
                    explain: "아무거나 생각해도 돼.",
                    explainEn: "You can think anything.",
@@ -2574,7 +2574,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Very strange.", 
-                   textKo: "매우 이상합니다",
+                   textKo: "매우 이상해",
                    correct: false, 
                    explain: "이상하다는 부정적일 수 있어.",
                    explainEn: "Saying 'strange' can be negative.",
@@ -2682,7 +2682,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You have big dream.", 
-                   textKo: "당신은 큰 꿈을 가지고 있습니다",
+                   textKo: "큰 꿈을 가지고 있어",
                    correct: false, 
                    explain: "큰 꿈을 가지고 있다.",
                    explainEn: "You have a big dream.",
@@ -2690,7 +2690,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Your dream is huge.", 
-                   textKo: "당신의 꿈은 엄청납니다",
+                   textKo: "꿈은 엄청나",
                    correct: false, 
                    explain: "꿈의 크기가 거대하다.",
                    explainEn: "The size of your dream is huge.",
@@ -2760,7 +2760,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You and me are one.", 
-                   textKo: "당신과 나는 하나야",
+                   textKo: "너와 나는 하나야",
                    correct: false, 
                    explain: "너와 나는 하나다.",
                    explainEn: "You and I are one.",
@@ -2795,7 +2795,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Cheers future!", 
-                   textKo: "미래를 응원합니다",
+                   textKo: "미래를 응원해",
                    correct: false, 
                    explain: "미래 안녕?",
                    explainEn: "Hello future?",
@@ -2845,7 +2845,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am happy working.", 
-                  textKo: "나 행복하게 일하고 있습니다",
+                  textKo: "나 행복하게 일하고 있어",
                   correct: false, 
                   explain: "문법이 조금 어색해.",
                   explainEn: "The grammar is a bit awkward.",
@@ -2915,7 +2915,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I will do everything.", 
-                  textKo: "나 모든 것을 할 것야",
+                  textKo: "나 모든 것을 할 거야",
                   correct: false, 
                   explain: "모든 걸 다 하겠다는 건 무리야.",
                   explainEn: "Saying you'll do everything is too much.",
@@ -2923,7 +2923,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I try very hard.", 
-                  textKo: "나 매우 열심히 노력합니다",
+                  textKo: "나 매우 열심히 노력해",
                   correct: false, 
                   explain: "노력한다는 말보단 do my best가 좋아.",
                   explainEn: "Better to say 'do my best' than 'try very hard'.",
@@ -2958,7 +2958,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "No thank you.", 
-                  textKo: "아니요, 감사합니다",
+                  textKo: "아니요, 감사해",
                   correct: false, 
                   explain: "거절하면 안 돼!",
                   explainEn: "Don't decline!",
@@ -3039,7 +3039,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Room is empty.", 
-                   textKo: "방이 비어 있습니다",
+                   textKo: "방이 비어 있어",
                    correct: false, 
                    explain: "확인도 안 하고 비었다고?",
                    explainEn: "Saying it's empty without checking?",
@@ -3144,7 +3144,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "My mind is open.", 
-                   textKo: "내 마음은 열려있습니다",
+                   textKo: "내 마음은 열려있어",
                    correct: false, 
                    explain: "내 마음은 열려있다.",
                    explainEn: "My mind is open.",
@@ -3244,7 +3244,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It's my fault.", 
-                   textKo: "제 불찰입니다",
+                   textKo: "제 불찰야",
                    correct: true, 
                    explain: "제 잘못이라는 명확한 사과.",
                    explainEn: "A clear apology taking responsibility.",
@@ -3260,7 +3260,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Sorry for zero.", 
-                   textKo: "제로라서 죄송합니다",
+                   textKo: "제로라서 죄송해",
                    correct: false, 
                    explain: "0에 대해 미안하다?",
                    explainEn: "Sorry for the zero?",
@@ -3295,7 +3295,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No more mistakes.", 
-                   textKo: "더 이상 실수는 없습니다",
+                   textKo: "더 이상 실수는 없어",
                    correct: false, 
                    explain: "너무 짧아.",
                    explainEn: "Too short.",
@@ -3314,7 +3314,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Thank you for understanding.", 
-                   textKo: "감사합니다",
+                   textKo: "감사해",
                    correct: true, 
                    explain: "배려에 감사하는 표현.",
                    explainEn: "An expression thanking for consideration.",
@@ -3322,7 +3322,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Thanks for mistake.", 
-                   textKo: "실수해주셔서 감사합니다",
+                   textKo: "실수해주셔서 감사해",
                    correct: false, 
                    explain: "실수해서 고맙다?",
                    explainEn: "Thanks for the mistake?",
@@ -3508,7 +3508,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Big help is you.", 
-                   textKo: "큰 도움은 당신야",
+                   textKo: "큰 도움은 너야",
                    correct: false, 
                    explain: "어순이 이상해.",
                    explainEn: "Word order is strange.",
@@ -3516,7 +3516,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I like your help.", 
-                   textKo: "나 당신의 도움을 좋아합니다",
+                   textKo: "도움 좋아해",
                    correct: false, 
                    explain: "네 도움이 좋았다.",
                    explainEn: "I liked your help.",
@@ -3535,7 +3535,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I appreciate it.", 
-                   textKo: "감사합니다",
+                   textKo: "감사해",
                    correct: true, 
                    explain: "Thank you보다 조금 더 격식 있고 깊은 감사 표현.",
                    explainEn: "A slightly more formal and deeper expression of gratitude than 'Thank you'.",
@@ -3551,7 +3551,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No thanks.", 
-                   textKo: "아니요. 감사합니다",
+                   textKo: "아니요. 감사해",
                    correct: false, 
                    explain: "거절은 예의가 아니지.",
                    explainEn: "Declining is impolite.",
@@ -3632,7 +3632,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No work tomorrow.", 
-                   textKo: "내일은 일이 없습니다",
+                   textKo: "내일은 일이 없어",
                    correct: false, 
                    explain: "내일 일 안 해! 통보식이야.",
                    explainEn: "No work tomorrow! Too direct.",
@@ -3659,7 +3659,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You understand me.", 
-                   textKo: "당신은 나를 이해합니다",
+                   textKo: "나를 이해해",
                    correct: false, 
                    explain: "평서문.",
                    explainEn: "A declarative sentence.",
@@ -3812,7 +3812,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We will break the box.", 
-                  textKo: "우리는 상자를 깨뜨릴 것야",
+                  textKo: "우리는 상자를 깨뜨릴 거야",
                   correct: false, 
                   explain: "'Think outside the box'랑 헷갈린 것 같아!",
                   explainEn: "You're confusing it with 'think outside the box'!",
@@ -3847,7 +3847,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We start with no money.", 
-                  textKo: "우리는 돈 없이 시작합니다",
+                  textKo: "우리는 돈 없이 시작해",
                   correct: false, 
                   explain: "너무 없어 보여.",
                   explainEn: "Sounds too poor.",
@@ -4006,7 +4006,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are my savior.", 
-                   textKo: "당신은 나의 구세주야",
+                   textKo: "나의 구세주야",
                    correct: false, 
                    explain: "너무 과장됐어.",
                    explainEn: "Too exaggerated.",
@@ -4103,7 +4103,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I pay money.", 
-                   textKo: "나 돈을 지불합니다",
+                   textKo: "나 돈을 지불해",
                    correct: false, 
                    explain: "내가 돈 낸다.",
                    explainEn: "I pay money.",
@@ -4149,7 +4149,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "He is right man.", 
-                   textKo: "그는 올바른 사람야",
+                   textKo: "그는 올바른 사람이야",
                    correct: false, 
                    explain: "너무 단순해.",
                    explainEn: "Too simple.",
@@ -4227,7 +4227,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Cut salary half.", 
-                   textKo: "급여를 절반으로 삭감합니다",
+                   textKo: "급여를 절반으로 삭감해",
                    correct: false, 
                    explain: "반으로 깎으면 도망가.",
                    explainEn: "If we cut it in half, he'll run away.",
@@ -4413,7 +4413,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "People talk much.", 
-                   textKo: "사람들은 말을 많이 합니다",
+                   textKo: "사람들은 말을 많이 해",
                    correct: false, 
                    explain: "사람들이 말을 많이 한다.",
                    explainEn: "People talk a lot.",
@@ -4448,7 +4448,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I am worthy.", 
-                   textKo: "나 가치가 있습니다",
+                   textKo: "나 가치가 있어",
                    correct: false, 
                    explain: "나는 가치 있다.",
                    explainEn: "I am worthy.",
@@ -4521,7 +4521,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is chaos.", 
-                   textKo: "그것은 혼돈이다",
+                   textKo: "그건 혼돈이다",
                    correct: false, 
                    explain: "평범해.",
                    explainEn: "Too plain.",
@@ -4591,7 +4591,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I fix bug.", 
-                   textKo: "버그를 수정합니다",
+                   textKo: "버그를 수정해",
                    correct: false, 
                    explain: "단순해.",
                    explainEn: "Too simple.",
@@ -4626,7 +4626,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It was dangerous.", 
-                   textKo: "그것은 위험했다",
+                   textKo: "그건 위험했다",
                    correct: false, 
                    explain: "위험했다.",
                    explainEn: "It was dangerous.",
@@ -4669,7 +4669,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No cow no fix.", 
-                   textKo: "소는 고칠 수 없습니다",
+                   textKo: "소는 고칠 수 없어",
                    correct: false, 
                    explain: "소가 없으면 고칠 것도 없다?",
                    explainEn: "No cow, nothing to fix?",
@@ -4717,7 +4717,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We fight back.", 
-                  textKo: "우리는 반격합니다",
+                  textKo: "우리는 반격해",
                   correct: false, 
                   explain: "너무 공격적이야.",
                   explainEn: "Too aggressive.",
@@ -4779,7 +4779,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "They will bite it.", 
-                  textKo: "그들은 그것을 물 것야",
+                  textKo: "그들은 그것을 물 거야",
                   correct: false, 
                   explain: "물리적으로 무는 거야.",
                   explainEn: "Physically biting it.",
@@ -4787,7 +4787,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "They like bait.", 
-                  textKo: "그들은 미끼를 좋아합니다",
+                  textKo: "그들은 미끼를 좋아해",
                   correct: false, 
                   explain: "그들은 미끼를 좋아한다?",
                   explainEn: "They like bait?",
@@ -4973,7 +4973,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Rejection is good.", 
-                   textKo: "거절은 좋은 것야",
+                   textKo: "거절은 좋은 거야",
                    correct: false, 
                    explain: "거절은 좋다.",
                    explainEn: "Rejection is good.",
@@ -5221,7 +5221,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Justice wins.", 
-                   textKo: "정의가 승리합니다",
+                   textKo: "정의가 승리해",
                    correct: false, 
                    explain: "단순해.",
                    explainEn: "Too simple.",
@@ -5407,7 +5407,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Best is not here.", 
-                   textKo: "베스트는 여기에 없습니다",
+                   textKo: "베스트는 여기에 없어",
                    correct: false, 
                    explain: "최고가 여기 없다.",
                    explainEn: "The best is not here.",
@@ -5651,7 +5651,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I have no work.", 
-                  textKo: "나 일이 없습니다",
+                  textKo: "나 일이 없어",
                   correct: false, 
                   explain: "일이 없다는 뜻.",
                   explainEn: "It means I have no work.",
@@ -5686,7 +5686,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I agree movie.", 
-                  textKo: "동의합니다 영화",
+                  textKo: "동의해 영화",
                   correct: false, 
                   explain: "영화에 동의한다?",
                   explainEn: "I agree with the movie?",
@@ -5729,7 +5729,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "It is impossible.", 
-                  textKo: "불가능합니다",
+                  textKo: "불가능해",
                   correct: false, 
                   explain: "너무 딱딱해.",
                   explainEn: "Too stiff.",
@@ -5764,7 +5764,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I wait for you.", 
-                  textKo: "나 당신을 기다립니다",
+                  textKo: "널 기다려",
                   correct: false, 
                   explain: "그냥 기다린다는 뜻.",
                   explainEn: "Just means I'm waiting for you.",
@@ -5837,7 +5837,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No coffee no life.", 
-                   textKo: "커피가 없으면 인생도 없습니다",
+                   textKo: "커피가 없으면 인생도 없어",
                    correct: false, 
                    explain: "슬로건 같아.",
                    explainEn: "Sounds like a slogan.",
@@ -5977,7 +5977,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are funny.", 
-                   textKo: "당신은 재밌어요",
+                   textKo: "재밌어요",
                    correct: false, 
                    explain: "넌 웃긴 사람이야.",
                    explainEn: "You're a funny person.",
@@ -6058,7 +6058,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are liar.", 
-                   textKo: "당신은 거짓말쟁이야",
+                   textKo: "거짓말쟁이야",
                    correct: false, 
                    explain: "거짓말쟁이!",
                    explainEn: "You're a liar!",
@@ -6093,7 +6093,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are hot.", 
-                   textKo: "당신은 뜨겁습니다",
+                   textKo: "뜨겁습니다",
                    correct: false, 
                    explain: "넌 핫해(섹시해) 혹은 더워.",
                    explainEn: "You're hot (sexy) or you're hot (temperature).",
@@ -6217,7 +6217,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No sleep.", 
-                   textKo: "잠이 없습니다",
+                   textKo: "잠이 없어",
                    correct: false, 
                    explain: "잠은 없다.",
                    explainEn: "No sleep.",
@@ -6583,7 +6583,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Are you working on me?", 
-                  textKo: "당신은 나를 위해 일하고 있습니까",
+                  textKo: "나를 위해 일하고 있습니까",
                   correct: false, 
                   explain: "나를 고치고 있냐는 뜻이야.",
                   explainEn: "This means are you fixing me?",
@@ -6618,7 +6618,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I have time for you.", 
-                  textKo: "나 당신을 위한 시간을 갖고 있습니다",
+                  textKo: "널 위한 시간 있어",
                   correct: false, 
                   explain: "무난하지만 설렘이 덜해.",
                   explainEn: "Safe but lacks excitement.",
@@ -6696,7 +6696,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "It shot my heart.", 
-                  textKo: "그것은 내 마음을 사로 잡았습니다",
+                  textKo: "그건 내 마음을 사로 잡았습니다",
                   correct: false, 
                   explain: "심장을 쐈다? 무서워.",
                   explainEn: "It shot my heart? Scary.",
@@ -6769,7 +6769,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Are you envy?", 
-                   textKo: "당신은 부러워합니까",
+                   textKo: "부러워합니까",
                    correct: false, 
                    explain: "Envy는 부러워하다는 뜻.",
                    explainEn: "Envy means to be envious.",
@@ -6777,7 +6777,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You hate him?", 
-                   textKo: "당신은 그를 싫어",
+                   textKo: "그를 싫어",
                    correct: false, 
                    explain: "그를 싫어하냐?",
                    explainEn: "Do you hate him?",
@@ -6804,7 +6804,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I see only you.", 
-                   textKo: "나 당신만을 본다",
+                   textKo: "너만 봐",
                    correct: false, 
                    explain: "너만 보인다(시력 문제?).",
                    explainEn: "I only see you (vision problem?).",
@@ -6812,7 +6812,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are my target.", 
-                   textKo: "당신은 나의 목표야",
+                   textKo: "나의 목표야",
                    correct: false, 
                    explain: "넌 내 타겟이다.",
                    explainEn: "You're my target.",
@@ -6847,7 +6847,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No cheating.", 
-                   textKo: "부정 행위는 없습니다",
+                   textKo: "부정 행위는 없어",
                    correct: false, 
                    explain: "바람피우지 마(너무 강해).",
                    explainEn: "Don't cheat (too strong).",
@@ -7149,7 +7149,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Eyes open all night.", 
-                   textKo: "밤새도록 눈을 뜨고 있습니다",
+                   textKo: "밤새도록 눈을 뜨고 있어",
                    correct: false, 
                    explain: "밤새 눈 뜨고 있었다.",
                    explainEn: "Eyes open all night.",
@@ -7184,7 +7184,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You sleep I drive.", 
-                   textKo: "당신은 자고 운전합니다",
+                   textKo: "자고 운전해",
                    correct: false, 
                    explain: "너 자라 나 운전한다.",
                    explainEn: "You sleep, I drive.",
@@ -7370,7 +7370,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is lie.", 
-                   textKo: "그것은 거짓말이다",
+                   textKo: "그건 거짓말이다",
                    correct: false, 
                    explain: "그건 거짓말이다.",
                    explainEn: "It's a lie.",
@@ -7432,7 +7432,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are lucky.", 
-                   textKo: "당신은 운이 좋다",
+                   textKo: "운이 좋다",
                    correct: false, 
                    explain: "넌 운이 좋다.",
                    explainEn: "You're lucky.",
@@ -7440,7 +7440,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "My luck is you.", 
-                   textKo: "내 행운은 당신야",
+                   textKo: "내 행운은 너야",
                    correct: false, 
                    explain: "내 운은 너다.",
                    explainEn: "My luck is you.",
@@ -7467,7 +7467,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "We are forever.", 
-                   textKo: "우리는 영원합니다",
+                   textKo: "우리는 영원해",
                    correct: false, 
                    explain: "우린 영원이다.",
                    explainEn: "We are forever.",
@@ -7558,7 +7558,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "No other acts.", 
-                  textKo: "다른 행위는 없습니다",
+                  textKo: "다른 행위는 없어",
                   correct: false, 
                   explain: "법률 용어 같아.",
                   explainEn: "Sounds like legal terminology.",
@@ -7585,7 +7585,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "I am all in you.", 
-                  textKo: "나 모두 당신 안에 있습니다",
+                  textKo: "모두 네 안에 있어",
                   correct: false, 
                   explain: "표현이 좀 야할 수 있어...",
                   explainEn: "The expression can be a bit suggestive...",
@@ -7593,7 +7593,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "You are my only.", 
-                  textKo: "당신은 나의 유일한 사람야",
+                  textKo: "나의 유일한 사람이야",
                   correct: false, 
                   explain: "Only one이라고 해야 해.",
                   explainEn: "Should say 'only one'.",
@@ -7655,7 +7655,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We win together.", 
-                  textKo: "우리는 함께 승리합니다",
+                  textKo: "우리는 함께 승리해",
                   correct: false, 
                   explain: "스포츠 경기 같아.",
                   explainEn: "Sounds like a sports game.",
@@ -7663,7 +7663,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "We can do it.", 
-                  textKo: "우리는 할 수 있습니다",
+                  textKo: "우리는 할 수 있어",
                   correct: false, 
                   explain: "너무 평범해.",
                   explainEn: "Too plain.",
@@ -7701,7 +7701,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are strange.", 
-                   textKo: "당신은 이상합니다",
+                   textKo: "이상해",
                    correct: false, 
                    explain: "너 이상해.",
                    explainEn: "You're strange.",
@@ -7887,7 +7887,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You look clean.", 
-                   textKo: "당신은 깨끗해 보야",
+                   textKo: "깨끗해 보여",
                    correct: false, 
                    explain: "깨끗해 보인다(안 씻은 것 같진 않다는 뜻).",
                    explainEn: "You look clean (meaning you don't look unwashed).",
@@ -7957,7 +7957,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "They like you.", 
-                   textKo: "그들은 당신을 좋아합니다",
+                   textKo: "널 좋아해",
                    correct: false, 
                    explain: "평범해.",
                    explainEn: "Too plain.",
@@ -7992,7 +7992,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You pass.", 
-                   textKo: "당신은 통과합니다",
+                   textKo: "통과해",
                    correct: false, 
                    explain: "단순해.",
                    explainEn: "Too simple.",
@@ -8073,7 +8073,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It is my personality.", 
-                   textKo: "그것은 내 성격야",
+                   textKo: "그건 내 성격야",
                    correct: false, 
                    explain: "너무 진지해.",
                    explainEn: "Too serious.",
@@ -8151,7 +8151,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Can't stand it.", 
-                   textKo: "참을 수 없습니다",
+                   textKo: "참을 수 없어",
                    correct: false, 
                    explain: "참을 수 없다.",
                    explainEn: "Can't stand it.",
@@ -8186,7 +8186,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Fighting is good.", 
-                   textKo: "싸움은 좋은 것야",
+                   textKo: "싸움은 좋은 거야",
                    correct: false, 
                    explain: "싸움은 좋다?",
                    explainEn: "Fighting is good?",
@@ -8259,7 +8259,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "I don't know.", 
-                   textKo: "모르겠습니다",
+                   textKo: "모르겠어",
                    correct: false, 
                    explain: "몰라.",
                    explainEn: "I don't know.",
@@ -8267,7 +8267,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No feeling.", 
-                   textKo: "느낌이 없습니다",
+                   textKo: "느낌이 없어",
                    correct: false, 
                    explain: "느낌 없음.",
                    explainEn: "No feeling.",
@@ -8302,7 +8302,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are right.", 
-                   textKo: "당신 말이 맞아요",
+                   textKo: "말이 맞아",
                    correct: false, 
                    explain: "네 말이 맞아.",
                    explainEn: "You're right.",
@@ -8407,7 +8407,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are my ghost.", 
-                   textKo: "당신은 나의 유령야",
+                   textKo: "나의 유령야",
                    correct: false, 
                    explain: "넌 내 귀신이다?",
                    explainEn: "You're my ghost?",

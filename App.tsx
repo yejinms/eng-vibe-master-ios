@@ -348,7 +348,22 @@ const App: React.FC = () => {
 
   const handleUpdateLearningLanguage = (newLanguage: 'en' | 'ko') => {
      if(gameState.userProfile) {
-         setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, learningLanguage: newLanguage } }));
+         // 현재 학습 언어와 다를 때만 확인 팝업 표시
+         if (gameState.userProfile.learningLanguage !== newLanguage) {
+             if (confirm(t('home.learningLanguageChangeConfirm'))) {
+                 // 모든 진행 상황 초기화 및 온보딩으로 이동
+                 setGameState(prev => ({
+                     ...prev,
+                     userProfile: null,
+                     progress: { zoey: {beginner:0, intermediate:0, advanced:0}, daniel: {beginner:0, intermediate:0, advanced:0}, lucas: {beginner:0, intermediate:0, advanced:0} },
+                     customCharacters: []
+                 }));
+                 setView('ONBOARDING');
+             }
+         } else {
+             // 같은 언어로 변경 시에는 그냥 업데이트만
+             setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, learningLanguage: newLanguage } }));
+         }
      }
   };
 

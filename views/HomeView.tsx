@@ -3,6 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { CharacterProfile, Difficulty, UserProfile } from '../types';
 import CharacterCard from '../components/CharacterCard';
 import { RotateCcw, Plus, X, Sparkles, Heart, Sword, Briefcase, Lock, User, UserMinus, Users, Ghost, Loader2, Settings, Check, BookOpen, Languages } from 'lucide-react';
+
+// 국기 이모지 컴포넌트
+const FlagIcon: React.FC<{ code: string; size?: number }> = ({ code, size = 20 }) => {
+  const flags: Record<string, string> = {
+    'ko': '🇰🇷',
+    'en': '🇺🇸',
+    'es': '🇪🇸'
+  };
+  return <span style={{ fontSize: size }}>{flags[code] || '🌐'}</span>;
+};
 import { RelationType, ThemeType } from '../utils/generator';
 
 interface Props {
@@ -66,6 +76,16 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
       { id: 'intermediate', label: t('home.difficulties.intermediate.label'), desc: t('home.difficulties.intermediate.desc'), color: 'bg-blue-100 text-blue-800 border-blue-200' },
       { id: 'advanced', label: t('home.difficulties.advanced.label'), desc: t('home.difficulties.advanced.desc'), color: 'bg-purple-100 text-purple-800 border-purple-200' },
   ];
+
+  // 난이도 순서 정의
+  const difficultyOrder: Difficulty[] = ['beginner', 'intermediate', 'advanced'];
+  const currentDifficultyIndex = difficultyOrder.indexOf(userProfile.level);
+  
+  const canChangeToDifficulty = (targetDifficulty: Difficulty) => {
+    const targetIndex = difficultyOrder.indexOf(targetDifficulty);
+    // 현재 난이도보다 낮거나 같은 난이도로만 변경 가능
+    return targetIndex <= currentDifficultyIndex;
+  };
 
   return (
     <div className="flex flex-col h-full bg-slate-50 relative">
@@ -222,18 +242,32 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                   <div className="space-y-2 mb-4">
                       <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.difficulty')}</h3>
                       <div className="grid grid-cols-3 gap-2">
-                          {DIFFICULTIES.map(diff => (
+                          {DIFFICULTIES.map(diff => {
+                            const isLocked = !canChangeToDifficulty(diff.id);
+                            const isSelected = userProfile.level === diff.id;
+                            return (
                               <button
                                 key={diff.id}
-                                onClick={() => onUpdateLevel(diff.id)}
-                                className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all ${userProfile.level === diff.id ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
+                                onClick={() => !isLocked && onUpdateLevel(diff.id)}
+                                disabled={isLocked}
+                                className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all min-h-[60px] ${
+                                  isSelected 
+                                    ? 'border-primary bg-primary/5 text-primary' 
+                                    : isLocked
+                                    ? 'border-slate-100 bg-slate-50 text-slate-400 opacity-50 cursor-not-allowed'
+                                    : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                                }`}
                               >
-                                  <span className={`text-xs font-bold ${userProfile.level === diff.id ? 'text-primary' : 'text-slate-700'}`}>{diff.label}</span>
-                                  {userProfile.level === diff.id && (
+                                  {isLocked && !isSelected && (
+                                    <Lock size={14} className="text-slate-400 mb-0.5" />
+                                  )}
+                                  <span className={`text-xs font-bold ${isSelected ? 'text-primary' : isLocked ? 'text-slate-400' : 'text-slate-700'}`}>{diff.label}</span>
+                                  {isSelected && (
                                       <Check size={12} className="text-primary" />
                                   )}
                               </button>
-                          ))}
+                            );
+                          })}
                       </div>
                   </div>
                   
@@ -244,9 +278,9 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                               <button
                                 key={lang.code}
                                 onClick={() => i18n.changeLanguage(lang.code)}
-                                className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all ${i18n.language === lang.code ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
+                                className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all min-h-[60px] ${i18n.language === lang.code ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
                               >
-                                  <Languages size={16} className={i18n.language === lang.code ? 'text-primary' : 'text-slate-400'} />
+                                  <FlagIcon code={lang.code} size={20} />
                                   <span className={`text-xs font-bold ${i18n.language === lang.code ? 'text-primary' : 'text-slate-700'}`}>{lang.name}</span>
                                   {i18n.language === lang.code && (
                                       <Check size={12} className="text-primary" />
@@ -261,9 +295,9 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                       <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => onUpdateLearningLanguage('en')}
-                            className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all ${userProfile.learningLanguage === 'en' ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
+                            className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all min-h-[60px] ${userProfile.learningLanguage === 'en' ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
                           >
-                              <Languages size={16} className={userProfile.learningLanguage === 'en' ? 'text-primary' : 'text-slate-400'} />
+                              <FlagIcon code="en" size={20} />
                               <span className={`text-xs font-bold ${userProfile.learningLanguage === 'en' ? 'text-primary' : 'text-slate-700'}`}>{t('home.learningLanguageEnglish')}</span>
                               {userProfile.learningLanguage === 'en' && (
                                   <Check size={12} className="text-primary" />
@@ -271,9 +305,9 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                           </button>
                           <button
                             onClick={() => onUpdateLearningLanguage('ko')}
-                            className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all ${userProfile.learningLanguage === 'ko' ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
+                            className={`p-3 rounded-lg border-2 flex flex-col items-center gap-1 transition-all min-h-[60px] ${userProfile.learningLanguage === 'ko' ? `border-primary bg-primary/5 text-primary` : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
                           >
-                              <Languages size={16} className={userProfile.learningLanguage === 'ko' ? 'text-primary' : 'text-slate-400'} />
+                              <FlagIcon code="ko" size={20} />
                               <span className={`text-xs font-bold ${userProfile.learningLanguage === 'ko' ? 'text-primary' : 'text-slate-700'}`}>{t('home.learningLanguageKorean')}</span>
                               {userProfile.learningLanguage === 'ko' && (
                                   <Check size={12} className="text-primary" />
@@ -285,14 +319,14 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                   <div className="flex gap-2 mt-4">
                     <button 
                         onClick={onRetakeTest}
-                        className="flex-1 py-2.5 bg-slate-100 text-slate-600 font-bold text-sm rounded-lg hover:bg-slate-200 transition-colors"
+                        className="flex-1 py-3 bg-slate-100 text-slate-600 font-bold text-sm rounded-lg hover:bg-slate-200 transition-colors min-h-[44px] flex items-center justify-center"
                     >
                         {t('home.retakeTest')}
                     </button>
 
                     <button 
                         onClick={onReset}
-                        className="flex-1 py-2.5 border-2 border-red-200 text-red-500 font-bold text-sm rounded-lg hover:bg-red-50 transition-colors flex items-center justify-center gap-1.5"
+                        className="flex-1 py-3 border-2 border-red-200 text-red-500 font-bold text-sm rounded-lg hover:bg-red-50 transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
                     >
                         <RotateCcw size={14} />
                         {t('home.resetData')}

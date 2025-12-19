@@ -4,6 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { Difficulty, UserProfile } from '../types';
 import { ArrowRight, Sparkles, Lightbulb, Languages, Check } from 'lucide-react';
 
+// 국기 이모지 컴포넌트
+const FlagIcon: React.FC<{ code: string; size?: number }> = ({ code, size = 24 }) => {
+  const flags: Record<string, string> = {
+    'ko': '🇰🇷',
+    'en': '🇺🇸',
+    'es': '🇪🇸'
+  };
+  return <span style={{ fontSize: size }}>{flags[code] || '🌐'}</span>;
+};
+
 interface Props {
   onComplete: (profile: UserProfile) => void;
 }
@@ -174,7 +184,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
               }`}
             >
               <div className="flex items-center gap-3">
-                <Languages size={24} className="text-slate-400" />
+                <FlagIcon code="en" size={24} />
                 <h3 className={`font-bold text-lg ${selectedLanguage === 'en' ? 'text-primary' : 'text-slate-700'}`}>
                   {t('onboarding.learningLanguageEnglish')}
                 </h3>
@@ -194,7 +204,7 @@ const OnboardingView: React.FC<Props> = ({ onComplete }) => {
               }`}
             >
               <div className="flex items-center gap-3">
-                <Languages size={24} className="text-slate-400" />
+                <FlagIcon code="ko" size={24} />
                 <h3 className={`font-bold text-lg ${selectedLanguage === 'ko' ? 'text-primary' : 'text-slate-700'}`}>
                   {t('onboarding.learningLanguageKorean')}
                 </h3>

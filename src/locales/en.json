@@ -26,6 +26,7 @@
     "uiLanguageDesc": "Language for app menus and instructions",
     "learningLanguage": "Learning Language",
     "learningLanguageDesc": "Language you're learning",
+    "learningLanguageChangeConfirm": "Changing the learning language will reset all progress.\nWould you like to retake the level test?",
     "learningLanguageEnglish": "English",
     "learningLanguageKorean": "한국어",
     "learningLanguageSpanish": "Español",

@@ -175,7 +175,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                 setMistakes(prev => [...prev, {
                     id: `mistake-${Date.now()}`,
                     context: formatText(currentRound.context),
-                    wrongAnswer: getOptionText(option),
+                    wrongAnswer: formatText(getOptionText(option)),
                     correctOption: correctOpt
                 }]);
             }
@@ -202,7 +202,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         setPendingScore(null);
     }
 
-    setMessages(prev => [...prev, { id: `user-${Date.now()}`, sender: 'me', text: getOptionText(selectedOption) }]);
+    setMessages(prev => [...prev, { id: `user-${Date.now()}`, sender: 'me', text: formatText(getOptionText(selectedOption)) }]);
     scrollToBottom();
 
     if (levelData && roundIndex < levelData.rounds.length - 1) {
@@ -327,7 +327,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                         onClick={() => handleOptionSelect(opt)}
                         className="text-left w-full p-4 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 rounded-xl font-medium text-slate-700 text-sm transition-colors border border-transparent focus:border-primary outline-none"
                       >
-                          {getOptionText(opt)}
+                          {formatText(getOptionText(opt))}
                       </button>
                   ))}
               </div>
@@ -359,7 +359,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                   </div>
                   
                   <div className="bg-slate-50 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border border-slate-100">
-                      <p className="font-bold text-slate-800 mb-2 text-base">{selectedOption ? getOptionText(selectedOption) : ''}</p>
+                      <p className="font-bold text-slate-800 mb-2 text-base">{selectedOption ? formatText(getOptionText(selectedOption)) : ''}</p>
                       {feedback.explain}
                   </div>
 

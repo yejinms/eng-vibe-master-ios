@@ -26,6 +26,7 @@
     "uiLanguageDesc": "Idioma para menús e instrucciones de la app",
     "learningLanguage": "Idioma de Aprendizaje",
     "learningLanguageDesc": "Idioma que estás aprendiendo",
+    "learningLanguageChangeConfirm": "Cambiar el idioma de aprendizaje restablecerá todo el progreso.\n¿Te gustaría volver a hacer la prueba de nivel?",
     "learningLanguageEnglish": "English",
     "learningLanguageKorean": "한국어",
     "learningLanguageSpanish": "Español",
