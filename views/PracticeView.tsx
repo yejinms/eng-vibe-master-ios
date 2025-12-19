@@ -7,13 +7,19 @@ import confetti from 'canvas-confetti';
 
 interface Props {
   rounds: { charName: string, round: DialogueRound }[];
+  learningLanguage: 'en' | 'ko';
   onBack: () => void;
 }
 
-const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
+const PracticeView: React.FC<Props> = ({ rounds, learningLanguage, onBack }) => {
   const { t, i18n } = useTranslation();
   const [mode, setMode] = useState<'LIST' | 'QUIZ'>('LIST');
-  const getOptionText = (opt: Option) => (i18n.language === 'ko' ? opt.textKo : opt.text);
+  const getOptionText = (opt: Option) => {
+    // Use learningLanguage to determine which text to show
+    // learningLanguage 'ko' means learning Korean -> show textKo
+    // learningLanguage 'en' means learning English -> show text (English)
+    return learningLanguage === 'ko' ? opt.textKo : opt.text;
+  };
 
   // Quiz State
   const [quizQuestions, setQuizQuestions] = useState<{ charName: string, round: DialogueRound }[]>([]);

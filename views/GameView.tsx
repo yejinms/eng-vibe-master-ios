@@ -57,7 +57,8 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   
   // Get current UI language
   const isEnglish = i18n.language === 'en';
-  const getOptionText = (opt: Option) => (i18n.language === 'ko' ? opt.textKo : opt.text);
+  // Use learningLanguage to determine which text to show (textKo for Korean learning, text for English learning)
+  const getOptionText = (opt: Option) => (userProfile.learningLanguage === 'ko' ? opt.textKo : opt.text);
 
   const scrollToBottom = () => {
     setTimeout(() => {

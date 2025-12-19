@@ -66,6 +66,7 @@ export type ViewState = 'ONBOARDING' | 'HOME' | 'GAME' | 'LEVEL_UP' | 'COMPLETED
 export interface UserProfile {
   name: string;
   level: Difficulty;
+  learningLanguage: 'en' | 'ko'; // Language being learned
 }
 
 export interface GameState {

@@ -9,13 +9,19 @@ import { getLocalizedLevelData, getLocalizedRound } from '../utils/localization'
 interface Props {
   character: CharacterProfile;
   difficulty: Difficulty;
+  learningLanguage: 'en' | 'ko';
   onPass: () => void;
   onFail: () => void;
 }
 
-const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) => {
+const QuizView: React.FC<Props> = ({ character, difficulty, learningLanguage, onPass, onFail }) => {
   const { t, i18n } = useTranslation();
-  const getOptionText = (opt: { text: string; textKo: string }) => (i18n.language === 'ko' ? opt.textKo : opt.text);
+  const getOptionText = (opt: { text: string; textKo: string }) => {
+    // Use learningLanguage to determine which text to show
+    // learningLanguage 'ko' means learning Korean -> show textKo
+    // learningLanguage 'en' means learning English -> show text (English)
+    return learningLanguage === 'ko' ? opt.textKo : opt.text;
+  };
   const [questions, setQuestions] = useState<DialogueRound[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -30,7 +36,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
     const quizQs: DialogueRound[] = [];
 
     rawLevels.forEach(rawLevel => {
-        const level = getLocalizedLevelData(rawLevel, i18n.language);
+        const level = getLocalizedLevelData(rawLevel);
         if (level.rounds.length > 0) {
             const randomRound = level.rounds[Math.floor(Math.random() * level.rounds.length)];
             quizQs.push(randomRound);

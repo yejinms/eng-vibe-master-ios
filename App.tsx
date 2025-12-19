@@ -35,7 +35,12 @@ const App: React.FC = () => {
       try {
         const saved = localStorage.getItem('vibeMasterV6');
         if (saved) {
-          return JSON.parse(saved);
+          const parsed = JSON.parse(saved);
+          // Backward compatibility: add default learningLanguage if missing
+          if (parsed.userProfile && !parsed.userProfile.learningLanguage) {
+            parsed.userProfile.learningLanguage = 'en';
+          }
+          return parsed;
         }
       } catch (e) {
         console.error('Error loading from localStorage:', e);
@@ -50,6 +55,11 @@ const App: React.FC = () => {
       try {
         const saved = await storage.get('vibeMasterV6');
         if (saved) {
+          // Backward compatibility: add default learningLanguage if missing
+          if (saved.userProfile && !saved.userProfile.learningLanguage) {
+            saved.userProfile.learningLanguage = 'en';
+            await storage.set('vibeMasterV6', saved);
+          }
           setGameState(saved);
           // Migrate from localStorage to Capacitor if localStorage has data
           if (typeof window !== 'undefined') {
@@ -70,6 +80,10 @@ const App: React.FC = () => {
               const localSaved = localStorage.getItem('vibeMasterV6');
               if (localSaved) {
                 const migrated = JSON.parse(localSaved);
+                // Backward compatibility: add default learningLanguage if missing
+                if (migrated.userProfile && !migrated.userProfile.learningLanguage) {
+                  migrated.userProfile.learningLanguage = 'en';
+                }
                 setGameState(migrated);
                 await storage.set('vibeMasterV6', migrated);
                 localStorage.removeItem('vibeMasterV6'); // Clean up after migration
@@ -430,6 +444,7 @@ const App: React.FC = () => {
         <QuizView
           character={allCharacters[activeCharId]}
           difficulty={gameState.userProfile.level}
+          learningLanguage={gameState.userProfile.learningLanguage}
           onPass={handleQuizPass}
           onFail={handleQuizFail}
         />
@@ -465,8 +480,9 @@ const App: React.FC = () => {
       )}
 
       {view === 'PRACTICE' && (
-          <PracticeView 
+          <PracticeView
               rounds={collectedRounds}
+              learningLanguage={gameState.userProfile.learningLanguage}
               onBack={handleGoHome}
           />
       )}
