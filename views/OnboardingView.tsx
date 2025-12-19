@@ -52,7 +52,7 @@ const TEST_SCENARIOS_KO = [
     intent: "How do I say I'm 'on cloud nine' (extremely happy)?",
     options: [
       { text: "I'm on cloud nine!", textKo: "완전 기분이 좋아!", score: 1 }, // Correct translation
-      { text: "I'm very good.", textKo: "완전 기분이 좋아!", score: 0 }, // Too literal/simple
+      { text: "I'm very good.", textKo: "아주 좋아요!", score: 0 }, // Too literal/simple
       { text: "I'm flying in the sky.", textKo: "하늘을 날고 있어.", score: 0 } // Literal translation, wrong meaning
     ]
   },
@@ -63,8 +63,8 @@ const TEST_SCENARIOS_KO = [
     intent: "How do I say 'I'll keep an eye on it' (I'll watch it carefully)?",
     options: [
       { text: "I'll keep an eye on it.", textKo: "제가 계속 지켜보겠습니다.", score: 1 }, // Correct
-      { text: "I'll watch it carefully.", textKo: "제가 계속 지켜보겠습니다.", score: 0 }, // Awkward, less idiomatic
-      { text: "I'll put my eye on it.", textKo: "제가 계속 지켜보겠습니다.", score: 0 } // Wrong, unnatural
+      { text: "I'll watch it carefully.", textKo: "조심스럽게 볼게요.", score: 0 }, // Awkward, less idiomatic
+      { text: "I'll put my eye on it.", textKo: "제 눈을 거기에 둘게요.", score: 0 } // Wrong, unnatural
     ]
   },
   {
@@ -74,8 +74,8 @@ const TEST_SCENARIOS_KO = [
     intent: "How do I say 'we need to get the upper hand' (we need to take control)?",
     options: [
       { text: "We need to get the upper hand.", textKo: "우리가 주도권을 잡아야 해요.", score: 1 }, // Correct Idiom
-      { text: "We need to control the situation.", textKo: "우리가 주도권을 잡아야 해요.", score: 0 }, // Less idiomatic
-      { text: "We must become the main driver.", textKo: "우리가 주도권을 잡아야 해요.", score: 0 } // Corporate jargon, less natural
+      { text: "We need to control the situation.", textKo: "상황을 통제해야 해요.", score: 0 }, // Less idiomatic
+      { text: "We must become the main driver.", textKo: "우리가 주도자가 되어야 해요.", score: 0 } // Corporate jargon, less natural
     ]
   }
 ];

@@ -263,7 +263,6 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                   
                   <div className="space-y-3 mb-6">
                       <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('home.learningLanguage')}</h3>
-                      <p className="text-xs text-slate-500 mb-3">{t('home.learningLanguageDesc')}</p>
                       <div className="p-4 rounded-xl border-2 border-slate-200 bg-slate-50 flex items-center justify-between">
                           <div className="flex items-center gap-2">
                               <Languages size={16} className="text-slate-400" />

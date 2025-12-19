@@ -66,6 +66,7 @@
     "selectLanguage": "Select the language you want to learn",
     "selectLanguageDesc": "Which language would you like to learn?",
     "learningLanguageEnglish": "English",
+    "learningLanguageKorean": "한국어",
     "learningLanguageSpanish": "Español",
     "start": "Start",
     "levelTest": "Level Test {{current}}/{{total}}",
