@@ -14,7 +14,7 @@ import { storage } from './utils/storage';
 import { getLocalizedLevelData, getLocalizedRound } from './utils/localization';
 
 const App: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [view, setView] = useState<ViewState>('ONBOARDING');
   const [activeCharId, setActiveCharId] = useState<CharacterId | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -231,7 +231,7 @@ const App: React.FC = () => {
           try {
               const char = allCharacters[activeCharId];
               // Generate new levels for next difficulty
-              const newLevels = await generateNextLevelStory(char, nextLevel);
+              const newLevels = await generateNextLevelStory(char, nextLevel, i18n.language, gameState.userProfile.learningLanguage);
               
               setGameState(prev => {
                   // Update the specific custom character with new levels
@@ -346,11 +346,17 @@ const App: React.FC = () => {
      }
   };
 
+  const handleUpdateLearningLanguage = (newLanguage: 'en' | 'ko') => {
+     if(gameState.userProfile) {
+         setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, learningLanguage: newLanguage } }));
+     }
+  };
+
   const handleCreateCharacter = async (relation: RelationType, theme: ThemeType) => {
     if (!gameState.userProfile) return;
     setIsGenerating(true);
     try {
-        const newChar = await generateCharacterWithAI(relation, theme, gameState.userProfile.level);
+        const newChar = await generateCharacterWithAI(relation, theme, gameState.userProfile.level, i18n.language, gameState.userProfile.learningLanguage);
         setGameState(prev => ({
             ...prev,
             customCharacters: [...prev.customCharacters, newChar],
@@ -425,6 +431,7 @@ const App: React.FC = () => {
           isGenerating={isGenerating}
           onRetakeTest={handleRetakeTest}
           onUpdateLevel={handleUpdateLevel}
+          onUpdateLearningLanguage={handleUpdateLearningLanguage}
           onPractice={handlePractice}
         />
       )}

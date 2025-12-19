@@ -11,14 +11,16 @@ export type ThemeType = 'romance' | 'conflict' | 'secret' | 'business';
 export const generateCharacterWithAI = async (
   relation: RelationType,
   theme: ThemeType,
-  difficulty: Difficulty
+  difficulty: Difficulty,
+  uiLanguage: string = 'ko',
+  learningLanguage: string = 'en'
 ): Promise<CharacterProfile> => {
   try {
     const response = await apiRequest<{ character: CharacterProfile }>(
       '/api/generate-character',
       {
         method: 'POST',
-        body: JSON.stringify({ relation, theme, difficulty }),
+        body: JSON.stringify({ relation, theme, difficulty, uiLanguage, learningLanguage }),
       }
     );
     
@@ -35,14 +37,16 @@ export const generateCharacterWithAI = async (
  */
 export const generateNextLevelStory = async (
   character: CharacterProfile,
-  targetDifficulty: Difficulty
+  targetDifficulty: Difficulty,
+  uiLanguage: string = 'ko',
+  learningLanguage: string = 'en'
 ): Promise<LevelData[]> => {
   try {
     const response = await apiRequest<{ levels: LevelData[] }>(
       '/api/generate-next-level',
       {
         method: 'POST',
-        body: JSON.stringify({ character, targetDifficulty }),
+        body: JSON.stringify({ character, targetDifficulty, uiLanguage, learningLanguage }),
       }
     );
     

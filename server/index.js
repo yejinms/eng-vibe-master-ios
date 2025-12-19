@@ -35,14 +35,18 @@ const COLOR_THEMES = [
 ];
 
 // Helper function to generate character
-async function generateCharacterWithAI(relation, theme, difficulty) {
+async function generateCharacterWithAI(relation, theme, difficulty, uiLanguage = 'ko', learningLanguage = 'en') {
   const seed = Math.floor(Math.random() * 10000);
   const charName = NAMES[Math.floor(Math.random() * NAMES.length)];
   const avatar = AVATARS[Math.floor(Math.random() * AVATARS.length)];
   const randomTheme = COLOR_THEMES[Math.floor(Math.random() * COLOR_THEMES.length)];
 
+  const uiLangName = uiLanguage === 'es' ? 'Spanish' : (uiLanguage === 'en' ? 'English' : 'Korean');
+  const targetLangName = learningLanguage === 'ko' ? 'Korean' : 'English';
+
   const prompt = `
-    Create a 3-chapter story arc for an English learning game.
+    Create a 3-chapter story arc for a ${targetLangName} learning game.
+    The user speaks ${uiLangName}.
     
     Settings:
     - Partner Name: ${charName}
@@ -62,12 +66,15 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
     2. Use **{user}** as the placeholder for the player's name. Do NOT use {username} or [user].
     3. **All 3 options must have roughly similar lengths.** Do not make the correct answer significantly longer.
     4. **CRITICAL:** 'context' and 'contextEn' MUST be **direct dialogue** spoken by the partner (e.g., "Hello, how are you?"), NOT a description of the scene.
-    5. **CRITICAL:** 'options.text' MUST be in **English**. The user is learning English, so they need English choices to respond.
-    6. 'intent' MUST be in **Korean** and describe what the user *should* intend to say (e.g., "반갑다고 인사하려면?").
-    7. 'explain' MUST be in **Korean**.
-    8. For 'Beginner': Use simple vocabulary and common idioms.
-    9. For 'Intermediate': Use situational phrases and phrasal verbs.
-    10. For 'Advanced': Use complex idioms, slang, or professional nuance.
+    5. **CRITICAL:** 'options.text' MUST be in **English**.
+    6. **CRITICAL:** 'options.textKo' MUST be in **Korean**.
+    7. 'intent' MUST be in **${uiLangName}** and describe what the user *should* intend to say.
+    8. 'explain' MUST be in **${uiLangName}**.
+    9. 'title' and 'description' MUST be in **${uiLangName}**.
+    10. 'context' MUST be the translation of the dialogue in **${uiLangName}**.
+    11. For 'Beginner': Use simple vocabulary and common idioms.
+    12. For 'Intermediate': Use situational phrases and phrasal verbs.
+    13. For 'Advanced': Use complex idioms, slang, or professional nuance.
 
     IMPORTANT: You must provide storyDescription in three languages:
     - storyDescription: Korean version
@@ -81,15 +88,20 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
       "storyDescriptionEs": "string (Short description of the character and story in Spanish)",
       "chapters": [
         {
-          "title": "string (Korean title)",
-          "description": "string (Korean description)",
+          "title": "string (Title in ${uiLangName})",
+          "description": "string (Description in ${uiLangName})",
           "rounds": [
             {
-               "context": "string (Korean translation of the dialogue)",
-               "contextEn": "string (Original English dialogue)",
-               "intent": "string (Korean instruction)",
+               "context": "string (Partner's dialogue translated to ${uiLangName})",
+               "contextEn": "string (Partner's dialogue in English)",
+               "intent": "string (Instruction in ${uiLangName})",
                "options": [
-                  { "text": "string (English sentence)", "correct": boolean, "explain": "string (Korean explanation)" }
+                  { 
+                    "text": "string (English option)", 
+                    "textKo": "string (Korean option)",
+                    "correct": boolean, 
+                    "explain": "string (Explanation in ${uiLangName})" 
+                  }
                ]
             }
           ]
@@ -125,10 +137,11 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
                       type: Type.OBJECT,
                       properties: {
                         text: { type: Type.STRING },
+                        textKo: { type: Type.STRING },
                         correct: { type: Type.BOOLEAN },
                         explain: { type: Type.STRING }
                       },
-                      required: ["text", "correct", "explain"]
+                      required: ["text", "textKo", "correct", "explain"]
                     }
                   }
                 },
@@ -226,11 +239,15 @@ async function generateCharacterWithAI(relation, theme, difficulty) {
 }
 
 // Helper function to generate next level story
-async function generateNextLevelStory(character, targetDifficulty) {
+async function generateNextLevelStory(character, targetDifficulty, uiLanguage = 'ko', learningLanguage = 'en') {
   const seed = Math.floor(Math.random() * 10000);
 
+  const uiLangName = uiLanguage === 'es' ? 'Spanish' : (uiLanguage === 'en' ? 'English' : 'Korean');
+  const targetLangName = learningLanguage === 'ko' ? 'Korean' : 'English';
+
   const prompt = `
-    Continue the story of ${character.name} for an English learning game.
+    Continue the story of ${character.name} for a ${targetLangName} learning game.
+    The user speaks ${uiLangName}.
     
     Context:
     - Character Name: ${character.name}
@@ -254,25 +271,33 @@ async function generateNextLevelStory(character, targetDifficulty) {
     3. **All 3 options must have roughly similar lengths.**
     4. **CRITICAL:** 'context' and 'contextEn' MUST be **direct dialogue**.
     5. **CRITICAL:** 'options.text' MUST be in **English**.
-    6. 'intent' MUST be in **Korean** and describe what the user *should* intend to say.
-    7. 'explain' MUST be in **Korean**.
-    8. For 'Beginner': Use simple vocabulary and common idioms.
-    9. For 'Intermediate': Use situational phrases and phrasal verbs.
-    10. For 'Advanced': Use complex idioms, slang, or professional nuance.
+    6. **CRITICAL:** 'options.textKo' MUST be in **Korean**.
+    7. 'intent' MUST be in **${uiLangName}** and describe what the user *should* intend to say.
+    8. 'explain' MUST be in **${uiLangName}**.
+    9. 'title' and 'description' MUST be in **${uiLangName}**.
+    10. 'context' MUST be the translation of the dialogue in **${uiLangName}**.
+    11. For 'Beginner': Use simple vocabulary and common idioms.
+    12. For 'Intermediate': Use situational phrases and phrasal verbs.
+    13. For 'Advanced': Use complex idioms, slang, or professional nuance.
 
     Output JSON structure:
     {
       "chapters": [
         {
-          "title": "string (Korean title)",
-          "description": "string (Korean description)",
+          "title": "string (Title in ${uiLangName})",
+          "description": "string (Description in ${uiLangName})",
           "rounds": [
             {
-               "context": "string (Korean translation of the dialogue)",
-               "contextEn": "string (Original English dialogue)",
-               "intent": "string (Korean instruction)",
+               "context": "string (Partner's dialogue translated to ${uiLangName})",
+               "contextEn": "string (Partner's dialogue in English)",
+               "intent": "string (Instruction in ${uiLangName})",
                "options": [
-                  { "text": "string (English sentence)", "correct": boolean, "explain": "string (Korean explanation)" }
+                  { 
+                    "text": "string (English option)", 
+                    "textKo": "string (Korean option)",
+                    "correct": boolean, 
+                    "explain": "string (Explanation in ${uiLangName})" 
+                  }
                ]
             }
           ]
@@ -305,10 +330,11 @@ async function generateNextLevelStory(character, targetDifficulty) {
                       type: Type.OBJECT,
                       properties: {
                         text: { type: Type.STRING },
+                        textKo: { type: Type.STRING },
                         correct: { type: Type.BOOLEAN },
                         explain: { type: Type.STRING }
                       },
-                      required: ["text", "correct", "explain"]
+                      required: ["text", "textKo", "correct", "explain"]
                     }
                   }
                 },
@@ -398,7 +424,7 @@ app.get('/health', (req, res) => {
 // Generate new character
 app.post('/api/generate-character', async (req, res) => {
   try {
-    const { relation, theme, difficulty } = req.body;
+    const { relation, theme, difficulty, uiLanguage, learningLanguage } = req.body;
 
     // Validation
     if (!relation || !theme || !difficulty) {
@@ -414,8 +440,8 @@ app.post('/api/generate-character', async (req, res) => {
       });
     }
 
-    console.log(`[API] Generating character: ${relation} / ${theme} / ${difficulty}`);
-    const character = await generateCharacterWithAI(relation, theme, difficulty);
+    console.log(`[API] Generating character: ${relation} / ${theme} / ${difficulty} (UI: ${uiLanguage}, Learning: ${learningLanguage})`);
+    const character = await generateCharacterWithAI(relation, theme, difficulty, uiLanguage, learningLanguage);
     
     res.json({ character });
   } catch (error) {
@@ -432,7 +458,7 @@ app.post('/api/generate-character', async (req, res) => {
 // Generate next level story
 app.post('/api/generate-next-level', async (req, res) => {
   try {
-    const { character, targetDifficulty } = req.body;
+    const { character, targetDifficulty, uiLanguage, learningLanguage } = req.body;
 
     // Validation
     if (!character || !targetDifficulty) {
@@ -448,8 +474,8 @@ app.post('/api/generate-next-level', async (req, res) => {
       });
     }
 
-    console.log(`[API] Generating next level for ${character.name}: ${targetDifficulty}`);
-    const levels = await generateNextLevelStory(character, targetDifficulty);
+    console.log(`[API] Generating next level for ${character.name}: ${targetDifficulty} (UI: ${uiLanguage}, Learning: ${learningLanguage})`);
+    const levels = await generateNextLevelStory(character, targetDifficulty, uiLanguage, learningLanguage);
     
     res.json({ levels });
   } catch (error) {
@@ -492,4 +518,3 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`🌐 Network access: http://${localIP}:${PORT}/health`);
   console.log(`\n💡 iOS 앱에서 사용할 서버 URL: http://${localIP}:${PORT}`);
 });
-
