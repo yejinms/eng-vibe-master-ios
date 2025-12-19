@@ -14,7 +14,7 @@ import { storage } from './utils/storage';
 import { getLocalizedLevelData, getLocalizedRound } from './utils/localization';
 
 const App: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [view, setView] = useState<ViewState>('ONBOARDING');
   const [activeCharId, setActiveCharId] = useState<CharacterId | null>(null);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
@@ -326,13 +326,6 @@ const App: React.FC = () => {
     }
   };
   
-  const handleUpdateLearningLanguage = (learningLanguage: 'en' | 'ko') => {
-    setGameState(prev => ({
-      ...prev,
-      userProfile: prev.userProfile ? { ...prev.userProfile, learningLanguage } : null
-    }));
-  };
-
   const handleUpdateLevel = (newLevel: Difficulty) => {
      if(gameState.userProfile) {
          setGameState(prev => ({ ...prev, userProfile: { ...prev.userProfile!, level: newLevel } }));
@@ -378,7 +371,7 @@ const App: React.FC = () => {
               // If lvlIdx is 0, nothing is added
               for(let i = 0; i < lvlIdx; i++) {
                   if (rawLevels[i]) {
-                      const level = getLocalizedLevelData(rawLevels[i], i18n.language);
+                      const level = getLocalizedLevelData(rawLevels[i]);
                       level.rounds.forEach(r => {
                           rounds.push({ charName: char.name, round: r });
                       });
@@ -419,7 +412,6 @@ const App: React.FC = () => {
           onRetakeTest={handleRetakeTest}
           onUpdateLevel={handleUpdateLevel}
           onPractice={handlePractice}
-          onUpdateLearningLanguage={handleUpdateLearningLanguage}
         />
       )}
 

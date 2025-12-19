@@ -29,11 +29,10 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   const difficulty = userProfile.level;
   const rawLevelData = character.levels[difficulty]?.[levelIndex];
   
-  // Recalculate localized data when language or learning language changes
-  const learningLanguage = userProfile.learningLanguage || 'en';
+  // Recalculate localized data when language changes
   const levelData = useMemo(() => {
-    return rawLevelData ? getLocalizedLevelData(rawLevelData, i18n.language, learningLanguage) : null;
-  }, [rawLevelData, i18n.language, learningLanguage]);
+    return rawLevelData ? getLocalizedLevelData(rawLevelData) : null;
+  }, [rawLevelData, i18n.language]);
   
   // States
   const [roundIndex, setRoundIndex] = useState(0);
@@ -50,13 +49,15 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   
-  // Get current round (already localized in levelData)
+  // Recalculate localized round when language or round index changes
   const currentRound = useMemo(() => {
-    return levelData?.rounds[roundIndex] || null;
-  }, [levelData, roundIndex]);
+    const rawCurrentRound = levelData?.rounds[roundIndex];
+    return rawCurrentRound ? getLocalizedRound(rawCurrentRound) : null;
+  }, [levelData, roundIndex, i18n.language]);
   
   // Get current UI language
   const isEnglish = i18n.language === 'en';
+  const getOptionText = (opt: Option) => (i18n.language === 'ko' ? opt.textKo : opt.text);
 
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -108,11 +109,12 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
       // Update other messages with localized context
       if (msg.sender === 'other' && msg.id.startsWith('msg-')) {
         const roundIdx = parseInt(msg.id.replace('msg-', ''));
-        const roundData = levelData.rounds[roundIdx];
-        if (roundData) {
+        const rawRoundData = levelData.rounds[roundIdx];
+        if (rawRoundData) {
+          const localizedRound = getLocalizedRound(rawRoundData);
           return {
             ...msg,
-            text: formatText(roundData.context)
+            text: formatText(localizedRound.context)
           };
         }
       }
@@ -123,8 +125,10 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
   }, [i18n.language]);
 
   const startRound = (rIdx: number) => {
-    const roundData = levelData?.rounds[rIdx];
-    if (!roundData) return;
+    const rawRoundData = levelData?.rounds[rIdx];
+    if (!rawRoundData) return;
+    
+    const roundData = getLocalizedRound(rawRoundData);
 
     setTurnState('WAITING');
     setSelectedOption(null);
@@ -170,7 +174,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                 setMistakes(prev => [...prev, {
                     id: `mistake-${Date.now()}`,
                     context: formatText(currentRound.context),
-                    wrongAnswer: option.text,
+                    wrongAnswer: getOptionText(option),
                     correctOption: correctOpt
                 }]);
             }
@@ -184,7 +188,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
     }
     
     setPendingScore(nextScore); // Store for later
-    const localizedOption = getLocalizedOption(option, i18n.language, learningLanguage);
+    const localizedOption = getLocalizedOption(option);
     setFeedback({ isCorrect, explain: formatText(localizedOption.explain) });
   };
 
@@ -197,7 +201,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
         setPendingScore(null);
     }
 
-    setMessages(prev => [...prev, { id: `user-${Date.now()}`, sender: 'me', text: selectedOption.text }]);
+    setMessages(prev => [...prev, { id: `user-${Date.now()}`, sender: 'me', text: getOptionText(selectedOption) }]);
     scrollToBottom();
 
     if (levelData && roundIndex < levelData.rounds.length - 1) {
@@ -322,7 +326,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                         onClick={() => handleOptionSelect(opt)}
                         className="text-left w-full p-4 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 rounded-xl font-medium text-slate-700 text-sm transition-colors border border-transparent focus:border-primary outline-none"
                       >
-                          {opt.text}
+                          {getOptionText(opt)}
                       </button>
                   ))}
               </div>
@@ -354,7 +358,7 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
                   </div>
                   
                   <div className="bg-slate-50 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border border-slate-100">
-                      <p className="font-bold text-slate-800 mb-2 text-base">{selectedOption?.text}</p>
+                      <p className="font-bold text-slate-800 mb-2 text-base">{selectedOption ? getOptionText(selectedOption) : ''}</p>
                       {feedback.explain}
                   </div>
 

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const GameOverView: React.FC<Props> = ({ reviewItems, onRetry, onHome }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className="flex flex-col h-full bg-slate-100">
       <div className="bg-white p-6 pb-8 rounded-b-[2rem] shadow-sm text-center z-10">
@@ -39,7 +39,7 @@ const GameOverView: React.FC<Props> = ({ reviewItems, onRetry, onHome }) => {
 
                     <div>
                         <span className="text-xs font-bold text-green-600 uppercase tracking-wide">{t('gameOver.betterVibe')}</span>
-                        <p className="text-primary font-bold">{item.correctOption.text}</p>
+                        <p className="text-primary font-bold">{i18n.language === 'ko' ? item.correctOption.textKo : item.correctOption.text}</p>
                         <p className="text-xs text-slate-500 mt-1 bg-green-50 p-2 rounded-lg">
                             💡 {item.correctOption.explain}
                         </p>

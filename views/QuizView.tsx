@@ -15,6 +15,7 @@ interface Props {
 
 const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) => {
   const { t, i18n } = useTranslation();
+  const getOptionText = (opt: { text: string; textKo: string }) => (i18n.language === 'ko' ? opt.textKo : opt.text);
   const [questions, setQuestions] = useState<DialogueRound[]>([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -179,7 +180,7 @@ const QuizView: React.FC<Props> = ({ character, difficulty, onPass, onFail }) =>
                         disabled={selectedOptionIndex !== null}
                         className={`w-full p-4 rounded-xl border-2 font-bold text-left transition-all relative ${btnClass}`}
                       >
-                          {option.text}
+                          {getOptionText(option)}
                           {selectedOptionIndex === idx && (
                               <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                   {isCorrect ? <CheckCircle2 size={20} /> : <XCircle size={20} />}

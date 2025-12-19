@@ -11,8 +11,9 @@ interface Props {
 }
 
 const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [mode, setMode] = useState<'LIST' | 'QUIZ'>('LIST');
+  const getOptionText = (opt: Option) => (i18n.language === 'ko' ? opt.textKo : opt.text);
 
   // Quiz State
   const [quizQuestions, setQuizQuestions] = useState<{ charName: string, round: DialogueRound }[]>([]);
@@ -162,7 +163,7 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
                                    disabled={selectedOption !== null}
                                    className={`w-full p-4 rounded-xl border-2 font-bold text-left transition-all relative ${btnClass}`}
                                >
-                                   {opt.text}
+                                   {getOptionText(opt)}
                                    {selectedOption === opt && (
                                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                           {isCorrect ? <CheckCircle2 size={20} /> : <XCircle size={20} />}
@@ -220,7 +221,7 @@ const PracticeView: React.FC<Props> = ({ rounds, onBack }) => {
                       {/* English Sentence */}
                       <div className="flex items-start gap-2 mb-4">
                          <CheckCircle2 size={18} className="text-green-500 mt-0.5 shrink-0" />
-                         <p className="text-lg font-bold text-primary leading-tight">{correctOpt.text}</p>
+                         <p className="text-lg font-bold text-primary leading-tight">{getOptionText(correctOpt)}</p>
                       </div>
 
                       {/* Hint */}
