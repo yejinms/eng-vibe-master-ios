@@ -69,8 +69,16 @@ export interface UserProfile {
   learningLanguage: 'en' | 'ko'; // Language being learned
 }
 
+export interface LastMessage {
+  text: string; // Korean text
+  textEn?: string; // English text
+  textEs?: string; // Spanish text
+  timestamp: number; // Timestamp when message was sent
+}
+
 export interface GameState {
   userProfile: UserProfile | null;
   progress: Record<CharacterId, Record<Difficulty, number>>; // charId -> difficulty -> levelIndex
   customCharacters: CharacterProfile[]; // User created characters
+  lastMessages?: Record<CharacterId, LastMessage>; // Last message for each character
 }

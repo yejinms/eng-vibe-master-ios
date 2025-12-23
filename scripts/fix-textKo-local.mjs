@@ -356,7 +356,34 @@ function localizeKorean(text) {
   // "호텔은 자고 있어" → "호텔이 자고 있어?" (의문문)
   result = result.replace(/^호텔은\s+자고\s+있어$/g, '호텔이 자고 있어?');
   
-  // 6. 중복 공백 제거
+  // 7. 불완전한 문장 완성
+  // "열심히 할 준비가" → "열심히 할 준비가 됐어"
+  result = result.replace(/^열심히\s+할\s+준비가$/g, '열심히 할 준비가 됐어');
+  
+  // "눈만 봐도 통하는" → "눈만 봐도 통하는 거야"
+  result = result.replace(/^눈만\s+봐도\s+통하는$/g, '눈만 봐도 통하는 거야');
+  
+  // "뒤집어 놓을" → "뒤집어 놓을 거야"
+  result = result.replace(/^뒤집어\s+놓을$/g, '뒤집어 놓을 거야');
+  
+  // "물러서지 않을" → "물러서지 않을 거야"
+  result = result.replace(/^물러서지\s+않을$/g, '물러서지 않을 거야');
+  
+  // "그럴 리가" → "그럴 리가 없어"
+  result = result.replace(/^그럴\s+리가$/g, '그럴 리가 없어');
+  
+  // "작업 거시는" → "작업 거시기야" (오타 수정)
+  result = result.replace(/^작업\s+거시는$/g, '작업 거시기야');
+  
+  // "끝난 사이" → "끝난 사이야"
+  result = result.replace(/^끝난\s+사이$/g, '끝난 사이야');
+  
+  // "비 온 뒤에 땅이 굳는" → "비 온 뒤에 땅이 굳는 거야"
+  result = result.replace(/^비\s+온\s+뒤에\s+땅이\s+굳는$/g, '비 온 뒤에 땅이 굳는 거야');
+  
+  // "통하는 게 있더라" → "통하는 게 있더라" (이건 괜찮음, 완전한 문장)
+  
+  // 8. 중복 공백 제거
   result = result.replace(/\s+/g, ' ');
   
   return result.trim();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CharacterProfile, Difficulty, UserProfile } from '../types';
+import { CharacterProfile, Difficulty, UserProfile, LastMessage } from '../types';
 import CharacterCard from '../components/CharacterCard';
 import { RotateCcw, Plus, X, Sparkles, Heart, Sword, Briefcase, Lock, User, UserMinus, Users, Ghost, Loader2, Settings, Check, BookOpen, Languages } from 'lucide-react';
 
@@ -27,9 +27,10 @@ interface Props {
   onUpdateLevel: (level: Difficulty) => void;
   onUpdateLearningLanguage: (language: 'en' | 'ko') => void;
   onPractice: () => void;
+  lastMessages?: Record<string, LastMessage>;
 }
 
-const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelectCharacter, onReset, onCreateCharacter, isGenerating, onRetakeTest, onUpdateLevel, onUpdateLearningLanguage, onPractice }) => {
+const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelectCharacter, onReset, onCreateCharacter, isGenerating, onRetakeTest, onUpdateLevel, onUpdateLearningLanguage, onPractice, lastMessages = {} }) => {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLevelModalOpen, setIsLevelModalOpen] = useState(false);
@@ -124,6 +125,7 @@ const HomeView: React.FC<Props> = ({ progress, characters, userProfile, onSelect
                 onClick={() => onSelectCharacter(char.id)}
                 difficulty={userProfile.level}
                 userName={userProfile.name}
+                lastMessage={lastMessages[char.id]}
             />
           );
         })}

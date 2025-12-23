@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CharacterProfile, Message, Option, ReviewItem, UserProfile } from '../types';
+import { CharacterProfile, Message, Option, ReviewItem, UserProfile, LastMessage } from '../types';
 import GameHeader from '../components/GameHeader';
 import { Lightbulb } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -13,6 +13,7 @@ interface Props {
   onLevelComplete: () => void;
   onGameOver: (mistakes: ReviewItem[]) => void;
   onBack: () => void;
+  onSaveLastMessage?: (charId: string, message: LastMessage) => void;
 }
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -24,7 +25,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArray;
 };
 
-const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevelComplete, onGameOver, onBack }) => {
+const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevelComplete, onGameOver, onBack, onSaveLastMessage }) => {
   const { t, i18n } = useTranslation();
   const difficulty = userProfile.level;
   const rawLevelData = character.levels[difficulty]?.[levelIndex];
@@ -141,14 +142,27 @@ const GameView: React.FC<Props> = ({ character, userProfile, levelIndex, onLevel
       scrollToBottom();
       setTimeout(() => {
         setIsTyping(false);
+        const messageText = formatText(roundData.context);
         setMessages(prev => [
             ...prev, 
             { 
                 id: `msg-${rIdx}`, 
                 sender: 'other', 
-                text: formatText(roundData.context)
+                text: messageText
             }
         ]);
+        
+        // Save last message
+        if (onSaveLastMessage) {
+          const lastMessage: LastMessage = {
+            text: roundData.context, // Korean
+            textEn: roundData.contextEn,
+            textEs: roundData.contextEs,
+            timestamp: Date.now()
+          };
+          onSaveLastMessage(character.id, lastMessage);
+        }
+        
         setTurnState('USER_INPUT');
         scrollToBottom();
       }, 1000 + Math.random() * 500);

@@ -7,7 +7,7 @@ import GameOverView from './views/GameOverView';
 import OnboardingView from './views/OnboardingView';
 import QuizView from './views/QuizView';
 import PracticeView from './views/PracticeView';
-import { CharacterId, GameState, ViewState, ReviewItem, CharacterProfile, UserProfile, Difficulty, DialogueRound } from './types';
+import { CharacterId, GameState, ViewState, ReviewItem, CharacterProfile, UserProfile, Difficulty, DialogueRound, LastMessage } from './types';
 import { CHARACTERS } from './constants';
 import { RelationType, ThemeType, generateCharacterWithAI, generateNextLevelStory } from './utils/generator';
 import { storage } from './utils/storage';
@@ -122,6 +122,46 @@ const App: React.FC = () => {
         setView('HOME');
     }
   }, [gameState.userProfile]);
+
+  // Initialize default last messages for default characters if not exists
+  useEffect(() => {
+    if (!gameState.userProfile) return;
+    
+    const userLevel = gameState.userProfile.level;
+    const needsInit = !gameState.lastMessages || Object.keys(gameState.lastMessages).length === 0;
+    
+    if (needsInit) {
+      const initialLastMessages: Record<string, LastMessage> = {};
+      
+      // Initialize for default characters (zoey, daniel, lucas)
+      Object.keys(CHARACTERS).forEach(charId => {
+        const char = CHARACTERS[charId];
+        const levels = char.levels[userLevel] || [];
+        if (levels.length > 0) {
+          const firstLevel = levels[0];
+          const firstRound = firstLevel.rounds[0];
+          if (firstRound) {
+            initialLastMessages[charId] = {
+              text: firstRound.context,
+              textEn: firstRound.contextEn,
+              textEs: firstRound.contextEs,
+              timestamp: Date.now()
+            };
+          }
+        }
+      });
+      
+      if (Object.keys(initialLastMessages).length > 0) {
+        setGameState(prev => ({
+          ...prev,
+          lastMessages: {
+            ...prev.lastMessages,
+            ...initialLastMessages
+          }
+        }));
+      }
+    }
+  }, [gameState.userProfile, gameState.lastMessages]);
 
   const handleOnboardingComplete = (profile: UserProfile) => {
       setGameState(prev => ({ ...prev, userProfile: profile }));
@@ -419,6 +459,16 @@ const App: React.FC = () => {
       setView('PRACTICE');
   };
 
+  const handleSaveLastMessage = (charId: CharacterId, message: LastMessage) => {
+    setGameState(prev => ({
+      ...prev,
+      lastMessages: {
+        ...prev.lastMessages,
+        [charId]: message
+      }
+    }));
+  };
+
   return (
     <div className="w-full h-full max-w-md mx-auto bg-white relative overflow-hidden flex flex-col" style={{ boxShadow: '0 0 0 1px rgba(0,0,0,0.1)' }}>
       {/* Global Loading Overlay */}
@@ -448,6 +498,7 @@ const App: React.FC = () => {
           onUpdateLevel={handleUpdateLevel}
           onUpdateLearningLanguage={handleUpdateLearningLanguage}
           onPractice={handlePractice}
+          lastMessages={gameState.lastMessages || {}}
         />
       )}
 
@@ -459,6 +510,7 @@ const App: React.FC = () => {
           onLevelComplete={handleLevelComplete}
           onGameOver={handleGameOver}
           onBack={handleGoHome}
+          onSaveLastMessage={handleSaveLastMessage}
         />
       )}
 

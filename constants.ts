@@ -179,7 +179,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Look at you now.", 
-                  textKo: "지금 널 보세요",
+                  textKo: "지금 널 봐",
                   correct: false, 
                   explain: "지금 널 본다는 뜻.",
                   explainEn: "This means 'look at you now'.",
@@ -963,7 +963,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'm totally burnt out.", 
-                  textKo: "완전 녹초가 됐어",
+                  textKo: "완전 녹초가 되었다",
                   correct: true, 
                   explain: "'Burn out'은 연료가 다 타버린 것처럼 기력이 쇠한 상태를 말해.",
                   explainEn: "'Burn out' means you're exhausted like fuel that's all burned up.",
@@ -2655,7 +2655,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No idea.", 
-                   textKo: "모르겠어요",
+                   textKo: "모르겠어",
                    correct: false, 
                    explain: "너무 짧아.",
                    explainEn: "Too short.",
@@ -2907,7 +2907,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I will do my best.", 
-                  textKo: "최선을 다할게요",
+                  textKo: "최선을 다할게",
                   correct: true, 
                   explain: "최선을 다하겠다는 가장 일반적인 표현.",
                   explainEn: "The most common expression meaning you'll do your best.",
@@ -2942,7 +2942,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "I'd love to.", 
-                  textKo: "좋아요",
+                  textKo: "좋아",
                   correct: true, 
                   explain: "'I'd love to'는 제안을 기쁘게 받아들일 때 써.",
                   explainEn: "'I'd love to' is used when happily accepting a suggestion.",
@@ -2977,7 +2977,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
               options: [
                 { 
                   text: "Count on me.", 
-                  textKo: "지켜봐 주세요",
+                  textKo: "지켜봐 줘",
                   correct: true, 
                   explain: "'Count on me'는 나를 믿어달라는 뜻.",
                   explainEn: "'Count on me' means trust me, rely on me.",
@@ -3023,7 +3023,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'll check it right away.", 
-                   textKo: "확인해볼게요",
+                   textKo: "확인해볼게",
                    correct: true, 
                    explain: "지금 당장 확인하겠다는 신속한 표현.",
                    explainEn: "A prompt expression meaning you'll check immediately.",
@@ -3093,7 +3093,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "No problem.", 
-                   textKo: "문제없어요",
+                   textKo: "문제없어",
                    correct: true, 
                    explain: "가장 흔하게 쓰이는 수락 표현.",
                    explainEn: "The most commonly used expression of acceptance.",
@@ -3128,7 +3128,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'll keep that in mind.", 
-                   textKo: "명심할게요",
+                   textKo: "명심할게",
                    correct: true, 
                    explain: "기억해두겠다, 유의하겠다는 뜻.",
                    explainEn: "It means you'll remember and be mindful of it.",
@@ -3209,7 +3209,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I think I made a mistake.", 
-                   textKo: "실수한 것 같아요",
+                   textKo: "실수한 것 같아",
                    correct: true, 
                    explain: "솔직하게 실수를 인정하는 표현.",
                    explainEn: "An expression honestly admitting a mistake.",
@@ -3244,7 +3244,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It's my fault.", 
-                   textKo: "제 불찰야",
+                   textKo: "제 불찰입니다",
                    correct: true, 
                    explain: "제 잘못이라는 명확한 사과.",
                    explainEn: "A clear apology taking responsibility.",
@@ -3279,7 +3279,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It won't happen again.", 
-                   textKo: "다신 이런 일 없을 거예요",
+                   textKo: "다신 이런 일 없을 거야",
                    correct: true, 
                    explain: "재발 방지를 약속하는 표현.",
                    explainEn: "An expression promising to prevent recurrence.",
@@ -3314,7 +3314,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Thank you for understanding.", 
-                   textKo: "감사해",
+                   textKo: "감사합니다",
                    correct: true, 
                    explain: "배려에 감사하는 표현.",
                    explainEn: "An expression thanking for consideration.",
@@ -3430,7 +3430,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'll finish this and go.", 
-                   textKo: "끝내고 갈게요",
+                   textKo: "끝내고 갈게",
                    correct: true, 
                    explain: "이것만 끝내겠다는 의지.",
                    explainEn: "Determination to finish just this.",
@@ -3500,7 +3500,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "You were a big help.", 
-                   textKo: "큰 도움이 됐어요",
+                   textKo: "큰 도움이 됐어",
                    correct: true, 
                    explain: "큰 도움이 되었다는 감사 표현.",
                    explainEn: "An expression of gratitude for being a big help.",
@@ -3535,7 +3535,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I appreciate it.", 
-                   textKo: "감사해",
+                   textKo: "감사합니다",
                    correct: true, 
                    explain: "Thank you보다 조금 더 격식 있고 깊은 감사 표현.",
                    explainEn: "A slightly more formal and deeper expression of gratitude than 'Thank you'.",
@@ -3581,7 +3581,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'm not feeling well.", 
-                   textKo: "안 좋아요",
+                   textKo: "안 좋아",
                    correct: true, 
                    explain: "몸 상태가 안 좋다는 일반적인 표현.",
                    explainEn: "A common expression meaning you're not feeling well.",
@@ -3616,7 +3616,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "I'd like to take a day off tomorrow.", 
-                   textKo: "연차를 쓰고 싶어요",
+                   textKo: "연차를 쓰고 싶어",
                    correct: true, 
                    explain: "'Take a day off'는 하루 쉬다는 뜻.",
                    explainEn: "'Take a day off' means to take a day off work.",
@@ -3651,7 +3651,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Thanks for understanding.", 
-                   textKo: "감사해요",
+                   textKo: "감사해",
                    correct: true, 
                    explain: "상황을 이해해준 것에 대한 감사.",
                    explainEn: "Thanks for understanding the situation.",
@@ -3955,7 +3955,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "My heart is pounding out of my chest.", 
-                   textKo: "튀어나올 것 같아요",
+                   textKo: "튀어나올 것 같아",
                    correct: true, 
                    explain: "심장이 가슴 밖으로 뛸 것 같다, 즉 매우 긴장된다는 뜻.",
                    explainEn: "My heart is beating so hard it feels like it's coming out of my chest, meaning I'm very nervous.",
@@ -4219,7 +4219,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Find center point.", 
-                   textKo: "중심점을 찾아보세요",
+                   textKo: "중심점을 찾아봐",
                    correct: false, 
                    explain: "중심점을 찾다?",
                    explainEn: "Find the center point?",
@@ -4246,7 +4246,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "He'll be a great asset to the team.", 
-                   textKo: "큰 힘이 될 거예요",
+                   textKo: "큰 힘이 될 거야",
                    correct: true, 
                    explain: "'Asset'은 자산, 즉 귀중한 존재라는 뜻.",
                    explainEn: "'Asset' means an asset, i.e., a valuable person.",
@@ -4281,7 +4281,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Let's build a dream team.", 
-                   textKo: "최고의 팀을 만들어요",
+                   textKo: "최고의 팀을 만들어",
                    correct: true, 
                    explain: "최고의 팀을 드림팀이라고 하지.",
                    explainEn: "We call the best team a dream team.",
@@ -4343,7 +4343,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Hope good luck.", 
-                   textKo: "행운을 빌어요",
+                   textKo: "행운을 빌어",
                    correct: false, 
                    explain: "문법이 어색해.",
                    explainEn: "Grammar is awkward.",
@@ -4397,7 +4397,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It's going viral.", 
-                   textKo: "타고 있어요",
+                   textKo: "타고 있어",
                    correct: true, 
                    explain: "'Go viral'은 바이러스처럼 빠르게 퍼진다는 뜻.",
                    explainEn: "'Go viral' means to spread quickly like a virus.",
@@ -4618,7 +4618,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "That was a close call.", 
-                   textKo: "아슬아슬했어요",
+                   textKo: "아슬아슬했어",
                    correct: true, 
                    explain: "위기일발이었다, 아슬아슬했다는 뜻.",
                    explainEn: "It means it was a close shave, very close.",
@@ -4895,7 +4895,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "It sounds delicious.", 
-                   textKo: "맛있을 것 같아요",
+                   textKo: "맛있을 것 같아",
                    correct: false, 
                    explain: "맛있게 들린다?",
                    explainEn: "It sounds delicious?",
@@ -4930,7 +4930,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Look closely.", 
-                   textKo: "자세히 보세요",
+                   textKo: "자세히 봐",
                    correct: false, 
                    explain: "자세히 봐라.",
                    explainEn: "Look closely.",
@@ -4957,7 +4957,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "We'd better turn it down.", 
-                   textKo: "거절하는 게 낫겠어요",
+                   textKo: "거절하는 게 낫겠어",
                    correct: true, 
                    explain: "'Turn down'은 제안을 거절하다는 뜻.",
                    explainEn: "'Turn down' means to reject an offer.",
@@ -5027,7 +5027,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "The sky is the limit.", 
-                   textKo: "하늘이 한계예요",
+                   textKo: "하늘이 한계야",
                    correct: true, 
                    explain: "가능성이 무한하다는 뜻.",
                    explainEn: "It means unlimited potential.",
@@ -5081,7 +5081,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "They catch our ankle.", 
-                   textKo: "우리 발목을 잡아요",
+                   textKo: "우리 발목을 잡아",
                    correct: false, 
                    explain: "한국어 관용구 직역.",
                    explainEn: "A literal translation of a Korean idiom.",
@@ -5186,7 +5186,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Find like lice.", 
-                   textKo: "이처럼 찾아보세요",
+                   textKo: "이처럼 찾아봐",
                    correct: false, 
                    explain: "이처럼 찾아라? 끔찍해.",
                    explainEn: "Find like lice? Terrible.",
@@ -5259,7 +5259,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "It's a dream come true.", 
-                   textKo: "꿈이 이루어졌어요",
+                   textKo: "꿈이 이루어졌어",
                    correct: true, 
                    explain: "꿈이 이루어졌다는 관용구.",
                    explainEn: "An idiom meaning a dream has come true.",
@@ -5399,7 +5399,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "The best is yet to come.", 
-                   textKo: "전성기는 아직 오지 않았어요",
+                   textKo: "전성기는 아직 오지 않았어",
                    correct: true, 
                    explain: "최고의 순간은 아직 오지 않았다는 희망적인 말.",
                    explainEn: "A hopeful saying meaning the best moment hasn't come yet.",
@@ -5445,7 +5445,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Where did that come from?", 
-                   textKo: "무슨 소리예요",
+                   textKo: "무슨 소리야",
                    correct: true, 
                    explain: "어디서 나온 말이냐, 즉 뜬금없다는 뜻.",
                    explainEn: "Where did that come from, meaning it's out of the blue.",
@@ -5480,7 +5480,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Those are big shoes to fill.", 
-                   textKo: "과분한 자리예요",
+                   textKo: "과분한 자리야",
                    correct: true, 
                    explain: "'Big shoes to fill'은 전임자의 역량이 뛰어나 뒤를 잇기 어렵다는 겸손 표현.",
                    explainEn: "'Big shoes to fill' is a humble expression meaning the predecessor was so capable it's hard to follow.",
@@ -5585,7 +5585,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                options: [
                  { 
                    text: "Just you watch.", 
-                   textKo: "지켜봐 주세요",
+                   textKo: "지켜봐 줘",
                    correct: true, 
                    explain: "두고 봐라, 지켜봐 달라는 자신감 있는 표현.",
                    explainEn: "A confident expression meaning watch me, just you wait.",
@@ -5791,7 +5791,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Come safe.", 
-                  textKo: "무사히 오세요",
+                  textKo: "무사히 와",
                   correct: false, 
                   explain: "어색한 표현.",
                   explainEn: "Awkward expression.",
@@ -5799,7 +5799,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                 },
                 { 
                   text: "Be careful come.", 
-                  textKo: "조심히 오세요",
+                  textKo: "조심히 와",
                   correct: false, 
                   explain: "문법 오류.",
                   explainEn: "Grammar error.",
@@ -5977,7 +5977,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "You are funny.", 
-                   textKo: "재밌어요",
+                   textKo: "재밌어",
                    correct: false, 
                    explain: "넌 웃긴 사람이야.",
                    explainEn: "You're a funny person.",
@@ -6395,7 +6395,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Say it.", 
-                   textKo: "말해 보세요",
+                   textKo: "말해 봐",
                    correct: false, 
                    explain: "말해(명령).",
                    explainEn: "Say it (command).",
@@ -6403,7 +6403,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "Talk to me.", 
-                   textKo: "나에게 말을 걸어보세요",
+                   textKo: "나에게 말을 걸어봐",
                    correct: false, 
                    explain: "말 걸어줘.",
                    explainEn: "Talk to me.",
@@ -7141,7 +7141,7 @@ export const CHARACTERS: Record<string, CharacterProfile> = {
                  },
                  { 
                    text: "No sleep yesterday.", 
-                   textKo: "어제 잠을 못 잤어요",
+                   textKo: "어제 잠을 못 잤어",
                    correct: false, 
                    explain: "어제 잠 없음.",
                    explainEn: "No sleep yesterday.",
